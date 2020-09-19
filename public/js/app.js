@@ -85471,7 +85471,18 @@ var render = function() {
                 "div",
                 { attrs: { slot: "footer" }, slot: "footer" },
                 [
-                  _c("Button", { attrs: { type: "primary" } }, [_vm._v("Add")]),
+                  _c(
+                    "Button",
+                    {
+                      attrs: { type: "primary" },
+                      on: {
+                        click: function($event) {
+                          return _vm.addTag()
+                        }
+                      }
+                    },
+                    [_vm._v("Add")]
+                  ),
                   _vm._v(" "),
                   _c(
                     "Button",

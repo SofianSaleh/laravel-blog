@@ -52,7 +52,7 @@
                     :closable="false"
                 >
                     <div slot='footer'>
-                        <Button type='primary'>Add</Button>
+                        <Button type='primary' @click='addTag()'>Add</Button>
                         <Button type='default' @click='addModal=false'>Cancel</Button>
                     </div>
                 </Modal>
