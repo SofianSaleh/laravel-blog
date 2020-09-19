@@ -8,7 +8,9 @@
                 >
                     <p class="_title0">
                         Tags
-                        <Button @click='addModal=true'><Icon type="md-add"></Icon> Add Tag</Button>
+                        <Button @click="addModal = true"
+                            ><Icon type="md-add"></Icon> Add Tag</Button
+                        >
                     </p>
 
                     <div class="_overflow _table_div">
@@ -23,13 +25,13 @@
                             <!-- TABLE TITLE -->
 
                             <!-- ITEMS -->
-                            <tr>
-                                <td>1</td>
+
+                            <tr v-for="tag in tags" :key="tag.id">
+                                <td>{{ tag.id }}</td>
                                 <td class="_table_name">
-                                    Manhattan's art center "Shed" opening
-                                    ceremony
+                                    {{ tag.tagName }}
                                 </td>
-                                <td>Economy</td>
+                                <td>tag.created_at</td>
                                 <td>
                                     <Button type="primary" size="small">
                                         View
@@ -47,13 +49,22 @@
                 </div>
                 <Modal
                     v-model="addModal"
-                    title="Add New Tag"
+                    title="Add tag"
                     :mask-closable="false"
                     :closable="false"
                 >
-                    <div slot='footer'>
-                        <Button type='primary' @click='addTag()'>Add</Button>
-                        <Button type='default' @click='addModal=false'>Cancel</Button>
+                    <Input v-model="data.tagName" placeholder="Add tag name" />
+                    <div slot="footer">
+                        <Button type="default" @click="addModal = false"
+                            >Close</Button
+                        >
+                        <Button
+                            type="primary"
+                            @click="addTag"
+                            :disabled="isAdding"
+                            :loading="isAdding"
+                            >{{ isAdding ? "Adding.." : "Add tag" }}</Button
+                        >
                     </div>
                 </Modal>
             </div>
@@ -65,34 +76,39 @@
 export default {
     data() {
         return {
-          data:{
-              tagName: ""
-          } ,
-          addModal: false,
-          isAdding: false
+            data: {
+                tagName: ""
+            },
+            addModal: false,
+            isAdding: false,
+            tags: []
         };
     },
-    methods:{
-        addTag() {
-            if(this.data.tagName.trim() === '') return this.e('Tag name is Required')
+    methods: {
+        async addTag() {
+            if (this.data.tagName.trim() === "")
+                return this.e("Tag name is Required");
+            const res = await this.callApi("post", "/api/create_tag", {
+                tagName: this.data.tagName
+            });
+            if (res.status === 201) {
+                this.s("Tag has Been Added");
+                this.addModal = false;
+            } else {
+                this.swr();
+            }
+        },
+        async mounted() {
+            console.log("hi1");
+            const res = await this.callApi("get", "/api/get_all_tags");
+            console.log("hi2");
+            if (res.status === 200) {
+                console.log(res.data);
+                this.tags = res.data;
+            } else {
+                this.swr();
+            }
         }
     }
 };
 </script>
-
-// export default {
-//     data() {
-//         return {
-//             modal1: false
-//         };
-//     },
-//     methods: {
-//         ok() {
-//             this.$Message.info("Clicked ok");
-//         },
-//         cancel() {
-//             this.$Message.info("Clicked cancel");
-//         }
-//     }
-// };
-// </script>

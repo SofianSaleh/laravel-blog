@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
     //
-    public function createTag(){
-        return response()->json([
-            'msg' => 'hey there'
-        ],422);
+    public function createTag(Request $request){
+        return  Tag::create([
+            'tagName' => $request->tagName
+        ]);
+    }
+
+    public function getAll(){
+        return Tag::all();
     }
 }

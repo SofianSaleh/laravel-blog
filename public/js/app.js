@@ -1920,6 +1920,25 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1990,12 +2009,83 @@ __webpack_require__.r(__webpack_exports__);
         tagName: ""
       },
       addModal: false,
-      isAdding: false
+      isAdding: false,
+      tags: []
     };
   },
   methods: {
     addTag: function addTag() {
-      if (this.data.tagName.trim() === '') return this.e('Tag name is Required');
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!(_this.data.tagName.trim() === "")) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Tag name is Required"));
+
+              case 2:
+                _context.next = 4;
+                return _this.callApi("post", "/api/create_tag", {
+                  tagName: _this.data.tagName
+                });
+
+              case 4:
+                res = _context.sent;
+
+                if (res.status === 201) {
+                  _this.s("Tag has Been Added");
+
+                  _this.addModal = false;
+                } else {
+                  _this.swr();
+                }
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    mounted: function mounted() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                console.log("hi1");
+                _context2.next = 3;
+                return _this2.callApi("get", "/api/get_all_tags");
+
+              case 3:
+                res = _context2.sent;
+                console.log("hi2");
+
+                if (res.status === 200) {
+                  console.log(res.data);
+                  _this2.tags = res.data;
+                } else {
+                  _this2.swr();
+                }
+
+              case 6:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   }
 });
@@ -85395,57 +85485,66 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("div", { staticClass: "_overflow _table_div" }, [
-                _c("table", { staticClass: "_table" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("1")]),
+                _c(
+                  "table",
+                  { staticClass: "_table" },
+                  [
+                    _vm._m(0),
                     _vm._v(" "),
-                    _c("td", { staticClass: "_table_name" }, [
-                      _vm._v(
-                        '\n                                Manhattan\'s art center "Shed" opening\n                                ceremony\n                            '
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("Economy")]),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      [
-                        _c(
-                          "Button",
-                          { attrs: { type: "primary", size: "small" } },
-                          [
-                            _vm._v(
-                              "\n                                    View\n                                "
-                            )
-                          ]
-                        ),
+                    _vm._l(_vm.tags, function(tag) {
+                      return _c("tr", { key: tag.id }, [
+                        _c("td", [_vm._v(_vm._s(tag.id))]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "_table_name" }, [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(tag.tagName) +
+                              "\n                            "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("tag.created_at")]),
                         _vm._v(" "),
                         _c(
-                          "Button",
-                          { attrs: { type: "info", size: "small" } },
+                          "td",
                           [
-                            _vm._v(
-                              "\n                                    Edit\n                                "
+                            _c(
+                              "Button",
+                              { attrs: { type: "primary", size: "small" } },
+                              [
+                                _vm._v(
+                                  "\n                                    View\n                                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "Button",
+                              { attrs: { type: "info", size: "small" } },
+                              [
+                                _vm._v(
+                                  "\n                                    Edit\n                                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "Button",
+                              { attrs: { type: "error", size: "small" } },
+                              [
+                                _vm._v(
+                                  "\n                                    Delete\n                                "
+                                )
+                              ]
                             )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "Button",
-                          { attrs: { type: "error", size: "small" } },
-                          [
-                            _vm._v(
-                              "\n                                    Delete\n                                "
-                            )
-                          ]
+                          ],
+                          1
                         )
-                      ],
-                      1
-                    )
-                  ])
-                ])
+                      ])
+                    })
+                  ],
+                  2
+                )
               ])
             ]
           ),
@@ -85454,7 +85553,7 @@ var render = function() {
             "Modal",
             {
               attrs: {
-                title: "Add New Tag",
+                title: "Add tag",
                 "mask-closable": false,
                 closable: false
               },
@@ -85467,23 +85566,21 @@ var render = function() {
               }
             },
             [
+              _c("Input", {
+                attrs: { placeholder: "Add tag name" },
+                model: {
+                  value: _vm.data.tagName,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "tagName", $$v)
+                  },
+                  expression: "data.tagName"
+                }
+              }),
+              _vm._v(" "),
               _c(
                 "div",
                 { attrs: { slot: "footer" }, slot: "footer" },
                 [
-                  _c(
-                    "Button",
-                    {
-                      attrs: { type: "primary" },
-                      on: {
-                        click: function($event) {
-                          return _vm.addTag()
-                        }
-                      }
-                    },
-                    [_vm._v("Add")]
-                  ),
-                  _vm._v(" "),
                   _c(
                     "Button",
                     {
@@ -85494,12 +85591,26 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Cancel")]
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "Button",
+                    {
+                      attrs: {
+                        type: "primary",
+                        disabled: _vm.isAdding,
+                        loading: _vm.isAdding
+                      },
+                      on: { click: _vm.addTag }
+                    },
+                    [_vm._v(_vm._s(_vm.isAdding ? "Adding.." : "Add tag"))]
                   )
                 ],
                 1
               )
-            ]
+            ],
+            1
           )
         ],
         1

@@ -16,4 +16,5 @@ use App\Http\Controllers\TagController;
 */
 
 Route::post('/api/create_tag',[TagController::class, 'createTag']);
+Route::get('/api/get_all_tags',[TagController::class, 'getAll']);
 Route::get('{any}',[VueController::class, 'index'])->where('any', '.*');
