@@ -92,19 +92,18 @@ export default {
                 tagName: this.data.tagName
             });
             if (res.status === 201) {
+                this.tags.unshift(res.data);
                 this.s("Tag has Been Added");
                 this.addModal = false;
+                this.data.tagName = "";
             } else {
                 this.swr();
             }
         }
     },
     async created() {
-        console.log("hi1");
         const res = await this.callApi("get", "/api/get_all_tags");
-        console.log("hi2");
         if (res.status === 200) {
-            console.log(res.data);
             this.tags = res.data;
         } else {
             this.swr();

@@ -15,6 +15,6 @@ class TagController extends Controller
     }
 
     public function getAll(){
-        return Tag::all();
+        return Tag::orderBy('id','desc')->get();
     }
 }

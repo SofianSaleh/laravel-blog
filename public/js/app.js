@@ -2040,9 +2040,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context.sent;
 
                 if (res.status === 201) {
+                  _this.tags.unshift(res.data);
+
                   _this.s("Tag has Been Added");
 
                   _this.addModal = false;
+                  _this.data.tagName = "";
                 } else {
                   _this.swr();
                 }
@@ -2065,22 +2068,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              console.log("hi1");
-              _context2.next = 3;
+              _context2.next = 2;
               return _this2.callApi("get", "/api/get_all_tags");
 
-            case 3:
+            case 2:
               res = _context2.sent;
-              console.log("hi2");
 
               if (res.status === 200) {
-                console.log(res.data);
                 _this2.tags = res.data;
               } else {
                 _this2.swr();
               }
 
-            case 6:
+            case 4:
             case "end":
               return _context2.stop();
           }
