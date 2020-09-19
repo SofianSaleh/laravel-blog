@@ -10,6 +10,10 @@ require("./bootstrap");
 import Vue from "vue";
 import router from "./router";
 import App from "./views/App.vue";
+import ViewUI from "view-design";
+import "view-design/dist/styles/iview.css";
+
+Vue.use(ViewUI);
 
 /**
  * The following block of code may be used to automatically register your
