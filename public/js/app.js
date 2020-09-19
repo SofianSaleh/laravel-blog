@@ -1920,14 +1920,11 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1987,36 +1984,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  created: function created() {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return _this.callApi("post", "/api/create_tag", {
-                success: true
-              });
-
-            case 2:
-              res = _context.sent;
-
-              if (res.status === 200) {
-                console.log("done", res);
-              }
-
-              console.log("not done", res);
-
-            case 5:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
+  data: function data() {
+    return {
+      data: {
+        tagName: ""
+      },
+      addModal: false,
+      isAdding: false
+    };
+  },
+  methods: {
+    addTag: function addTag() {
+      if (this.data.tagName.trim() === '') return;
+    }
   }
 });
 
@@ -85377,101 +85357,144 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      [
-        _c("div", [
-          _c("div", { staticClass: "content" }, [
-            _c("div", { staticClass: "container-fluid" }, [
+  return _c("div", [
+    _c("div", { staticClass: "content" }, [
+      _c(
+        "div",
+        { staticClass: "container-fluid" },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20"
+            },
+            [
               _c(
-                "div",
-                {
-                  staticClass:
-                    "_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20"
-                },
+                "p",
+                { staticClass: "_title0" },
                 [
+                  _vm._v("\n                    Tags\n                    "),
                   _c(
-                    "p",
-                    { staticClass: "_title0" },
+                    "Button",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.addModal = true
+                        }
+                      }
+                    },
                     [
-                      _vm._v(
-                        "\n                            Tags\n                            "
-                      ),
-                      _c(
-                        "Button",
-                        [
-                          _c("Icon", { attrs: { type: "md-add" } }),
-                          _vm._v(" Add Tag")
-                        ],
-                        1
-                      )
+                      _c("Icon", { attrs: { type: "md-add" } }),
+                      _vm._v(" Add Tag")
                     ],
                     1
-                  ),
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "_overflow _table_div" }, [
+                _c("table", { staticClass: "_table" }, [
+                  _vm._m(0),
                   _vm._v(" "),
-                  _c("div", { staticClass: "_overflow _table_div" }, [
-                    _c("table", { staticClass: "_table" }, [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [_vm._v("1")]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "_table_name" }, [
-                          _vm._v(
-                            '\n                                        Manhattan\'s art center "Shed"\n                                        opening ceremony\n                                    '
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Economy")]),
+                  _c("tr", [
+                    _c("td", [_vm._v("1")]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "_table_name" }, [
+                      _vm._v(
+                        '\n                                Manhattan\'s art center "Shed" opening\n                                ceremony\n                            '
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("Economy")]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "Button",
+                          { attrs: { type: "primary", size: "small" } },
+                          [
+                            _vm._v(
+                              "\n                                    View\n                                "
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
                         _c(
-                          "td",
+                          "Button",
+                          { attrs: { type: "info", size: "small" } },
                           [
-                            _c(
-                              "Button",
-                              { attrs: { type: "primary", size: "small" } },
-                              [
-                                _vm._v(
-                                  "\n                                            View\n                                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "Button",
-                              { attrs: { type: "info", size: "small" } },
-                              [
-                                _vm._v(
-                                  "\n                                            Edit\n                                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "Button",
-                              { attrs: { type: "error", size: "small" } },
-                              [
-                                _vm._v(
-                                  "\n                                            Delete\n                                        "
-                                )
-                              ]
+                            _vm._v(
+                              "\n                                    Edit\n                                "
                             )
-                          ],
-                          1
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "Button",
+                          { attrs: { type: "error", size: "small" } },
+                          [
+                            _vm._v(
+                              "\n                                    Delete\n                                "
+                            )
+                          ]
                         )
-                      ])
-                    ])
+                      ],
+                      1
+                    )
                   ])
-                ]
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "Modal",
+            {
+              attrs: {
+                title: "Add New Tag",
+                "mask-closable": false,
+                closable: false
+              },
+              model: {
+                value: _vm.addModal,
+                callback: function($$v) {
+                  _vm.addModal = $$v
+                },
+                expression: "addModal"
+              }
+            },
+            [
+              _c(
+                "div",
+                { attrs: { slot: "footer" }, slot: "footer" },
+                [
+                  _c("Button", { attrs: { type: "primary" } }, [_vm._v("Add")]),
+                  _vm._v(" "),
+                  _c(
+                    "Button",
+                    {
+                      attrs: { type: "default" },
+                      on: {
+                        click: function($event) {
+                          _vm.addModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Cancel")]
+                  )
+                ],
+                1
               )
-            ])
-          ])
-        ])
-      ]
-    ],
-    2
-  )
+            ]
+          )
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -101032,14 +101055,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************!*\
   !*** ./resources/js/views/Tags.vue ***!
   \*************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Tags_vue_vue_type_template_id_82cf4190___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Tags.vue?vue&type=template&id=82cf4190& */ "./resources/js/views/Tags.vue?vue&type=template&id=82cf4190&");
 /* harmony import */ var _Tags_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Tags.vue?vue&type=script&lang=js& */ "./resources/js/views/Tags.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Tags_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Tags_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -101069,7 +101093,7 @@ component.options.__file = "resources/js/views/Tags.vue"
 /*!**************************************************************!*\
   !*** ./resources/js/views/Tags.vue?vue&type=script&lang=js& ***!
   \**************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
