@@ -1995,7 +1995,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addTag: function addTag() {
-      if (this.data.tagName.trim() === '') return;
+      if (this.data.tagName.trim() === '') return this.e('Tag name is Required');
     }
   }
 });
@@ -100906,6 +100906,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee, null, [[0, 6]]);
       }))();
+    },
+    i: function i(desc) {
+      var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Hey";
+      this.$Notice.info({
+        title: title,
+        desc: desc
+      });
+    },
+    s: function s(desc) {
+      var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Great!";
+      this.$Notice.success({
+        title: title,
+        desc: desc
+      });
+    },
+    w: function w(desc) {
+      var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Oops!";
+      this.$Notice.warning({
+        title: title,
+        desc: desc
+      });
+    },
+    e: function e(desc) {
+      var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Oops!";
+      this.$Notice.error({
+        title: title,
+        desc: desc
+      });
+    },
+    swr: function swr() {
+      var desc = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "Somethingn went wrong! Please try again.";
+      var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Oops";
+      this.$Notice.error({
+        title: title,
+        desc: desc
+      });
     }
   }
 });

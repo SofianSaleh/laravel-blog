@@ -74,7 +74,7 @@ export default {
     },
     methods:{
         addTag() {
-            if(this.data.tagName.trim() === '') return 
+            if(this.data.tagName.trim() === '') return this.e('Tag name is Required')
         }
     }
 };
