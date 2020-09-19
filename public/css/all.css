@@ -440,7 +440,7 @@ textarea {
     color: #dcdcdc;
 }
 ._1side_menu_list_ul li a {
-    color: #000000;
+    color: #000000 !important;
     display: flex;
     font-size: 14px;
     cursor: pointer;
@@ -3110,6 +3110,10 @@ i.cross_icon {
 }
 .catagory_main_inputs {
     width: 319px;
+}
+
+.router-link-exact-active {
+    background-color: #d9dbdd;
 }
 
 /*!
