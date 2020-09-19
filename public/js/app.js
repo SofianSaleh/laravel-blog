@@ -2055,7 +2055,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    mounted: function mounted() {
+    created: function created() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -2064,22 +2064,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log("hi1");
-                _context2.next = 3;
-                return _this2.callApi("get", "/api/get_all_tags");
+                _context2.next = 2;
+                return _this2.callApi("get", "app/get_all_tags");
 
-              case 3:
+              case 2:
                 res = _context2.sent;
-                console.log("hi2");
 
-                if (res.status === 200) {
-                  console.log(res.data);
+                if (res.status == 200) {
                   _this2.tags = res.data;
                 } else {
                   _this2.swr();
                 }
 
-              case 6:
+              case 4:
               case "end":
                 return _context2.stop();
             }
