@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VueController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +15,5 @@ use App\Http\Controllers\VueController;
 |
 */
 
+Route::post('/api/create_tag',[TagController::class, 'createTag']);
 Route::get('{any}',[VueController::class, 'index'])->where('any', '.*');

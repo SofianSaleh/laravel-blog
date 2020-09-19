@@ -12,8 +12,10 @@ import router from "./router";
 import App from "./views/App.vue";
 import ViewUI from "view-design";
 import "view-design/dist/styles/iview.css";
+import Common from "./common";
 
 Vue.use(ViewUI);
+Vue.mixin(Common);
 
 /**
  * The following block of code may be used to automatically register your

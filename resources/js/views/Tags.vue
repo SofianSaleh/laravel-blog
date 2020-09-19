@@ -55,3 +55,17 @@
         </template>
     </div>
 </template>
+
+<script>
+export default {
+    async created() {
+        const res = await this.callApi("post", "/api/create_tag", {
+            success: true
+        });
+        if (res.status === 200) {
+            console.log("done", res);
+        }
+        console.log("not done", res);
+    }
+};
+</script>
