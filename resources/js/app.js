@@ -11,7 +11,6 @@ import Vue from "vue";
 import router from "./router";
 import App from "./views/App.vue";
 import ViewUI from "view-design";
-import "view-design/dist/styles/iview.css";
 
 Vue.use(ViewUI);
 
@@ -37,7 +36,7 @@ Vue.use(ViewUI);
 const app = new Vue({
     el: "#app",
     components: {
-        App,
+        App
     },
-    router,
+    router
 });
