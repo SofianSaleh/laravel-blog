@@ -2054,36 +2054,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
-    },
-    created: function created() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return _this2.callApi("get", "app/get_all_tags");
-
-              case 2:
-                res = _context2.sent;
-
-                if (res.status == 200) {
-                  _this2.tags = res.data;
-                } else {
-                  _this2.swr();
-                }
-
-              case 4:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
     }
+  },
+  created: function created() {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              console.log("hi1");
+              _context2.next = 3;
+              return _this2.callApi("get", "/api/get_all_tags");
+
+            case 3:
+              res = _context2.sent;
+              console.log("hi2");
+
+              if (res.status === 200) {
+                console.log(res.data);
+                _this2.tags = res.data;
+              } else {
+                _this2.swr();
+              }
+
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
   }
 });
 
@@ -85500,7 +85503,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v("tag.created_at")]),
+                        _c("td", [_vm._v(_vm._s(tag.created_at))]),
                         _vm._v(" "),
                         _c(
                           "td",

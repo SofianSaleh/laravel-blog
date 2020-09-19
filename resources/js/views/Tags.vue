@@ -31,7 +31,7 @@
                                 <td class="_table_name">
                                     {{ tag.tagName }}
                                 </td>
-                                <td>tag.created_at</td>
+                                <td>{{ tag.created_at }}</td>
                                 <td>
                                     <Button type="primary" size="small">
                                         View
@@ -97,14 +97,17 @@ export default {
             } else {
                 this.swr();
             }
-        },
-        async created() {
-            const res = await this.callApi("get", "app/get_all_tags");
-            if (res.status == 200) {
-                this.tags = res.data;
-            } else {
-                this.swr();
-            }
+        }
+    },
+    async created() {
+        console.log("hi1");
+        const res = await this.callApi("get", "/api/get_all_tags");
+        console.log("hi2");
+        if (res.status === 200) {
+            console.log(res.data);
+            this.tags = res.data;
+        } else {
+            this.swr();
         }
     }
 };

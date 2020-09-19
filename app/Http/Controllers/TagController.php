@@ -15,7 +15,6 @@ class TagController extends Controller
     }
 
     public function getAll(){
-        system.out.println('hello');
         return Tag::all();
     }
 }
