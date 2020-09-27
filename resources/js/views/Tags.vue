@@ -36,7 +36,11 @@
                                     <Button type="primary" size="small">
                                         View
                                     </Button>
-                                    <Button type="info" size="small">
+                                    <Button
+                                        type="info"
+                                        size="small"
+                                        @click="showEditModal(tag)"
+                                    >
                                         Edit
                                     </Button>
                                     <Button type="error" size="small">
@@ -70,22 +74,25 @@
                 </Modal>
                 <!-- Edit tags -->
                 <Modal
-                    v-model="addModal"
-                    title="Add tag"
+                    v-model="editModal"
+                    title="Edit tag"
                     :mask-closable="false"
                     :closable="false"
                 >
-                    <Input v-model="data.tagName" placeholder="Add tag name" />
+                    <Input
+                        v-model="editData.tagName"
+                        placeholder="Edit tag name"
+                    />
                     <div slot="footer">
-                        <Button type="default" @click="addModal = false"
+                        <Button type="default" @click="editModal = false"
                             >Close</Button
                         >
                         <Button
                             type="primary"
-                            @click="addTag"
+                            @click="editTag"
                             :disabled="isAdding"
                             :loading="isAdding"
-                            >{{ isAdding ? "Adding.." : "Add tag" }}</Button
+                            >{{ isAdding ? "Editing.." : "Edit tag" }}</Button
                         >
                     </div>
                 </Modal>
@@ -102,13 +109,16 @@ export default {
                 tagName: ""
             },
             addModal: false,
+            editModal: false,
             isAdding: false,
+            editData: {
+                tagName: ""
+            },
             tags: []
         };
     },
     methods: {
         async addTag() {
-            console.log("hi");
             if (this.data.tagName.trim() === "")
                 return this.e("Tag name is Required");
             const res = await this.callApi("post", "/api/create_tag", {
@@ -128,6 +138,33 @@ export default {
                     this.swr();
                 }
             }
+        },
+        async editTag() {
+            if (this.editData.tagName.trim() === "")
+                return this.e("Tag name is Required");
+            const res = await this.callApi(
+                "post",
+                "/api/edit_tag",
+                this.editData
+            );
+
+            if (res.status === 201) {
+                this.tags.unshift(res.data);
+                this.s("Tag has Been Edited");
+                this.addModal = false;
+                this.data.tagName = "";
+            } else {
+                if (res.status === 422) {
+                    if (res.data.errors.tagName)
+                        return this.i(res.data.errors.tagName[0]);
+                } else {
+                    this.swr();
+                }
+            }
+        },
+        showEditModal(tag) {
+            this.editData = tag;
+            this.editModal = true;
         }
     },
     async created() {
