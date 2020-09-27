@@ -68,7 +68,11 @@
                         placeholder="Add Category name"
                     />
                     <div class="space"></div>
-                    <Upload multiple type="drag" action="/api/category/upload">
+                    <Upload
+                        type="drag"
+                        :headers="{ 'x-csrf-token': token }"
+                        action="/api/category/upload"
+                    >
                         <div style="padding: 20px 0">
                             <Icon
                                 type="ios-cloud-upload"
@@ -164,7 +168,8 @@ export default {
             isAdding: false,
             isDeleting: false,
             isEditing: false,
-            tags: []
+            tags: [],
+            token: ""
         };
     },
     methods: {
@@ -267,6 +272,7 @@ export default {
         }
     },
     async created() {
+        this.token = window.Laravel.csrfToken;
         const res = await this.callApi("get", "/api/tag/get_all_tags");
         if (res.status === 200) {
             this.tags = res.data;
