@@ -22,4 +22,10 @@ class TagController extends Controller
     public function getAll(){
         return Tag::orderBy('id','desc')->get();
     }
+
+// To edit tags
+
+    public function editTag(){
+        return Tag::orderBy('id','desc')->get();
+    }
 }
