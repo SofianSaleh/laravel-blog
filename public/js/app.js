@@ -2060,6 +2060,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2076,6 +2077,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       editModal: false,
       deleteModal: false,
       isAdding: false,
+      isDeleting: false,
+      isEditing: false,
       tags: []
     };
   },
@@ -2097,16 +2100,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", _this.e("Tag name is Required"));
 
               case 2:
-                _context.next = 4;
+                _this.isAdding = true;
+                _context.next = 5;
                 return _this.callApi("post", "/api/tag/create_tag", {
                   tagName: _this.data.tagName
                 });
 
-              case 4:
+              case 5:
                 res = _context.sent;
 
                 if (!(res.status === 201)) {
-                  _context.next = 12;
+                  _context.next = 14;
                   break;
                 }
 
@@ -2114,32 +2118,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.s("Tag has Been Added");
 
+                _this.isAdding = false;
                 _this.addModal = false;
                 _this.data.tagName = "";
-                _context.next = 18;
+                _context.next = 22;
                 break;
 
-              case 12:
+              case 14:
                 if (!(res.status === 422)) {
-                  _context.next = 17;
+                  _context.next = 20;
                   break;
                 }
 
+                _this.isAdding = false;
+
                 if (!res.data.errors.tagName) {
-                  _context.next = 15;
+                  _context.next = 18;
                   break;
                 }
 
                 return _context.abrupt("return", _this.i(res.data.errors.tagName[0]));
 
-              case 15:
-                _context.next = 18;
+              case 18:
+                _context.next = 22;
                 break;
 
-              case 17:
+              case 20:
+                _this.isAdding = false;
+
                 _this.swr();
 
-              case 18:
+              case 22:
+                _this.isAdding = false;
+
+              case 23:
               case "end":
                 return _context.stop();
             }
@@ -2164,14 +2176,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.abrupt("return", _this2.e("Tag name is Required"));
 
               case 2:
-                _context2.next = 4;
+                _this2.isEditing = true;
+                _context2.next = 5;
                 return _this2.callApi("post", "/api/tag/edit_tag", _this2.editData);
 
-              case 4:
+              case 5:
                 res = _context2.sent;
 
                 if (!(res.status === 200)) {
-                  _context2.next = 13;
+                  _context2.next = 15;
                   break;
                 }
 
@@ -2182,34 +2195,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this2.s("Tag has Been Edited");
 
+                _this2.isEditing = false;
                 _this2.editModal = false;
                 _this2.editData = {
                   tagName: ""
                 };
-                _context2.next = 19;
+                _context2.next = 23;
                 break;
 
-              case 13:
+              case 15:
                 if (!(res.status === 422)) {
-                  _context2.next = 18;
+                  _context2.next = 21;
                   break;
                 }
 
+                _this2.isEditing = false;
+
                 if (!res.data.errors.tagName) {
-                  _context2.next = 16;
+                  _context2.next = 19;
                   break;
                 }
 
                 return _context2.abrupt("return", _this2.i(res.data.errors.tagName[0]));
 
-              case 16:
-                _context2.next = 19;
+              case 19:
+                _context2.next = 23;
                 break;
 
-              case 18:
+              case 21:
+                _this2.isEditing = false;
+
                 _this2.swr();
 
-              case 19:
+              case 23:
+                _this2.isEditing = false;
+
+              case 24:
               case "end":
                 return _context2.stop();
             }
@@ -2227,26 +2248,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.editData = obj;
       this.editModal = true;
     },
-    deleteTag: function deleteTag(tag, i) {
+    deleteTag: function deleteTag() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                console.log(_this3.deleteData); // if (!confirm("Are you sure you want to delete this tag")) return;
-                // Set property that doesn't exist
-                // this.$set(tag, "isDeleting", true);
-                // const res = await this.callApi("post", "/api/tag/delete_tag", tag);
-                // if (res.status === 200) {
-                //     this.tags.splice(i, 1);
-                //     this.s("Tag deleted Successfully");
-                // } else {
-                //     this.swr();
-                // }
+                _this3.isDeleting = true;
+                _context3.next = 3;
+                return _this3.callApi("post", "/api/tag/delete_tag", _this3.deleteData);
 
-              case 1:
+              case 3:
+                res = _context3.sent;
+
+                if (res.status === 200) {
+                  _this3.tags.splice(_this3.deleteTag.i, 1);
+
+                  _this3.s("Tag deleted Successfully");
+
+                  _this3.isDeleting = false;
+                  _this3.deleteModal = false;
+                } else {
+                  _this3.isDeleting = false;
+
+                  _this3.swr();
+                }
+
+              case 5:
               case "end":
                 return _context3.stop();
             }
@@ -85888,12 +85919,12 @@ var render = function() {
                     {
                       attrs: {
                         type: "primary",
-                        disabled: _vm.isAdding,
-                        loading: _vm.isAdding
+                        disabled: _vm.isEditing,
+                        loading: _vm.isEditing
                       },
                       on: { click: _vm.editTag }
                     },
-                    [_vm._v(_vm._s(_vm.isAdding ? "Editing.." : "Edit tag"))]
+                    [_vm._v("Edit tag")]
                   )
                 ],
                 1
@@ -85949,9 +85980,10 @@ var render = function() {
                         type: "error",
                         size: "large",
                         long: "",
-                        loading: _vm.deleteModal,
-                        disabled: _vm.deleteModal
-                      }
+                        loading: _vm.isDeleting,
+                        disabled: _vm.isDeleting
+                      },
+                      on: { click: _vm.deleteTag }
                     },
                     [_vm._v("Delete")]
                   )

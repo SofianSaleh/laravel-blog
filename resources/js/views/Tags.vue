@@ -95,14 +95,14 @@
                         <Button
                             type="primary"
                             @click="editTag"
-                            :disabled="isAdding"
-                            :loading="isAdding"
-                            >{{ isAdding ? "Editing.." : "Edit tag" }}</Button
+                            :disabled="isEditing"
+                            :loading="isEditing"
+                            >Edit tag</Button
                         >
                     </div>
                 </Modal>
 
-                <!-- Delet Tag -->
+                <!-- Delete Tag -->
 
                 <Modal v-model="deleteModal" width="360">
                     <p slot="header" style="color:#f60;text-align:center">
@@ -119,8 +119,9 @@
                             type="error"
                             size="large"
                             long
-                            :loading="deleteModal"
-                            :disabled="deleteModal"
+                            :loading="isDeleting"
+                            :disabled="isDeleting"
+                            @click="deleteTag"
                             >Delete</Button
                         >
                     </div>
@@ -147,6 +148,8 @@ export default {
             editModal: false,
             deleteModal: false,
             isAdding: false,
+            isDeleting: false,
+            isEditing: false,
             tags: []
         };
     },
@@ -154,6 +157,8 @@ export default {
         async addTag() {
             if (this.data.tagName.trim() === "")
                 return this.e("Tag name is Required");
+
+            this.isAdding = true;
             const res = await this.callApi("post", "/api/tag/create_tag", {
                 tagName: this.data.tagName
             });
@@ -161,20 +166,26 @@ export default {
             if (res.status === 201) {
                 this.tags.unshift(res.data);
                 this.s("Tag has Been Added");
+                this.isAdding = false;
                 this.addModal = false;
                 this.data.tagName = "";
             } else {
                 if (res.status === 422) {
+                    this.isAdding = false;
                     if (res.data.errors.tagName)
                         return this.i(res.data.errors.tagName[0]);
                 } else {
+                    this.isAdding = false;
                     this.swr();
                 }
             }
+            this.isAdding = false;
         },
         async editTag() {
             if (this.editData.tagName.trim() === "")
                 return this.e("Tag name is Required");
+
+            this.isEditing = true;
             const res = await this.callApi(
                 "post",
                 "/api/tag/edit_tag",
@@ -185,16 +196,23 @@ export default {
                 let index = this.tags.findIndex(tag => tag.id === res.data.id);
                 this.tags[index].tagName = res.data.tagName;
                 this.s("Tag has Been Edited");
+                this.isEditing = false;
+
                 this.editModal = false;
                 this.editData = { tagName: "" };
             } else {
                 if (res.status === 422) {
+                    this.isEditing = false;
+
                     if (res.data.errors.tagName)
                         return this.i(res.data.errors.tagName[0]);
                 } else {
+                    this.isEditing = false;
+
                     this.swr();
                 }
             }
+            this.isEditing = false;
         },
         showEditModal({ tagName, id }) {
             let obj = {
@@ -204,20 +222,25 @@ export default {
             this.editData = obj;
             this.editModal = true;
         },
-        async deleteTag(tag, i) {
-            console.log(this.deleteData);
-            // if (!confirm("Are you sure you want to delete this tag")) return;
-            // Set property that doesn't exist
-            // this.$set(tag, "isDeleting", true);
+        async deleteTag() {
+            this.isDeleting = true;
 
-            // const res = await this.callApi("post", "/api/tag/delete_tag", tag);
+            const res = await this.callApi(
+                "post",
+                "/api/tag/delete_tag",
+                this.deleteData
+            );
 
-            // if (res.status === 200) {
-            //     this.tags.splice(i, 1);
-            //     this.s("Tag deleted Successfully");
-            // } else {
-            //     this.swr();
-            // }
+            if (res.status === 200) {
+                this.tags.splice(this.deleteTag.i, 1);
+                this.s("Tag deleted Successfully");
+                this.isDeleting = false;
+                this.deleteModal = false;
+            } else {
+                this.isDeleting = false;
+
+                this.swr();
+            }
         },
         showDeleteModal({ id, tagName }, i) {
             let obj = {
