@@ -8,24 +8,27 @@ use Illuminate\Http\Request;
 class TagController extends Controller
 {
     //
-    public function createTag(Request $request){
+    public function createTag(Request $request)
+    {
         // Validation to the request 
         $this->validate($request, [
             'tagName' => 'required'
         ]);
-        
+
         return  Tag::create([
             'tagName' => $request->tagName
         ]);
     }
 
-    public function getAll(){
-        return Tag::orderBy('id','desc')->get();
+    public function getAll()
+    {
+        return Tag::orderBy('id', 'desc')->get();
     }
 
-// To edit tags
+    // To edit tags
 
-    public function editTag(){
-        return Tag::orderBy('id','desc')->get();
+    public function editTag(Request $request)
+    {
+        return Tag::orderBy('id', 'desc')->get();
     }
 }
