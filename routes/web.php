@@ -22,4 +22,5 @@ Route::post('/api/tag/edit_tag', [TagController::class, 'editTag']);
 Route::post('/api/tag/delete_tag', [TagController::class, 'deleteTag']);
 
 // Tag Routes finished
+Route::post('/api/category/upload', [CategoryController::class, 'deleteTag']);
 Route::get('{any}', [VueController::class, 'index'])->where('any', '.*');

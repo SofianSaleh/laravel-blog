@@ -1920,6 +1920,15 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
 //
 //
 //
@@ -2068,9 +2077,269 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      data: {
+        tagName: ""
+      },
+      editData: {
+        tagName: ""
+      },
+      deleteData: {
+        tagName: ""
+      },
+      addCategory: false,
+      editModal: false,
+      deleteModal: false,
+      isAdding: false,
+      isDeleting: false,
+      isEditing: false,
+      tags: []
+    };
   },
-  methods: {}
+  methods: {
+    addTag: function addTag() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!(_this.data.tagName.trim() === "")) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Tag name is Required"));
+
+              case 2:
+                _this.isAdding = true;
+                _context.next = 5;
+                return _this.callApi("post", "/api/tag/create_tag", {
+                  tagName: _this.data.tagName
+                });
+
+              case 5:
+                res = _context.sent;
+
+                if (!(res.status === 201)) {
+                  _context.next = 14;
+                  break;
+                }
+
+                _this.tags.unshift(res.data);
+
+                _this.s("Tag has Been Added");
+
+                _this.isAdding = false;
+                _this.addModal = false;
+                _this.data.tagName = "";
+                _context.next = 22;
+                break;
+
+              case 14:
+                if (!(res.status === 422)) {
+                  _context.next = 20;
+                  break;
+                }
+
+                _this.isAdding = false;
+
+                if (!res.data.errors.tagName) {
+                  _context.next = 18;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.i(res.data.errors.tagName[0]));
+
+              case 18:
+                _context.next = 22;
+                break;
+
+              case 20:
+                _this.isAdding = false;
+
+                _this.swr();
+
+              case 22:
+                _this.isAdding = false;
+
+              case 23:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    editTag: function editTag() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var res, index;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!(_this2.editData.tagName.trim() === "")) {
+                  _context2.next = 2;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.e("Tag name is Required"));
+
+              case 2:
+                _this2.isEditing = true;
+                _context2.next = 5;
+                return _this2.callApi("post", "/api/tag/edit_tag", _this2.editData);
+
+              case 5:
+                res = _context2.sent;
+
+                if (!(res.status === 200)) {
+                  _context2.next = 15;
+                  break;
+                }
+
+                index = _this2.tags.findIndex(function (tag) {
+                  return tag.id === res.data.id;
+                });
+                _this2.tags[index].tagName = res.data.tagName;
+
+                _this2.s("Tag has Been Edited");
+
+                _this2.isEditing = false;
+                _this2.editModal = false;
+                _this2.editData = {
+                  tagName: ""
+                };
+                _context2.next = 23;
+                break;
+
+              case 15:
+                if (!(res.status === 422)) {
+                  _context2.next = 21;
+                  break;
+                }
+
+                _this2.isEditing = false;
+
+                if (!res.data.errors.tagName) {
+                  _context2.next = 19;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.i(res.data.errors.tagName[0]));
+
+              case 19:
+                _context2.next = 23;
+                break;
+
+              case 21:
+                _this2.isEditing = false;
+
+                _this2.swr();
+
+              case 23:
+                _this2.isEditing = false;
+
+              case 24:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    showEditModal: function showEditModal(_ref) {
+      var tagName = _ref.tagName,
+          id = _ref.id;
+      var obj = {
+        id: id,
+        tagName: tagName
+      };
+      this.editData = obj;
+      this.editModal = true;
+    },
+    deleteTag: function deleteTag() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this3.isDeleting = true;
+                _context3.next = 3;
+                return _this3.callApi("post", "/api/tag/delete_tag", _this3.deleteData);
+
+              case 3:
+                res = _context3.sent;
+
+                if (res.status === 200) {
+                  _this3.tags.splice(_this3.deleteTag.i, 1);
+
+                  _this3.s("Tag deleted Successfully");
+
+                  _this3.isDeleting = false;
+                  _this3.deleteModal = false;
+                } else {
+                  _this3.isDeleting = false;
+
+                  _this3.swr();
+                }
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    showDeleteModal: function showDeleteModal(_ref2, i) {
+      var id = _ref2.id,
+          tagName = _ref2.tagName;
+      var obj = {
+        id: id,
+        tagName: tagName,
+        i: i
+      };
+      this.deleteData = obj;
+      this.deleteModal = true;
+    }
+  },
+  created: function created() {
+    var _this4 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return _this4.callApi("get", "/api/tag/get_all_tags");
+
+            case 2:
+              res = _context4.sent;
+
+              if (res.status === 200) {
+                _this4.tags = res.data;
+              } else {
+                _this4.swr();
+              }
+
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }))();
+  }
 });
 
 /***/ }),
@@ -85140,7 +85409,7 @@ var render = function() {
                     {
                       on: {
                         click: function($event) {
-                          _vm.addModal = true
+                          _vm.addCategory = true
                         }
                       }
                     },
@@ -85241,26 +85510,36 @@ var render = function() {
             "Modal",
             {
               attrs: {
-                title: "Add cATEGORY",
+                title: "Add Category",
                 "mask-closable": false,
                 closable: false
               },
               model: {
-                value: _vm.addcATEGORY,
+                value: _vm.addCategory,
                 callback: function($$v) {
-                  _vm.addcATEGORY = $$v
+                  _vm.addCategory = $$v
                 },
-                expression: "addcATEGORY"
+                expression: "addCategory"
               }
             },
             [
+              _c("Input", {
+                attrs: { placeholder: "Add Category name" },
+                model: {
+                  value: _vm.data.tagName,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "tagName", $$v)
+                  },
+                  expression: "data.tagName"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "space" }),
+              _vm._v(" "),
               _c(
                 "Upload",
                 {
-                  attrs: {
-                    type: "drag",
-                    action: "//jsonplaceholder.typicode.com/posts/"
-                  }
+                  attrs: { multiple: "", type: "drag", action: "/app/upload" }
                 },
                 [
                   _c(
@@ -85279,17 +85558,6 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _c("Input", {
-                attrs: { placeholder: "Add tag name" },
-                model: {
-                  value: _vm.data.tagName,
-                  callback: function($$v) {
-                    _vm.$set(_vm.data, "tagName", $$v)
-                  },
-                  expression: "data.tagName"
-                }
-              }),
-              _vm._v(" "),
               _c(
                 "div",
                 { attrs: { slot: "footer" }, slot: "footer" },
@@ -85300,7 +85568,7 @@ var render = function() {
                       attrs: { type: "default" },
                       on: {
                         click: function($event) {
-                          _vm.addModal = false
+                          _vm.addCategory = false
                         }
                       }
                     },

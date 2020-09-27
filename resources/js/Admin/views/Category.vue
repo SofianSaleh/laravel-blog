@@ -8,7 +8,7 @@
                 >
                     <p class="_title0">
                         Tags
-                        <Button @click="addModal = true"
+                        <Button @click="addCategory = true"
                             ><Icon type="md-add"></Icon> Add Tag</Button
                         >
                     </p>
@@ -58,15 +58,17 @@
                 </div>
                 <!-- Create tag -->
                 <Modal
-                    v-model="addcATEGORY"
-                    title="Add cATEGORY"
+                    v-model="addCategory"
+                    title="Add Category"
                     :mask-closable="false"
                     :closable="false"
                 >
-                    <Upload
-                        type="drag"
-                        action="//jsonplaceholder.typicode.com/posts/"
-                    >
+                    <Input
+                        v-model="data.tagName"
+                        placeholder="Add Category name"
+                    />
+                    <div class="space"></div>
+                    <Upload multiple type="drag" action="/app/upload">
                         <div style="padding: 20px 0">
                             <Icon
                                 type="ios-cloud-upload"
@@ -76,9 +78,8 @@
                             <p>Click or drag files here to upload</p>
                         </div>
                     </Upload>
-                    <Input v-model="data.tagName" placeholder="Add tag name" />
                     <div slot="footer">
-                        <Button type="default" @click="addModal = false"
+                        <Button type="default" @click="addCategory = false"
                             >Close</Button
                         >
                         <Button
@@ -147,8 +148,131 @@
 <script>
 export default {
     data() {
-        return {};
+        return {
+            data: {
+                tagName: ""
+            },
+            editData: {
+                tagName: ""
+            },
+            deleteData: {
+                tagName: ""
+            },
+            addCategory: false,
+            editModal: false,
+            deleteModal: false,
+            isAdding: false,
+            isDeleting: false,
+            isEditing: false,
+            tags: []
+        };
     },
-    methods: {}
+    methods: {
+        async addTag() {
+            if (this.data.tagName.trim() === "")
+                return this.e("Tag name is Required");
+
+            this.isAdding = true;
+            const res = await this.callApi("post", "/api/tag/create_tag", {
+                tagName: this.data.tagName
+            });
+
+            if (res.status === 201) {
+                this.tags.unshift(res.data);
+                this.s("Tag has Been Added");
+                this.isAdding = false;
+                this.addModal = false;
+                this.data.tagName = "";
+            } else {
+                if (res.status === 422) {
+                    this.isAdding = false;
+                    if (res.data.errors.tagName)
+                        return this.i(res.data.errors.tagName[0]);
+                } else {
+                    this.isAdding = false;
+                    this.swr();
+                }
+            }
+            this.isAdding = false;
+        },
+        async editTag() {
+            if (this.editData.tagName.trim() === "")
+                return this.e("Tag name is Required");
+
+            this.isEditing = true;
+            const res = await this.callApi(
+                "post",
+                "/api/tag/edit_tag",
+                this.editData
+            );
+
+            if (res.status === 200) {
+                let index = this.tags.findIndex(tag => tag.id === res.data.id);
+                this.tags[index].tagName = res.data.tagName;
+                this.s("Tag has Been Edited");
+                this.isEditing = false;
+
+                this.editModal = false;
+                this.editData = { tagName: "" };
+            } else {
+                if (res.status === 422) {
+                    this.isEditing = false;
+
+                    if (res.data.errors.tagName)
+                        return this.i(res.data.errors.tagName[0]);
+                } else {
+                    this.isEditing = false;
+
+                    this.swr();
+                }
+            }
+            this.isEditing = false;
+        },
+        showEditModal({ tagName, id }) {
+            let obj = {
+                id,
+                tagName
+            };
+            this.editData = obj;
+            this.editModal = true;
+        },
+        async deleteTag() {
+            this.isDeleting = true;
+
+            const res = await this.callApi(
+                "post",
+                "/api/tag/delete_tag",
+                this.deleteData
+            );
+
+            if (res.status === 200) {
+                this.tags.splice(this.deleteTag.i, 1);
+                this.s("Tag deleted Successfully");
+                this.isDeleting = false;
+                this.deleteModal = false;
+            } else {
+                this.isDeleting = false;
+
+                this.swr();
+            }
+        },
+        showDeleteModal({ id, tagName }, i) {
+            let obj = {
+                id,
+                tagName,
+                i
+            };
+            this.deleteData = obj;
+            this.deleteModal = true;
+        }
+    },
+    async created() {
+        const res = await this.callApi("get", "/api/tag/get_all_tags");
+        if (res.status === 200) {
+            this.tags = res.data;
+        } else {
+            this.swr();
+        }
+    }
 };
 </script>
