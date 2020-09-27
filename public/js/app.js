@@ -2002,6 +2002,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2023,35 +2045,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                console.log("hi");
+
                 if (!(_this.data.tagName.trim() === "")) {
-                  _context.next = 2;
+                  _context.next = 3;
                   break;
                 }
 
                 return _context.abrupt("return", _this.e("Tag name is Required"));
 
-              case 2:
-                _context.next = 4;
+              case 3:
+                _context.next = 5;
                 return _this.callApi("post", "/api/create_tag", {
                   tagName: _this.data.tagName
                 });
 
-              case 4:
+              case 5:
                 res = _context.sent;
-                console.log();
 
-                if (res.status === 201) {
-                  _this.tags.unshift(res.data);
-
-                  _this.s("Tag has Been Added");
-
-                  _this.addModal = false;
-                  _this.data.tagName = "";
-                } else {
-                  _this.swr();
+                if (!(res.status === 201)) {
+                  _context.next = 13;
+                  break;
                 }
 
-              case 7:
+                _this.tags.unshift(res.data);
+
+                _this.s("Tag has Been Added");
+
+                _this.addModal = false;
+                _this.data.tagName = "";
+                _context.next = 19;
+                break;
+
+              case 13:
+                if (!(res.status === 422)) {
+                  _context.next = 18;
+                  break;
+                }
+
+                if (!res.data.errors.tagName) {
+                  _context.next = 16;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.i(res.data.errors.tagName[0]));
+
+              case 16:
+                _context.next = 19;
+                break;
+
+              case 18:
+                _this.swr();
+
+              case 19:
               case "end":
                 return _context.stop();
             }
@@ -85548,6 +85594,70 @@ var render = function() {
                 )
               ])
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "Modal",
+            {
+              attrs: {
+                title: "Add tag",
+                "mask-closable": false,
+                closable: false
+              },
+              model: {
+                value: _vm.addModal,
+                callback: function($$v) {
+                  _vm.addModal = $$v
+                },
+                expression: "addModal"
+              }
+            },
+            [
+              _c("Input", {
+                attrs: { placeholder: "Add tag name" },
+                model: {
+                  value: _vm.data.tagName,
+                  callback: function($$v) {
+                    _vm.$set(_vm.data, "tagName", $$v)
+                  },
+                  expression: "data.tagName"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { attrs: { slot: "footer" }, slot: "footer" },
+                [
+                  _c(
+                    "Button",
+                    {
+                      attrs: { type: "default" },
+                      on: {
+                        click: function($event) {
+                          _vm.addModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "Button",
+                    {
+                      attrs: {
+                        type: "primary",
+                        disabled: _vm.isAdding,
+                        loading: _vm.isAdding
+                      },
+                      on: { click: _vm.addTag }
+                    },
+                    [_vm._v(_vm._s(_vm.isAdding ? "Adding.." : "Add tag"))]
+                  )
+                ],
+                1
+              )
+            ],
+            1
           ),
           _vm._v(" "),
           _c(

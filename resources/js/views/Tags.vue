@@ -47,6 +47,28 @@
                         </table>
                     </div>
                 </div>
+                <!-- Create tag -->
+                <Modal
+                    v-model="addModal"
+                    title="Add tag"
+                    :mask-closable="false"
+                    :closable="false"
+                >
+                    <Input v-model="data.tagName" placeholder="Add tag name" />
+                    <div slot="footer">
+                        <Button type="default" @click="addModal = false"
+                            >Close</Button
+                        >
+                        <Button
+                            type="primary"
+                            @click="addTag"
+                            :disabled="isAdding"
+                            :loading="isAdding"
+                            >{{ isAdding ? "Adding.." : "Add tag" }}</Button
+                        >
+                    </div>
+                </Modal>
+                <!-- Edit tags -->
                 <Modal
                     v-model="addModal"
                     title="Add tag"
@@ -86,19 +108,25 @@ export default {
     },
     methods: {
         async addTag() {
+            console.log("hi");
             if (this.data.tagName.trim() === "")
                 return this.e("Tag name is Required");
             const res = await this.callApi("post", "/api/create_tag", {
                 tagName: this.data.tagName
             });
-            console.log();
+
             if (res.status === 201) {
                 this.tags.unshift(res.data);
                 this.s("Tag has Been Added");
                 this.addModal = false;
                 this.data.tagName = "";
             } else {
-                this.swr();
+                if (res.status === 422) {
+                    if (res.data.errors.tagName)
+                        return this.i(res.data.errors.tagName[0]);
+                } else {
+                    this.swr();
+                }
             }
         }
     },
