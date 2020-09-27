@@ -29,6 +29,12 @@ class TagController extends Controller
 
     public function editTag(Request $request)
     {
-        return Tag::orderBy('id', 'desc')->get();
+        $this->validate($request, [
+            'id' => 'required',
+            'tagName' => 'required'
+        ]);
+        return Tag::where('id', $request->id)->update([
+            'tagName' => $request->tagName
+        ]);
     }
 }
