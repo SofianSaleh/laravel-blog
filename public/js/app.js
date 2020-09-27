@@ -2031,6 +2031,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2195,20 +2199,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.editModal = true;
     }
   },
-  created: function created() {
-    var _this3 = this;
-
+  deleteTag: function deleteTag(tag, i) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              _context3.next = 2;
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
+  },
+  created: function created() {
+    var _this3 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
               return _this3.callApi("get", "/api/get_all_tags");
 
             case 2:
-              res = _context3.sent;
+              res = _context4.sent;
 
               if (res.status === 200) {
                 _this3.tags = res.data;
@@ -2218,10 +2235,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 4:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3);
+      }, _callee4);
     }))();
   }
 });
@@ -85627,7 +85644,7 @@ var render = function() {
                   [
                     _vm._m(0),
                     _vm._v(" "),
-                    _vm._l(_vm.tags, function(tag) {
+                    _vm._l(_vm.tags, function(tag, i) {
                       return _c("tr", { key: tag.id }, [
                         _c("td", [_vm._v(_vm._s(tag.id))]),
                         _vm._v(" "),
@@ -85673,7 +85690,14 @@ var render = function() {
                             _vm._v(" "),
                             _c(
                               "Button",
-                              { attrs: { type: "error", size: "small" } },
+                              {
+                                attrs: { type: "error", size: "small" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteTag(tag, i)
+                                  }
+                                }
+                              },
                               [
                                 _vm._v(
                                   "\n                                    Delete\n                                "

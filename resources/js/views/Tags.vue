@@ -26,7 +26,7 @@
 
                             <!-- ITEMS -->
 
-                            <tr v-for="tag in tags" :key="tag.id">
+                            <tr v-for="(tag, i) in tags" :key="tag.id">
                                 <td>{{ tag.id }}</td>
                                 <td class="_table_name">
                                     {{ tag.tagName }}
@@ -43,7 +43,11 @@
                                     >
                                         Edit
                                     </Button>
-                                    <Button type="error" size="small">
+                                    <Button
+                                        type="error"
+                                        size="small"
+                                        @click="deleteTag(tag, i)"
+                                    >
                                         Delete
                                     </Button>
                                 </td>
@@ -172,6 +176,7 @@ export default {
             this.editModal = true;
         }
     },
+    async deleteTag(tag, i) {},
     async created() {
         const res = await this.callApi("get", "/api/get_all_tags");
         if (res.status === 200) {
