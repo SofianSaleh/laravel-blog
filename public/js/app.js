@@ -85539,7 +85539,11 @@ var render = function() {
               _c(
                 "Upload",
                 {
-                  attrs: { multiple: "", type: "drag", action: "/app/upload" }
+                  attrs: {
+                    multiple: "",
+                    type: "drag",
+                    action: "/api/category/upload"
+                  }
                 },
                 [
                   _c(

@@ -68,7 +68,7 @@
                         placeholder="Add Category name"
                     />
                     <div class="space"></div>
-                    <Upload multiple type="drag" action="/app/upload">
+                    <Upload multiple type="drag" action="/api/category/upload">
                         <div style="padding: 20px 0">
                             <Icon
                                 type="ios-cloud-upload"

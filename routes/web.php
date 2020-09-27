@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VueController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,10 @@ Route::post('/api/tag/edit_tag', [TagController::class, 'editTag']);
 Route::post('/api/tag/delete_tag', [TagController::class, 'deleteTag']);
 
 // Tag Routes finished
-Route::post('/api/category/upload', [CategoryController::class, 'deleteTag']);
+
+// Category Routes Start
+
+Route::post('/api/category/upload', [CategoryController::class, 'upload']);
+
+// Tag Routes finished
 Route::get('{any}', [VueController::class, 'index'])->where('any', '.*');
