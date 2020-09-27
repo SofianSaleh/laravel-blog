@@ -2137,41 +2137,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 4:
                 res = _context2.sent;
 
-                if (!(res.status === 201)) {
-                  _context2.next = 12;
+                if (!(res.status === 200)) {
+                  _context2.next = 11;
                   break;
                 }
 
-                _this2.tags.unshift(res.data);
-
                 _this2.s("Tag has Been Edited");
 
-                _this2.addModal = false;
-                _this2.data.tagName = "";
-                _context2.next = 18;
+                _this2.editModal = false;
+                _this2.editData = {
+                  tagName: ""
+                };
+                _context2.next = 17;
                 break;
 
-              case 12:
+              case 11:
                 if (!(res.status === 422)) {
-                  _context2.next = 17;
+                  _context2.next = 16;
                   break;
                 }
 
                 if (!res.data.errors.tagName) {
-                  _context2.next = 15;
+                  _context2.next = 14;
                   break;
                 }
 
                 return _context2.abrupt("return", _this2.i(res.data.errors.tagName[0]));
 
-              case 15:
-                _context2.next = 18;
+              case 14:
+                _context2.next = 17;
                 break;
 
-              case 17:
+              case 16:
                 _this2.swr();
 
-              case 18:
+              case 17:
               case "end":
                 return _context2.stop();
             }
@@ -2179,8 +2179,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    showEditModal: function showEditModal(tag) {
-      this.editData = tag;
+    showEditModal: function showEditModal(_ref) {
+      var tagName = _ref.tagName,
+          id = _ref.id;
+      var tags = {
+        tagName: tagName,
+        id: id
+      };
+      console.log(tags);
+      this.editData = tags;
       this.editModal = true;
     }
   },

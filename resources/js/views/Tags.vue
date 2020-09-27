@@ -148,11 +148,10 @@ export default {
                 this.editData
             );
 
-            if (res.status === 201) {
-                this.tags.unshift(res.data);
+            if (res.status === 200) {
                 this.s("Tag has Been Edited");
-                this.addModal = false;
-                this.data.tagName = "";
+                this.editModal = false;
+                this.editData = { tagName: "" };
             } else {
                 if (res.status === 422) {
                     if (res.data.errors.tagName)
@@ -162,8 +161,13 @@ export default {
                 }
             }
         },
-        showEditModal(tag) {
-            this.editData = tag;
+        showEditModal({ tagName, id }) {
+            let tags = {
+                tagName,
+                id
+            };
+            console.log(tags);
+            this.editData = tags;
             this.editModal = true;
         }
     },
