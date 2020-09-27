@@ -1,8 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import Home from "./views/Home.vue";
-import Tags from "./views/Tags.vue";
+import Home from "./admin/views/Home.vue";
+import Tags from "./admin/views/Tags.vue";
+import Category from "./admin/views/Category.vue";
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,10 @@ const router = new VueRouter({
         {
             path: "/tags",
             component: Tags
+        },
+        {
+            path: "/category",
+            component: Category
         }
     ]
 });
