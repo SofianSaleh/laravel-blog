@@ -9,6 +9,7 @@ class TagController extends Controller
 {
     //
     public function createTag(Request $request){
+        // Validation to the request 
         $this->validate($request, [
             'tagName' => 'required'
         ]);

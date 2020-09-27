@@ -2038,6 +2038,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 res = _context.sent;
+                console.log();
 
                 if (res.status === 201) {
                   _this.tags.unshift(res.data);
@@ -2050,7 +2051,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.swr();
                 }
 
-              case 6:
+              case 7:
               case "end":
                 return _context.stop();
             }

@@ -91,6 +91,7 @@ export default {
             const res = await this.callApi("post", "/api/create_tag", {
                 tagName: this.data.tagName
             });
+            console.log();
             if (res.status === 201) {
                 this.tags.unshift(res.data);
                 this.s("Tag has Been Added");
