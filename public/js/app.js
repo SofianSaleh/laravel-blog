@@ -2118,7 +2118,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var res;
+        var res, index;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -2138,9 +2138,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context2.sent;
 
                 if (!(res.status === 200)) {
-                  _context2.next = 11;
+                  _context2.next = 13;
                   break;
                 }
+
+                index = _this2.tags.findIndex(function (tag) {
+                  return tag.id === res.data.id;
+                });
+                _this2.tags[index].tagName = res.data.tagName;
 
                 _this2.s("Tag has Been Edited");
 
@@ -2148,30 +2153,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this2.editData = {
                   tagName: ""
                 };
-                _context2.next = 17;
+                _context2.next = 19;
                 break;
 
-              case 11:
+              case 13:
                 if (!(res.status === 422)) {
-                  _context2.next = 16;
+                  _context2.next = 18;
                   break;
                 }
 
                 if (!res.data.errors.tagName) {
-                  _context2.next = 14;
+                  _context2.next = 16;
                   break;
                 }
 
                 return _context2.abrupt("return", _this2.i(res.data.errors.tagName[0]));
 
-              case 14:
-                _context2.next = 17;
+              case 16:
+                _context2.next = 19;
                 break;
 
-              case 16:
+              case 18:
                 _this2.swr();
 
-              case 17:
+              case 19:
               case "end":
                 return _context2.stop();
             }
@@ -2182,12 +2187,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     showEditModal: function showEditModal(_ref) {
       var tagName = _ref.tagName,
           id = _ref.id;
-      var tags = {
-        tagName: tagName,
-        id: id
+      var obj = {
+        id: id,
+        tagName: tagName
       };
-      console.log(tags);
-      this.editData = tags;
+      this.editData = obj;
       this.editModal = true;
     }
   },

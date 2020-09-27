@@ -33,8 +33,18 @@ class TagController extends Controller
             'id' => 'required',
             'tagName' => 'required'
         ]);
-        return Tag::where('id', $request->id)->update([
+        $updated = Tag::where('id', $request->id)->update([
             'tagName' => $request->tagName
         ]);
+        if ($updated) {
+            return response()->json([
+                'tagName' => $request->tagName,
+                'id' => $request->id
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Failed to update try again"
+            ]);
+        }
     }
 }

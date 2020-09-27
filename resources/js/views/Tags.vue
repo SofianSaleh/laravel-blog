@@ -149,6 +149,8 @@ export default {
             );
 
             if (res.status === 200) {
+                let index = this.tags.findIndex(tag => tag.id === res.data.id);
+                this.tags[index].tagName = res.data.tagName;
                 this.s("Tag has Been Edited");
                 this.editModal = false;
                 this.editData = { tagName: "" };
@@ -162,12 +164,11 @@ export default {
             }
         },
         showEditModal({ tagName, id }) {
-            let tags = {
-                tagName,
-                id
+            let obj = {
+                id,
+                tagName
             };
-            console.log(tags);
-            this.editData = tags;
+            this.editData = obj;
             this.editModal = true;
         }
     },
