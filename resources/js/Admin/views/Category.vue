@@ -74,6 +74,7 @@
                             'x-csrf-token': token,
                             'X-Requested-with': 'XMLHttpRequest'
                         }"
+                        :format="['jpg', 'jpeg', 'png']"
                         :on-success="handleSuccess"
                         :on-error="handleError"
                         :max-size="2048"
@@ -90,6 +91,15 @@
                             <p>Click or drag files here to upload</p>
                         </div>
                     </Upload>
+                    <div class="image_thumb" v-if="this.data.iconImage">
+                        <Icon
+                            type="md-close-circle"
+                            style="display: flex;flex-direction: row-reverse;"
+                            @click="removeImg"
+                        />
+
+                        <img :src="`/uploads/${this.data.iconImage}`" />
+                    </div>
                     <div slot="footer">
                         <Button type="default" @click="addCategory = false"
                             >Close</Button
@@ -283,8 +293,6 @@ export default {
             this.data.iconImage = res;
         },
         handleError(res, file) {
-            console.log(res, "res");
-            console.log("file", file);
             this.$Notice.warning({
                 title: "The file format is wrong",
                 desc: `${
@@ -307,6 +315,11 @@ export default {
             this.$Notice.warning({
                 title: "Exceeding file size limit",
                 desc: "File  " + file.name + " is too large, no more than 2M."
+            });
+        },
+        removeImg() {
+            const res = await this.callApi("post", "/api/category/remove_img", {
+                name
             });
         }
     },

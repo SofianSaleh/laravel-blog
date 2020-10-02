@@ -16,4 +16,13 @@ class CategoryController extends Controller
         $request->file->move(public_path('uploads'), $picName);
         return $picName;
     }
+
+    public function removeImg(Request $request)
+    {
+        $this->validate($request, [
+            'name' => "required"
+        ]);
+        remove(public_path('uploads'), name);
+        return $picName;
+    }
 }
