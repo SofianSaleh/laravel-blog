@@ -33,6 +33,30 @@ class CategoryController extends Controller
         return  Category::orderBy('id', 'desc')->get();
     }
 
+    public function editCategory(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required',
+            'name' => "required",
+            'iconImage' => "required"
+        ]);
+
+        $updated = Category::where('id', $request->id)->update([
+            'name' => $request->name,
+            'iconImage' => $request->iconImage,
+        ]);
+        if ($updated) {
+            return response()->json([
+                'tagName' => $request->tagName,
+                'id' => $request->id
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Failed to update try again"
+            ]);
+        }
+    }
+
     public function upload(Request $request)
     {
         $this->validate($request, [
