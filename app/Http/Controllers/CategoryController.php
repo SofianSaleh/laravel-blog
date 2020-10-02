@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\fileExists;
+
 class CategoryController extends Controller
 {
     //
@@ -22,7 +24,10 @@ class CategoryController extends Controller
         $this->validate($request, [
             'name' => "required"
         ]);
-        //     remove(public_path('uploads'), name);
-        //     return $picName;
+        $fileName = $request->name;
+        $filePath = public_path().'/uploads/'.$fileName;
+        if(fileExists($filePath)){
+            unlink()
+        }
     }
 }

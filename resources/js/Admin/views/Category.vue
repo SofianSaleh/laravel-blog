@@ -80,7 +80,7 @@
                         :max-size="2048"
                         :on-format-error="handleFormatError"
                         :on-exceeded-size="handleMaxSize"
-                        action="/api/category/upload"
+                        action="/api/upload"
                     >
                         <div style="padding: 20px 0">
                             <Icon
@@ -315,7 +315,15 @@ export default {
             });
         },
         removeImg() {
-            console.log(this.data.iconImage);
+            let imageName = this.data.iconImage;
+            this.data.iconImage = "";
+            const res = await this.callApi("post", "/api/remove_img", {name = imageName})
+
+            if(res.status !== 200){
+                this.data.iconImage = imageName
+                this.swr()
+            }
+
         }
     },
     async created() {
