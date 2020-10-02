@@ -3115,3 +3115,7 @@ i.cross_icon {
 .router-link-exact-active {
     background-color: #d9dbdd;
 }
+
+.table_image img {
+    max-width: 80px;
+}

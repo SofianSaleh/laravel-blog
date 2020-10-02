@@ -32,7 +32,7 @@
                                 :key="category.id"
                             >
                                 <td>{{ category.id }}</td>
-                                <td class="table_iamge">
+                                <td class="table_image">
                                     <img
                                         :src="`/uploads/${category.iconImage}`"
                                         :alt="`${category.name}`"

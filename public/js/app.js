@@ -85629,7 +85629,7 @@ var render = function() {
                       return _c("tr", { key: category.id }, [
                         _c("td", [_vm._v(_vm._s(category.id))]),
                         _vm._v(" "),
-                        _c("td", { staticClass: "table_iamge" }, [
+                        _c("td", { staticClass: "table_image" }, [
                           _c("img", {
                             attrs: {
                               src: "/uploads/" + category.iconImage,

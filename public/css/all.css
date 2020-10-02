@@ -3116,6 +3116,10 @@ i.cross_icon {
     background-color: #d9dbdd;
 }
 
+.table_image img {
+    max-width: 80px;
+}
+
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
