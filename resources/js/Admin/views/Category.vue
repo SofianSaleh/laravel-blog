@@ -284,7 +284,7 @@ export default {
             if (this.editData.name.trim() === "")
                 return this.e("Category name is Required");
             if (this.editData.iconImage.trim() === "")
-                return this.e("Tag name is Required");
+                return this.e("category image is Required");
 
             this.isEditing = true;
             const res = await this.callApi(
@@ -294,13 +294,16 @@ export default {
             );
 
             if (res.status === 200) {
-                let index = this.tags.findIndex(tag => tag.id === res.data.id);
-                this.tags[index].tagName = res.data.tagName;
+                let index = this.categories.findIndex(
+                    category => category.id === res.data.id
+                );
+                this.categories[index].tagName = res.data.tagName;
                 this.s("Tag has Been Edited");
                 this.isEditing = false;
 
                 this.editModal = false;
-                this.editData = { tagName: "" };
+                this.isEditingItem = false;
+                this.editData = { name: "", iconImage: "" };
             } else {
                 if (res.status === 422) {
                     this.isEditing = false;

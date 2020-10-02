@@ -2280,7 +2280,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                return _context2.abrupt("return", _this2.e("Tag name is Required"));
+                return _context2.abrupt("return", _this2.e("Category name is Required"));
 
               case 2:
                 if (!(_this2.editData.iconImage.trim() === "")) {
@@ -2288,7 +2288,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                return _context2.abrupt("return", _this2.e("Tag name is Required"));
+                return _context2.abrupt("return", _this2.e("category image is Required"));
 
               case 4:
                 _this2.isEditing = true;
@@ -2299,53 +2299,55 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context2.sent;
 
                 if (!(res.status === 200)) {
-                  _context2.next = 17;
+                  _context2.next = 18;
                   break;
                 }
 
-                index = _this2.tags.findIndex(function (tag) {
-                  return tag.id === res.data.id;
+                index = _this2.categories.findIndex(function (category) {
+                  return category.id === res.data.id;
                 });
-                _this2.tags[index].tagName = res.data.tagName;
+                _this2.categories[index].tagName = res.data.tagName;
 
                 _this2.s("Tag has Been Edited");
 
                 _this2.isEditing = false;
                 _this2.editModal = false;
+                _this2.isEditingItem = false;
                 _this2.editData = {
-                  tagName: ""
+                  name: "",
+                  iconImage: ""
                 };
-                _context2.next = 25;
+                _context2.next = 26;
                 break;
 
-              case 17:
+              case 18:
                 if (!(res.status === 422)) {
-                  _context2.next = 23;
+                  _context2.next = 24;
                   break;
                 }
 
                 _this2.isEditing = false;
 
                 if (!res.data.errors.tagName) {
-                  _context2.next = 21;
+                  _context2.next = 22;
                   break;
                 }
 
                 return _context2.abrupt("return", _this2.i(res.data.errors.tagName[0]));
 
-              case 21:
-                _context2.next = 25;
+              case 22:
+                _context2.next = 26;
                 break;
 
-              case 23:
+              case 24:
                 _this2.isEditing = false;
 
                 _this2.swr();
 
-              case 25:
+              case 26:
                 _this2.isEditing = false;
 
-              case 26:
+              case 27:
               case "end":
                 return _context2.stop();
             }
