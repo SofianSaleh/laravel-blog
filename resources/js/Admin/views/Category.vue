@@ -203,12 +203,11 @@ export default {
                 return this.e("Category image is Required");
 
             this.isAdding = true;
-            const res = await this.callApi("post", "/api/category/add", {
-                tagName: this.data.tagName
-            });
+            this.data.name = `/uploads/${this.data.iconImage}`;
+            const res = await this.callApi("post", "/api/category/add", this.data);
 
             if (res.status === 201) {
-                this.tags.unshift(res.data);
+                this.categories.unshift(res.data);
                 this.s("Category has Been Added");
                 this.isAdding = false;
                 this.addModal = false;
