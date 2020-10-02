@@ -22,7 +22,7 @@ class CategoryController extends Controller
         $this->validate($request, [
             'name' => "required"
         ]);
-        remove(public_path('uploads'), name);
-        return $picName;
+        //     remove(public_path('uploads'), name);
+        //     return $picName;
     }
 }
