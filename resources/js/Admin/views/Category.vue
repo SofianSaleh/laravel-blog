@@ -282,6 +282,18 @@ export default {
         handleSuccess(res, file) {
             this.data.iconImage = res;
         },
+        handleError(res, file) {
+            console.log(res, "res");
+            console.log("file", file);
+            this.$Notice.warning({
+                title: "The file format is wrong",
+                desc: `${
+                    file.errors.file.length
+                        ? file.errors.file[0]
+                        : "Something went wrong"
+                }`
+            });
+        },
         handleFormatError(file) {
             this.$Notice.warning({
                 title: "The file format is incorrect",

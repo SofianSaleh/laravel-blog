@@ -2327,6 +2327,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     handleSuccess: function handleSuccess(res, file) {
       this.data.iconImage = res;
     },
+    handleError: function handleError(res, file) {
+      console.log(res, "res");
+      console.log("file", file);
+      this.$Notice.warning({
+        title: "The file format is wrong",
+        desc: "".concat(file.errors.file.length ? file.errors.file[0] : "Something went wrong")
+      });
+    },
     handleFormatError: function handleFormatError(file) {
       this.$Notice.warning({
         title: "The file format is incorrect",
