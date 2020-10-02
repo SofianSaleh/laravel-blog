@@ -104,10 +104,12 @@
                         >
                         <Button
                             type="primary"
-                            @click="addTag"
+                            @click="addCategory"
                             :disabled="isAdding"
                             :loading="isAdding"
-                            >{{ isAdding ? "Adding.." : "Add tag" }}</Button
+                            >{{
+                                isAdding ? "Adding.." : "Add Category"
+                            }}</Button
                         >
                     </div>
                 </Modal>
@@ -190,26 +192,31 @@ export default {
         };
     },
     methods: {
-        async addTag() {
-            if (this.data.tagName.trim() === "")
-                return this.e("Tag name is Required");
+        async addCategory() {
+            if (this.data.name.trim() === "")
+                return this.e("Category name is Required");
+            if (this.data.iconImage.trim() === "")
+                return this.e("Category image is Required");
 
             this.isAdding = true;
-            const res = await this.callApi("post", "/api/tag/create_tag", {
+            const res = await this.callApi("post", "/api/tag/create_category", {
                 tagName: this.data.tagName
             });
 
             if (res.status === 201) {
                 this.tags.unshift(res.data);
-                this.s("Tag has Been Added");
+                this.s("Category has Been Added");
                 this.isAdding = false;
                 this.addModal = false;
-                this.data.tagName = "";
+                this.data.name = "";
+                this.data.iconImage = "";
             } else {
                 if (res.status === 422) {
                     this.isAdding = false;
-                    if (res.data.errors.tagName)
-                        return this.i(res.data.errors.tagName[0]);
+                    if (res.data.errors.name)
+                        return this.i(res.data.errors.name[0]);
+                    if (res.data.errors.iconImage)
+                        return this.i(res.data.errors.iconImage[0]);
                 } else {
                     this.isAdding = false;
                     this.swr();
@@ -318,13 +325,13 @@ export default {
         removeImg() {
             let imageName = this.data.iconImage;
             this.data.iconImage = "";
-            this.$refs.clearFiles()
             const res = await this.callApi("post", "/api/remove_img", {name = imageName})
 
             if(res.status !== 200){
                 this.data.iconImage = imageName
                 this.swr()
             }
+            this.$refs.clearFiles()
 
         }
     },
