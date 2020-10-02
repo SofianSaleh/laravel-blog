@@ -1916,9 +1916,615 @@ module.exports = {
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/admin/views/Category.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\xampp\\htdocs\\Blog\\resources\\js\\admin\\views\\Category.vue: Unexpected token (239:23)\n\n\u001b[0m \u001b[90m 237 | \u001b[39m            categories\u001b[33m:\u001b[39m []\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 238 | \u001b[39m            token\u001b[33m:\u001b[39m \u001b[32m\"\"\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 239 | \u001b[39m            showUpload \u001b[33m=\u001b[39m \u001b[36mfalse\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 240 | \u001b[39m        }\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 241 | \u001b[39m    }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 242 | \u001b[39m    methods\u001b[33m:\u001b[39m {\u001b[0m\n    at Parser._raise (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:766:17)\n    at Parser.raiseWithData (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:759:17)\n    at Parser.raise (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:753:17)\n    at Parser.unexpected (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:8966:16)\n    at Parser.checkExpressionErrors (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9064:12)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9647:12)\n    at Parser.parseExpressionBase (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9564:23)\n    at C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9558:39\n    at Parser.allowInAnd (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11297:16)\n    at Parser.parseExpression (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9558:17)\n    at Parser.parseReturnStatement (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11800:28)\n    at Parser.parseStatementContent (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11479:21)\n    at Parser.parseStatement (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11431:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:12013:25)\n    at Parser.parseBlockBody (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11999:10)\n    at Parser.parseBlock (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11983:10)\n    at Parser.parseFunctionBody (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10963:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10946:10)\n    at Parser.parseMethod (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10883:10)\n    at Parser.parseObjectMethod (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10808:19)\n    at Parser.parseObjPropValue (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10841:23)\n    at Parser.parsePropertyDefinition (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10772:10)\n    at Parser.parseObjectLike (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10664:25)\n    at Parser.parseExprAtom (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10198:23)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9844:23)\n    at Parser.parseUpdate (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9824:21)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9813:17)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9683:23)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9657:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9620:21)\n    at C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9586:39\n    at Parser.allowInAnd (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11297:16)\n    at Parser.parseMaybeAssignAllowIn (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9586:17)\n    at Parser.parseExportDefaultExpression (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:12620:24)\n    at Parser.parseExport (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:12530:31)\n    at Parser.parseStatementContent (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11537:27)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      data: {
+        iconImage: "",
+        name: ""
+      },
+      editData: {
+        name: "",
+        iconImage: ""
+      },
+      deleteData: {
+        name: "",
+        iconImage: ""
+      },
+      addCategoryModal: false,
+      editModal: false,
+      deleteModal: false,
+      isAdding: false,
+      isDeleting: false,
+      isEditing: false,
+      categories: [],
+      token: "",
+      showUpload: false,
+      isEditingItem: false
+    };
+  },
+  methods: {
+    addCategory: function addCategory() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!(_this.data.name.trim() === "")) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Category name is Required"));
+
+              case 2:
+                if (!(_this.data.iconImage.trim() === "")) {
+                  _context.next = 4;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Category image is Required"));
+
+              case 4:
+                console.log(_this.data.name);
+                _this.isAdding = true;
+                _this.data.iconName = "/uploads/".concat(_this.data.iconImage);
+                _context.next = 9;
+                return _this.callApi("post", "/api/category/add", _this.data);
+
+              case 9:
+                res = _context.sent;
+
+                if (!(res.status === 201)) {
+                  _context.next = 19;
+                  break;
+                }
+
+                _this.categories.unshift(res.data);
+
+                _this.s("Category has Been Added");
+
+                _this.isAdding = false;
+                _this.addCategoryModal = false;
+                _this.data.name = "";
+                _this.data.iconImage = "";
+                _context.next = 29;
+                break;
+
+              case 19:
+                if (!(res.status === 422)) {
+                  _context.next = 27;
+                  break;
+                }
+
+                _this.isAdding = false;
+
+                if (!res.data.errors.name) {
+                  _context.next = 23;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.i(res.data.errors.name[0]));
+
+              case 23:
+                if (!res.data.errors.iconImage) {
+                  _context.next = 25;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.i(res.data.errors.iconImage[0]));
+
+              case 25:
+                _context.next = 29;
+                break;
+
+              case 27:
+                _this.isAdding = false;
+
+                _this.swr();
+
+              case 29:
+                _this.isAdding = false;
+
+              case 30:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    editCategory: function editCategory() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var res, index;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!(_this2.editData.name.trim() === "")) {
+                  _context2.next = 2;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.e("Tag name is Required"));
+
+              case 2:
+                if (!(_this2.editData.iconImage.trim() === "")) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.e("Tag name is Required"));
+
+              case 4:
+                _this2.isEditing = true;
+                _context2.next = 7;
+                return _this2.callApi("post", "/api/category/edit_category", _this2.editData);
+
+              case 7:
+                res = _context2.sent;
+
+                if (!(res.status === 200)) {
+                  _context2.next = 17;
+                  break;
+                }
+
+                index = _this2.tags.findIndex(function (tag) {
+                  return tag.id === res.data.id;
+                });
+                _this2.tags[index].tagName = res.data.tagName;
+
+                _this2.s("Tag has Been Edited");
+
+                _this2.isEditing = false;
+                _this2.editModal = false;
+                _this2.editData = {
+                  tagName: ""
+                };
+                _context2.next = 25;
+                break;
+
+              case 17:
+                if (!(res.status === 422)) {
+                  _context2.next = 23;
+                  break;
+                }
+
+                _this2.isEditing = false;
+
+                if (!res.data.errors.tagName) {
+                  _context2.next = 21;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.i(res.data.errors.tagName[0]));
+
+              case 21:
+                _context2.next = 25;
+                break;
+
+              case 23:
+                _this2.isEditing = false;
+
+                _this2.swr();
+
+              case 25:
+                _this2.isEditing = false;
+
+              case 26:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    showEditModal: function showEditModal(_ref) {
+      var id = _ref.id,
+          name = _ref.name,
+          iconImage = _ref.iconImage;
+      var obj = {
+        id: id,
+        name: name,
+        iconImage: iconImage
+      };
+      this.editData = obj;
+      console.log(this.editData);
+      this.editModal = true;
+      this.isEditingItem = true;
+    },
+    deleteTag: function deleteTag() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this3.isDeleting = true;
+                _context3.next = 3;
+                return _this3.callApi("post", "/api/tag/delete_tag", _this3.deleteData);
+
+              case 3:
+                res = _context3.sent;
+
+                if (res.status === 200) {
+                  _this3.tags.splice(_this3.deleteTag.i, 1);
+
+                  _this3.s("Tag deleted Successfully");
+
+                  _this3.isDeleting = false;
+                  _this3.deleteModal = false;
+                } else {
+                  _this3.isDeleting = false;
+
+                  _this3.swr();
+                }
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    showDeleteModal: function showDeleteModal(_ref2, i) {
+      var id = _ref2.id,
+          tagName = _ref2.tagName;
+      var obj = {
+        id: id,
+        tagName: tagName,
+        i: i
+      };
+      this.deleteData = obj;
+      this.deleteModal = true;
+    },
+    handleSuccess: function handleSuccess(res, file) {
+      if (this.isEditingItem) {
+        return this.editData.iconImage = res;
+      }
+
+      this.data.iconImage = res;
+    },
+    handleError: function handleError(res, file) {
+      this.$Notice.warning({
+        title: "The file format is wrong",
+        desc: "".concat(file.errors.file.length ? file.errors.file[0] : "Something went wrong")
+      });
+    },
+    handleFormatError: function handleFormatError(file) {
+      this.$Notice.warning({
+        title: "The file format is incorrect",
+        desc: "File format of " + file.name + " is incorrect, please select jpg or png."
+      });
+    },
+    handleMaxSize: function handleMaxSize(file) {
+      this.$Notice.warning({
+        title: "Exceeding file size limit",
+        desc: "File  " + file.name + " is too large, no more than 2M."
+      });
+    },
+    removeImg: function removeImg() {
+      var _arguments = arguments,
+          _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var type, _imageName, _imageName2, res;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                type = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : true;
+
+                if (!type) {
+                  // for editing
+                  _this4.showUpload = true;
+                  _imageName = _this4.editData.iconImage;
+                  _this4.editData.iconImage = "";
+
+                  _this4.$refs.editData.clearFiles();
+                } else {
+                  _imageName2 = _this4.data.iconImage;
+                  _this4.data.iconImage = "";
+
+                  _this4.$refs.uploads.clearFiles();
+                }
+
+                _context4.next = 4;
+                return _this4.callApi("post", "/api/remove_img", {
+                  name: imageName
+                });
+
+              case 4:
+                res = _context4.sent;
+
+                if (res.status !== 200) {
+                  _this4.data.iconImage = imageName;
+
+                  _this4.swr();
+                }
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    colseEditModal: function colseEditModal() {
+      this.isEditingItem = false;
+      this.editModal = fase;
+    }
+  },
+  created: function created() {
+    var _this5 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _this5.token = window.Laravel.csrfToken;
+              _context5.next = 3;
+              return _this5.callApi("get", "/api/category/get_all_categories");
+
+            case 3:
+              res = _context5.sent;
+
+              if (res.status === 200) {
+                _this5.categories = res.data;
+              } else {
+                _this5.swr();
+              }
+
+            case 5:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }))();
+  }
+});
 
 /***/ }),
 
@@ -85307,7 +85913,7 @@ var render = function() {
                       expression: "this.showUpload"
                     }
                   ],
-                  ref: "uploads",
+                  ref: "editData",
                   attrs: {
                     type: "drag",
                     headers: {
@@ -85350,7 +85956,11 @@ var render = function() {
                       [
                         _c("Icon", {
                           attrs: { type: "ios-trash-outline" },
-                          on: { click: _vm.removeImg }
+                          on: {
+                            click: function($event) {
+                              return _vm.removeImg(false)
+                            }
+                          }
                         })
                       ],
                       1
@@ -85366,11 +85976,7 @@ var render = function() {
                     "Button",
                     {
                       attrs: { type: "default" },
-                      on: {
-                        click: function($event) {
-                          _vm.editModal = false
-                        }
-                      }
+                      on: { click: _vm.colseEditModal }
                     },
                     [_vm._v("Close")]
                   ),
@@ -85383,9 +85989,9 @@ var render = function() {
                         disabled: _vm.isEditing,
                         loading: _vm.isEditing
                       },
-                      on: { click: _vm.editTag }
+                      on: { click: _vm.editCategory }
                     },
-                    [_vm._v("Edit tag")]
+                    [_vm._v("Edit Category")]
                   )
                 ],
                 1

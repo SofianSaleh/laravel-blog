@@ -137,7 +137,7 @@
                     <div class="space"></div>
                     <Upload
                         v-show="this.showUpload"
-                        ref="uploads"
+                        ref="editData"
                         type="drag"
                         :headers="{
                             'x-csrf-token': token,
@@ -166,19 +166,22 @@
                     >
                         <img :src="this.editData.iconImage" />
                         <div class="demo-upload-list-cover">
-                            <Icon type="ios-trash-outline" @click="removeImg" />
+                            <Icon
+                                type="ios-trash-outline"
+                                @click="removeImg(false)"
+                            />
                         </div>
                     </div>
                     <div slot="footer">
-                        <Button type="default" @click="editModal = false"
+                        <Button type="default" @click="colseEditModal"
                             >Close</Button
                         >
                         <Button
                             type="primary"
-                            @click="editTag"
+                            @click="editCategory"
                             :disabled="isEditing"
                             :loading="isEditing"
-                            >Edit tag</Button
+                            >Edit Category</Button
                         >
                     </div>
                 </Modal>
@@ -236,7 +239,9 @@ export default {
             isEditing: false,
             categories: [],
             token: "",
-            showUpload = false,
+
+            showUpload: false,
+            isEditingItem: false
         };
     },
     methods: {
@@ -275,14 +280,16 @@ export default {
             }
             this.isAdding = false;
         },
-        async editTag() {
-            if (this.editData.tagName.trim() === "")
+        async editCategory() {
+            if (this.editData.name.trim() === "")
+                return this.e("Tag name is Required");
+            if (this.editData.iconImage.trim() === "")
                 return this.e("Tag name is Required");
 
             this.isEditing = true;
             const res = await this.callApi(
                 "post",
-                "/api/tag/edit_tag",
+                "/api/category/edit_category",
                 this.editData
             );
 
@@ -317,6 +324,7 @@ export default {
             this.editData = obj;
             console.log(this.editData);
             this.editModal = true;
+            this.isEditingItem = true;
         },
         async deleteTag() {
             this.isDeleting = true;
@@ -348,6 +356,9 @@ export default {
             this.deleteModal = true;
         },
         handleSuccess(res, file) {
+            if (this.isEditingItem) {
+                return (this.editData.iconImage = res);
+            }
             this.data.iconImage = res;
         },
         handleError(res, file) {
@@ -375,9 +386,19 @@ export default {
                 desc: "File  " + file.name + " is too large, no more than 2M."
             });
         },
-        async removeImg() {
-            let imageName = this.data.iconImage;
-            this.data.iconImage = "";
+        async removeImg(type = true) {
+            if (!type) {
+                // for editing
+                this.showUpload = true;
+
+                let imageName = this.editData.iconImage;
+                this.editData.iconImage = "";
+                this.$refs.editData.clearFiles();
+            } else {
+                let imageName = this.data.iconImage;
+                this.data.iconImage = "";
+                this.$refs.uploads.clearFiles();
+            }
             const res = await this.callApi("post", "/api/remove_img", {
                 name: imageName
             });
@@ -386,7 +407,10 @@ export default {
                 this.data.iconImage = imageName;
                 this.swr();
             }
-            this.$refs.uploads.clearFiles();
+        },
+        colseEditModal() {
+            this.isEditingItem = false;
+            this.editModal = fase;
         }
     },
     async created() {
