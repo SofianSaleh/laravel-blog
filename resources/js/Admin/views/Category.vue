@@ -8,7 +8,7 @@
                 >
                     <p class="_title0">
                         Categories
-                        <Button @click="addCategory = true"
+                        <Button @click="addCategoryModal = true"
                             ><Icon type="md-add"></Icon> Add Category</Button
                         >
                     </p>
@@ -31,7 +31,13 @@
                                 v-for="(category, i) in categories"
                                 :key="category.id"
                             >
-                                <td>{{ tag.id }}</td>
+                                <td>{{ category.id }}</td>
+                                <td class="table_iamge">
+                                    <img
+                                        :src="`/uploads/${category.iconImage}`"
+                                        :alt="`${category.name}`"
+                                    />
+                                </td>
                                 <td class="_table_name">
                                     {{ category.name }}
                                 </td>
@@ -60,15 +66,15 @@
                         </table>
                     </div>
                 </div>
-                <!-- Create tag -->
+                <!-- Create Category -->
                 <Modal
-                    v-model="addCategory"
+                    v-model="addCategoryModal"
                     title="Add Category"
                     :mask-closable="false"
                     :closable="false"
                 >
                     <Input
-                        v-model="data.tagName"
+                        v-model="data.name"
                         placeholder="Add Category name"
                     />
                     <div class="space"></div>
@@ -103,7 +109,7 @@
                         </div>
                     </div>
                     <div slot="footer">
-                        <Button type="default" @click="addCategory = false"
+                        <Button type="default" @click="addCategoryModal = false"
                             >Close</Button
                         >
                         <Button
@@ -117,17 +123,48 @@
                         >
                     </div>
                 </Modal>
-                <!-- Edit tags -->
+                <!-- Edit Category -->
                 <Modal
                     v-model="editModal"
-                    title="Edit tag"
+                    title="Edit Category"
                     :mask-closable="false"
                     :closable="false"
                 >
                     <Input
-                        v-model="editData.tagName"
-                        placeholder="Edit tag name"
+                        v-model="editData.name"
+                        placeholder="Edit Category name"
                     />
+                    <div class="space"></div>
+                    <Upload
+                        ref="uploads"
+                        type="drag"
+                        :headers="{
+                            'x-csrf-token': token,
+                            'X-Requested-with': 'XMLHttpRequest'
+                        }"
+                        :format="['jpg', 'jpeg', 'png']"
+                        :on-success="handleSuccess"
+                        :on-error="handleError"
+                        :max-size="2048"
+                        :on-format-error="handleFormatError"
+                        :on-exceeded-size="handleMaxSize"
+                        action="/api/upload"
+                    >
+                        <div style="padding: 20px 0">
+                            <Icon
+                                type="ios-cloud-upload"
+                                size="52"
+                                style="color: #3399ff"
+                            ></Icon>
+                            <p>Click or drag files here to upload</p>
+                        </div>
+                    </Upload>
+                    <div class="demo-upload-list" v-if="this.data.iconImage">
+                        <img :src="`/uploads/${this.data.iconImage}`" />
+                        <div class="demo-upload-list-cover">
+                            <Icon type="ios-trash-outline" @click="removeImg" />
+                        </div>
+                    </div>
                     <div slot="footer">
                         <Button type="default" @click="editModal = false"
                             >Close</Button
@@ -142,8 +179,8 @@
                     </div>
                 </Modal>
 
-                <!-- Delete Tag -->
-
+                <!-- Delete Category  -->
+                <!-- 
                 <Modal v-model="deleteModal" width="360">
                     <p slot="header" style="color:#f60;text-align:center">
                         <Icon type="ios-information-circle"></Icon>
@@ -165,7 +202,7 @@
                             >Delete</Button
                         >
                     </div>
-                </Modal>
+                </Modal>  -->
             </div>
         </div>
     </div>
@@ -180,12 +217,14 @@ export default {
                 name: ""
             },
             editData: {
-                name: ""
+                name: "",
+                iconImage: ""
             },
             deleteData: {
-                name: ""
+                name: "",
+                iconImage: ""
             },
-            addCategory: false,
+            addCategoryModal: false,
             editModal: false,
             deleteModal: false,
             isAdding: false,
@@ -201,16 +240,20 @@ export default {
                 return this.e("Category name is Required");
             if (this.data.iconImage.trim() === "")
                 return this.e("Category image is Required");
-
+            console.log(this.data.name);
             this.isAdding = true;
-            this.data.name = `/uploads/${this.data.iconImage}`;
-            const res = await this.callApi("post", "/api/category/add", this.data);
+            this.data.iconName = `/uploads/${this.data.iconImage}`;
+            const res = await this.callApi(
+                "post",
+                "/api/category/add",
+                this.data
+            );
 
             if (res.status === 201) {
                 this.categories.unshift(res.data);
                 this.s("Category has Been Added");
                 this.isAdding = false;
-                this.addModal = false;
+                this.addCategoryModal = false;
                 this.data.name = "";
                 this.data.iconImage = "";
             } else {
@@ -260,10 +303,10 @@ export default {
             }
             this.isEditing = false;
         },
-        showEditModal({ tagName, id }) {
+        showEditModal({ na, e, id }) {
             let obj = {
                 id,
-                tagName
+                name
             };
             this.editData = obj;
             this.editModal = true;
@@ -325,24 +368,30 @@ export default {
                 desc: "File  " + file.name + " is too large, no more than 2M."
             });
         },
-        removeImg() {
+        async removeImg() {
             let imageName = this.data.iconImage;
             this.data.iconImage = "";
-            const res = await this.callApi("post", "/api/remove_img", {name = imageName})
+            const res = await this.callApi("post", "/api/remove_img", {
+                name: imageName
+            });
 
-            if(res.status !== 200){
-                this.data.iconImage = imageName
-                this.swr()
+            if (res.status !== 200) {
+                this.data.iconImage = imageName;
+                this.swr();
             }
-            this.$refs.clearFiles()
-
+            this.$refs.uploads.clearFiles();
         }
     },
     async created() {
         this.token = window.Laravel.csrfToken;
-        const res = await this.callApi("get", "/api/category/get_all_categories");
+        const res = await this.callApi(
+            "get",
+            "/api/category/get_all_categories"
+        );
         if (res.status === 200) {
+            console.log(res.data);
             this.categories = res.data;
+            console.log(this.categories);
         } else {
             this.swr();
         }

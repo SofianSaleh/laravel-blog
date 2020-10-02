@@ -1916,9 +1916,575 @@ module.exports = {
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/admin/views/Category.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\xampp\\htdocs\\Blog\\resources\\js\\admin\\views\\Category.vue: Can not use keyword 'await' outside an async function (331:24)\n\n\u001b[0m \u001b[90m 329 | \u001b[39m            let imageName \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdata\u001b[33m.\u001b[39miconImage\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 330 | \u001b[39m            \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdata\u001b[33m.\u001b[39miconImage \u001b[33m=\u001b[39m \u001b[32m\"\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 331 | \u001b[39m            \u001b[36mconst\u001b[39m res \u001b[33m=\u001b[39m await \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcallApi(\u001b[32m\"post\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"/api/remove_img\"\u001b[39m\u001b[33m,\u001b[39m {name \u001b[33m=\u001b[39m imageName})\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 332 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 333 | \u001b[39m            \u001b[36mif\u001b[39m(res\u001b[33m.\u001b[39mstatus \u001b[33m!==\u001b[39m \u001b[35m200\u001b[39m){\u001b[0m\n\u001b[0m \u001b[90m 334 | \u001b[39m                \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdata\u001b[33m.\u001b[39miconImage \u001b[33m=\u001b[39m imageName\u001b[0m\n    at Parser._raise (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:766:17)\n    at Parser.raiseWithData (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:759:17)\n    at Parser.raise (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:753:17)\n    at Parser.checkReservedWord (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11130:14)\n    at Parser.parseIdentifierName (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11092:12)\n    at Parser.parseIdentifier (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11059:23)\n    at Parser.parseExprAtom (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10115:27)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9844:23)\n    at Parser.parseUpdate (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9824:21)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9813:17)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9683:23)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9657:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9620:21)\n    at C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9586:39\n    at Parser.allowInAnd (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11297:16)\n    at Parser.parseMaybeAssignAllowIn (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9586:17)\n    at Parser.parseVar (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:12097:70)\n    at Parser.parseVarStatement (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11906:10)\n    at Parser.parseStatementContent (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11498:21)\n    at Parser.parseStatement (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11431:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:12013:25)\n    at Parser.parseBlockBody (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11999:10)\n    at Parser.parseBlock (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:11983:10)\n    at Parser.parseFunctionBody (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10963:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10946:10)\n    at Parser.parseMethod (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10883:10)\n    at Parser.parseObjectMethod (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10808:19)\n    at Parser.parseObjPropValue (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10841:23)\n    at Parser.parsePropertyDefinition (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10772:10)\n    at Parser.parseObjectLike (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10664:25)\n    at Parser.parseExprAtom (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:10198:23)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9844:23)\n    at Parser.parseUpdate (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9824:21)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9813:17)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9683:23)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\Blog\\node_modules\\@babel\\parser\\lib\\index.js:9657:23)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      data: {
+        iconImage: "",
+        name: ""
+      },
+      editData: {
+        name: "",
+        iconImage: ""
+      },
+      deleteData: {
+        name: "",
+        iconImage: ""
+      },
+      addCategoryModal: false,
+      editModal: false,
+      deleteModal: false,
+      isAdding: false,
+      isDeleting: false,
+      isEditing: false,
+      categories: [],
+      token: ""
+    };
+  },
+  methods: {
+    addCategory: function addCategory() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!(_this.data.name.trim() === "")) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Category name is Required"));
+
+              case 2:
+                if (!(_this.data.iconImage.trim() === "")) {
+                  _context.next = 4;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Category image is Required"));
+
+              case 4:
+                console.log(_this.data.name);
+                _this.isAdding = true;
+                _this.data.iconName = "/uploads/".concat(_this.data.iconImage);
+                _context.next = 9;
+                return _this.callApi("post", "/api/category/add", _this.data);
+
+              case 9:
+                res = _context.sent;
+
+                if (!(res.status === 201)) {
+                  _context.next = 19;
+                  break;
+                }
+
+                _this.categories.unshift(res.data);
+
+                _this.s("Category has Been Added");
+
+                _this.isAdding = false;
+                _this.addCategoryModal = false;
+                _this.data.name = "";
+                _this.data.iconImage = "";
+                _context.next = 29;
+                break;
+
+              case 19:
+                if (!(res.status === 422)) {
+                  _context.next = 27;
+                  break;
+                }
+
+                _this.isAdding = false;
+
+                if (!res.data.errors.name) {
+                  _context.next = 23;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.i(res.data.errors.name[0]));
+
+              case 23:
+                if (!res.data.errors.iconImage) {
+                  _context.next = 25;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.i(res.data.errors.iconImage[0]));
+
+              case 25:
+                _context.next = 29;
+                break;
+
+              case 27:
+                _this.isAdding = false;
+
+                _this.swr();
+
+              case 29:
+                _this.isAdding = false;
+
+              case 30:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    editTag: function editTag() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var res, index;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!(_this2.editData.tagName.trim() === "")) {
+                  _context2.next = 2;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.e("Tag name is Required"));
+
+              case 2:
+                _this2.isEditing = true;
+                _context2.next = 5;
+                return _this2.callApi("post", "/api/tag/edit_tag", _this2.editData);
+
+              case 5:
+                res = _context2.sent;
+
+                if (!(res.status === 200)) {
+                  _context2.next = 15;
+                  break;
+                }
+
+                index = _this2.tags.findIndex(function (tag) {
+                  return tag.id === res.data.id;
+                });
+                _this2.tags[index].tagName = res.data.tagName;
+
+                _this2.s("Tag has Been Edited");
+
+                _this2.isEditing = false;
+                _this2.editModal = false;
+                _this2.editData = {
+                  tagName: ""
+                };
+                _context2.next = 23;
+                break;
+
+              case 15:
+                if (!(res.status === 422)) {
+                  _context2.next = 21;
+                  break;
+                }
+
+                _this2.isEditing = false;
+
+                if (!res.data.errors.tagName) {
+                  _context2.next = 19;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.i(res.data.errors.tagName[0]));
+
+              case 19:
+                _context2.next = 23;
+                break;
+
+              case 21:
+                _this2.isEditing = false;
+
+                _this2.swr();
+
+              case 23:
+                _this2.isEditing = false;
+
+              case 24:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    showEditModal: function showEditModal(_ref) {
+      var na = _ref.na,
+          e = _ref.e,
+          id = _ref.id;
+      var obj = {
+        id: id,
+        name: name
+      };
+      this.editData = obj;
+      this.editModal = true;
+    },
+    deleteTag: function deleteTag() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this3.isDeleting = true;
+                _context3.next = 3;
+                return _this3.callApi("post", "/api/tag/delete_tag", _this3.deleteData);
+
+              case 3:
+                res = _context3.sent;
+
+                if (res.status === 200) {
+                  _this3.tags.splice(_this3.deleteTag.i, 1);
+
+                  _this3.s("Tag deleted Successfully");
+
+                  _this3.isDeleting = false;
+                  _this3.deleteModal = false;
+                } else {
+                  _this3.isDeleting = false;
+
+                  _this3.swr();
+                }
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    showDeleteModal: function showDeleteModal(_ref2, i) {
+      var id = _ref2.id,
+          tagName = _ref2.tagName;
+      var obj = {
+        id: id,
+        tagName: tagName,
+        i: i
+      };
+      this.deleteData = obj;
+      this.deleteModal = true;
+    },
+    handleSuccess: function handleSuccess(res, file) {
+      this.data.iconImage = res;
+    },
+    handleError: function handleError(res, file) {
+      this.$Notice.warning({
+        title: "The file format is wrong",
+        desc: "".concat(file.errors.file.length ? file.errors.file[0] : "Something went wrong")
+      });
+    },
+    handleFormatError: function handleFormatError(file) {
+      this.$Notice.warning({
+        title: "The file format is incorrect",
+        desc: "File format of " + file.name + " is incorrect, please select jpg or png."
+      });
+    },
+    handleMaxSize: function handleMaxSize(file) {
+      this.$Notice.warning({
+        title: "Exceeding file size limit",
+        desc: "File  " + file.name + " is too large, no more than 2M."
+      });
+    },
+    removeImg: function removeImg() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var imageName, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                imageName = _this4.data.iconImage;
+                _this4.data.iconImage = "";
+                _context4.next = 4;
+                return _this4.callApi("post", "/api/remove_img", {
+                  name: imageName
+                });
+
+              case 4:
+                res = _context4.sent;
+
+                if (res.status !== 200) {
+                  _this4.data.iconImage = imageName;
+
+                  _this4.swr();
+                }
+
+                _this4.$refs.uploads.clearFiles();
+
+              case 7:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    }
+  },
+  created: function created() {
+    var _this5 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _this5.token = window.Laravel.csrfToken;
+              _context5.next = 3;
+              return _this5.callApi("get", "/api/category/get_all_categories");
+
+            case 3:
+              res = _context5.sent;
+
+              if (res.status === 200) {
+                console.log(res.data);
+                _this5.categories = res.data;
+                console.log(_this5.categories);
+              } else {
+                _this5.swr();
+              }
+
+            case 5:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }))();
+  }
+});
 
 /***/ }),
 
@@ -85038,7 +85604,7 @@ var render = function() {
                     {
                       on: {
                         click: function($event) {
-                          _vm.addCategory = true
+                          _vm.addCategoryModal = true
                         }
                       }
                     },
@@ -85061,7 +85627,16 @@ var render = function() {
                     _vm._v(" "),
                     _vm._l(_vm.categories, function(category, i) {
                       return _c("tr", { key: category.id }, [
-                        _c("td", [_vm._v(_vm._s(_vm.tag.id))]),
+                        _c("td", [_vm._v(_vm._s(category.id))]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "table_iamge" }, [
+                          _c("img", {
+                            attrs: {
+                              src: "/uploads/" + category.iconImage,
+                              alt: "" + category.name
+                            }
+                          })
+                        ]),
                         _vm._v(" "),
                         _c("td", { staticClass: "_table_name" }, [
                           _vm._v(
@@ -85144,22 +85719,22 @@ var render = function() {
                 closable: false
               },
               model: {
-                value: _vm.addCategory,
+                value: _vm.addCategoryModal,
                 callback: function($$v) {
-                  _vm.addCategory = $$v
+                  _vm.addCategoryModal = $$v
                 },
-                expression: "addCategory"
+                expression: "addCategoryModal"
               }
             },
             [
               _c("Input", {
                 attrs: { placeholder: "Add Category name" },
                 model: {
-                  value: _vm.data.tagName,
+                  value: _vm.data.name,
                   callback: function($$v) {
-                    _vm.$set(_vm.data, "tagName", $$v)
+                    _vm.$set(_vm.data, "name", $$v)
                   },
-                  expression: "data.tagName"
+                  expression: "data.name"
                 }
               }),
               _vm._v(" "),
@@ -85231,7 +85806,7 @@ var render = function() {
                       attrs: { type: "default" },
                       on: {
                         click: function($event) {
-                          _vm.addCategory = false
+                          _vm.addCategoryModal = false
                         }
                       }
                     },
@@ -85261,7 +85836,7 @@ var render = function() {
             "Modal",
             {
               attrs: {
-                title: "Edit tag",
+                title: "Edit Category",
                 "mask-closable": false,
                 closable: false
               },
@@ -85275,15 +85850,73 @@ var render = function() {
             },
             [
               _c("Input", {
-                attrs: { placeholder: "Edit tag name" },
+                attrs: { placeholder: "Edit Category name" },
                 model: {
-                  value: _vm.editData.tagName,
+                  value: _vm.editData.name,
                   callback: function($$v) {
-                    _vm.$set(_vm.editData, "tagName", $$v)
+                    _vm.$set(_vm.editData, "name", $$v)
                   },
-                  expression: "editData.tagName"
+                  expression: "editData.name"
                 }
               }),
+              _vm._v(" "),
+              _c("div", { staticClass: "space" }),
+              _vm._v(" "),
+              _c(
+                "Upload",
+                {
+                  ref: "uploads",
+                  attrs: {
+                    type: "drag",
+                    headers: {
+                      "x-csrf-token": _vm.token,
+                      "X-Requested-with": "XMLHttpRequest"
+                    },
+                    format: ["jpg", "jpeg", "png"],
+                    "on-success": _vm.handleSuccess,
+                    "on-error": _vm.handleError,
+                    "max-size": 2048,
+                    "on-format-error": _vm.handleFormatError,
+                    "on-exceeded-size": _vm.handleMaxSize,
+                    action: "/api/upload"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticStyle: { padding: "20px 0" } },
+                    [
+                      _c("Icon", {
+                        staticStyle: { color: "#3399ff" },
+                        attrs: { type: "ios-cloud-upload", size: "52" }
+                      }),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Click or drag files here to upload")])
+                    ],
+                    1
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              this.data.iconImage
+                ? _c("div", { staticClass: "demo-upload-list" }, [
+                    _c("img", {
+                      attrs: { src: "/uploads/" + this.data.iconImage }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "demo-upload-list-cover" },
+                      [
+                        _c("Icon", {
+                          attrs: { type: "ios-trash-outline" },
+                          on: { click: _vm.removeImg }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "div",
@@ -85319,66 +85952,6 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "Modal",
-            {
-              attrs: { width: "360" },
-              model: {
-                value: _vm.deleteModal,
-                callback: function($$v) {
-                  _vm.deleteModal = $$v
-                },
-                expression: "deleteModal"
-              }
-            },
-            [
-              _c(
-                "p",
-                {
-                  staticStyle: { color: "#f60", "text-align": "center" },
-                  attrs: { slot: "header" },
-                  slot: "header"
-                },
-                [
-                  _c("Icon", { attrs: { type: "ios-information-circle" } }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Delete confirmation")])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticStyle: { "text-align": "center" } }, [
-                _c("p", [
-                  _vm._v(
-                    "\n                        Are you sure you want to delete this tag?\n                    "
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { attrs: { slot: "footer" }, slot: "footer" },
-                [
-                  _c(
-                    "Button",
-                    {
-                      attrs: {
-                        type: "error",
-                        size: "large",
-                        long: "",
-                        loading: _vm.isDeleting,
-                        disabled: _vm.isDeleting
-                      },
-                      on: { click: _vm.deleteTag }
-                    },
-                    [_vm._v("Delete")]
-                  )
-                ],
-                1
-              )
-            ]
           )
         ],
         1

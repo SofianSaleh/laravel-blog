@@ -23,7 +23,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function getAll(Request $request)
+    public function getAll()
     {
         // $this->validate($request, [
         //     'name' => "required",
