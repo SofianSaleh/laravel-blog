@@ -136,6 +136,7 @@
                     />
                     <div class="space"></div>
                     <Upload
+                        v-show="this.showUpload"
                         ref="uploads"
                         type="drag"
                         :headers="{
@@ -163,7 +164,7 @@
                         class="demo-upload-list"
                         v-if="this.editData.iconImage"
                     >
-                        <img :src="`/uploads/${this.editData.iconImage}`" />
+                        <img :src="this.editData.iconImage" />
                         <div class="demo-upload-list-cover">
                             <Icon type="ios-trash-outline" @click="removeImg" />
                         </div>
@@ -234,7 +235,8 @@ export default {
             isDeleting: false,
             isEditing: false,
             categories: [],
-            token: ""
+            token: "",
+            showUpload = false,
         };
     },
     methods: {
