@@ -21,7 +21,16 @@ class CategoryController extends Controller
             'name' => $request->name,
             'iconImage' => $request->iconImage
         ]);
-        return
+    }
+
+    public function getAll(Request $request)
+    {
+        // $this->validate($request, [
+        //     'name' => "required",
+        //     'iconImage' => "required"
+        // ]);
+
+        return  Category::orderBy('id', 'desc')->get();
     }
 
     public function upload(Request $request)

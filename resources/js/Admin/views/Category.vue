@@ -18,7 +18,8 @@
                             <!-- TABLE TITLE -->
                             <tr>
                                 <th>Id</th>
-                                <th>Category Name</th>
+                                <th>Icon Image</th>
+                                <th>Category name</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>
@@ -26,12 +27,15 @@
 
                             <!-- ITEMS -->
 
-                            <tr v-for="(tag, i) in tags" :key="tag.id">
+                            <tr
+                                v-for="(category, i) in categories"
+                                :key="category.id"
+                            >
                                 <td>{{ tag.id }}</td>
                                 <td class="_table_name">
-                                    {{ tag.tagName }}
+                                    {{ category.name }}
                                 </td>
-                                <td>{{ tag.created_at }}</td>
+                                <td>{{ category.created_at }}</td>
                                 <td>
                                     <Button type="primary" size="small">
                                         View
@@ -39,15 +43,15 @@
                                     <Button
                                         type="info"
                                         size="small"
-                                        @click="showEditModal(tag)"
+                                        @click="showEditModal(category)"
                                     >
                                         Edit
                                     </Button>
                                     <Button
                                         type="error"
                                         size="small"
-                                        @click="showDeleteModal(tag, i)"
-                                        :loading="tag.isDeleting"
+                                        @click="showDeleteModal(category, i)"
+                                        :loading="category.isDeleting"
                                     >
                                         Delete
                                     </Button>
@@ -176,10 +180,10 @@ export default {
                 name: ""
             },
             editData: {
-                tagName: ""
+                name: ""
             },
             deleteData: {
-                tagName: ""
+                name: ""
             },
             addCategory: false,
             editModal: false,
@@ -187,7 +191,7 @@ export default {
             isAdding: false,
             isDeleting: false,
             isEditing: false,
-            tags: [],
+            categories: [],
             token: ""
         };
     },
@@ -337,9 +341,9 @@ export default {
     },
     async created() {
         this.token = window.Laravel.csrfToken;
-        const res = await this.callApi("get", "/api/tag/get_all_tags");
+        const res = await this.callApi("get", "/api/category/get_all_categories");
         if (res.status === 200) {
-            this.tags = res.data;
+            this.categories = res.data;
         } else {
             this.swr();
         }

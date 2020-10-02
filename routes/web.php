@@ -31,6 +31,7 @@ Route::post('/api/remove_img', [CategoryController::class, 'removeImg']);
 
 // Genral Routes finished
 
+Route::get('/api/category/get_all_categories', [CategoryController::class, 'getAll']);
 Route::post('/api/category/add', [CategoryController::class, 'addCategory']);
 
 // Category Routes Start
