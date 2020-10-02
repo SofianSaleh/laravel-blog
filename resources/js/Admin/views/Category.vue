@@ -34,7 +34,7 @@
                                 <td>{{ category.id }}</td>
                                 <td class="table_image">
                                     <img
-                                        :src="category.iconImage"
+                                        :src="`/uploads/${category.iconImage}`"
                                         :alt="category.name"
                                     />
                                 </td>
@@ -164,7 +164,7 @@
                         class="demo-upload-list"
                         v-if="this.editData.iconImage"
                     >
-                        <img :src="this.editData.iconImage" />
+                        <img :src="`/uploads/${this.editData.iconImage}`" />
                         <div class="demo-upload-list-cover">
                             <Icon
                                 type="ios-trash-outline"
@@ -282,7 +282,7 @@ export default {
         },
         async editCategory() {
             if (this.editData.name.trim() === "")
-                return this.e("Tag name is Required");
+                return this.e("Category name is Required");
             if (this.editData.iconImage.trim() === "")
                 return this.e("Tag name is Required");
 
@@ -387,15 +387,16 @@ export default {
             });
         },
         async removeImg(type = true) {
+            let imageName;
             if (!type) {
                 // for editing
                 this.showUpload = true;
 
-                let imageName = this.editData.iconImage;
+                imageName = this.editData.iconImage;
                 this.editData.iconImage = "";
                 this.$refs.editData.clearFiles();
             } else {
-                let imageName = this.data.iconImage;
+                imageName = this.data.iconImage;
                 this.data.iconImage = "";
                 this.$refs.uploads.clearFiles();
             }
@@ -410,7 +411,7 @@ export default {
         },
         colseEditModal() {
             this.isEditingItem = false;
-            this.editModal = fase;
+            this.editModal = false;
         }
     },
     async created() {

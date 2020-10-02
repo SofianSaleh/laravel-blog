@@ -2445,8 +2445,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var type, _imageName, _imageName2, res;
-
+        var type, imageName, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
@@ -2456,12 +2455,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (!type) {
                   // for editing
                   _this4.showUpload = true;
-                  _imageName = _this4.editData.iconImage;
+                  imageName = _this4.editData.iconImage;
                   _this4.editData.iconImage = "";
 
                   _this4.$refs.editData.clearFiles();
                 } else {
-                  _imageName2 = _this4.data.iconImage;
+                  imageName = _this4.data.iconImage;
                   _this4.data.iconImage = "";
 
                   _this4.$refs.uploads.clearFiles();
@@ -2491,7 +2490,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     colseEditModal: function colseEditModal() {
       this.isEditingItem = false;
-      this.editModal = fase;
+      this.editModal = false;
     }
   },
   created: function created() {
@@ -85672,7 +85671,7 @@ var render = function() {
                         _c("td", { staticClass: "table_image" }, [
                           _c("img", {
                             attrs: {
-                              src: category.iconImage,
+                              src: "/uploads/" + category.iconImage,
                               alt: category.name
                             }
                           })
@@ -85948,7 +85947,9 @@ var render = function() {
               _vm._v(" "),
               this.editData.iconImage
                 ? _c("div", { staticClass: "demo-upload-list" }, [
-                    _c("img", { attrs: { src: this.editData.iconImage } }),
+                    _c("img", {
+                      attrs: { src: "/uploads/" + this.editData.iconImage }
+                    }),
                     _vm._v(" "),
                     _c(
                       "div",
