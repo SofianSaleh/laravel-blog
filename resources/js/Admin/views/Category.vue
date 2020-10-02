@@ -69,6 +69,7 @@
                     />
                     <div class="space"></div>
                     <Upload
+                        ref="uploads"
                         type="drag"
                         :headers="{
                             'x-csrf-token': token,
@@ -317,6 +318,7 @@ export default {
         removeImg() {
             let imageName = this.data.iconImage;
             this.data.iconImage = "";
+            this.$refs.clearFiles()
             const res = await this.callApi("post", "/api/remove_img", {name = imageName})
 
             if(res.status !== 200){

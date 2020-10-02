@@ -25,9 +25,17 @@ class CategoryController extends Controller
             'name' => "required"
         ]);
         $fileName = $request->name;
-        $filePath = public_path().'/uploads/'.$fileName;
-        if(fileExists($filePath)){
-            unlink()
+        $this->deleteFromServer($fileName);
+        return 'done';
+    }
+
+    public function deleteFromServer($fileName)
+    {
+        $filePath = public_path() . '/uploads/' . $fileName;
+
+        if (fileExists($filePath)) {
+            unlink($filePath);
         }
+        return;
     }
 }
