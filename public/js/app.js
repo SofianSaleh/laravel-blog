@@ -2138,6 +2138,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2337,14 +2340,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     showEditModal: function showEditModal(_ref) {
-      var na = _ref.na,
-          e = _ref.e,
-          id = _ref.id;
+      var id = _ref.id,
+          name = _ref.name,
+          iconImage = _ref.iconImage;
       var obj = {
         id: id,
-        name: name
+        name: name,
+        iconImage: iconImage
       };
       this.editData = obj;
+      console.log(this.editData);
       this.editModal = true;
     },
     deleteTag: function deleteTag() {
@@ -2469,9 +2474,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               res = _context5.sent;
 
               if (res.status === 200) {
-                console.log(res.data);
                 _this5.categories = res.data;
-                console.log(_this5.categories);
               } else {
                 _this5.swr();
               }
@@ -85632,8 +85635,8 @@ var render = function() {
                         _c("td", { staticClass: "table_image" }, [
                           _c("img", {
                             attrs: {
-                              src: "/uploads/" + category.iconImage,
-                              alt: "" + category.name
+                              src: category.iconImage,
+                              alt: category.name
                             }
                           })
                         ]),
@@ -85898,10 +85901,10 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              this.data.iconImage
+              this.editData.iconImage
                 ? _c("div", { staticClass: "demo-upload-list" }, [
                     _c("img", {
-                      attrs: { src: "/uploads/" + this.data.iconImage }
+                      attrs: { src: "/uploads/" + this.editData.iconImage }
                     }),
                     _vm._v(" "),
                     _c(

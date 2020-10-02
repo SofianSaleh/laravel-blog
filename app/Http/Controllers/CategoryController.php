@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
         return  Category::create([
             'name' => $request->name,
-            'iconImage' => $request->iconImage
+            'iconImage' => '/uploads/' . $request->iconImage
         ]);
     }
 

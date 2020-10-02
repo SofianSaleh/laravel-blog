@@ -34,8 +34,8 @@
                                 <td>{{ category.id }}</td>
                                 <td class="table_image">
                                     <img
-                                        :src="`/uploads/${category.iconImage}`"
-                                        :alt="`${category.name}`"
+                                        :src="category.iconImage"
+                                        :alt="category.name"
                                     />
                                 </td>
                                 <td class="_table_name">
@@ -159,8 +159,11 @@
                             <p>Click or drag files here to upload</p>
                         </div>
                     </Upload>
-                    <div class="demo-upload-list" v-if="this.data.iconImage">
-                        <img :src="`/uploads/${this.data.iconImage}`" />
+                    <div
+                        class="demo-upload-list"
+                        v-if="this.editData.iconImage"
+                    >
+                        <img :src="`/uploads/${this.editData.iconImage}`" />
                         <div class="demo-upload-list-cover">
                             <Icon type="ios-trash-outline" @click="removeImg" />
                         </div>
@@ -303,12 +306,14 @@ export default {
             }
             this.isEditing = false;
         },
-        showEditModal({ na, e, id }) {
+        showEditModal({ id, name, iconImage }) {
             let obj = {
                 id,
-                name
+                name,
+                iconImage
             };
             this.editData = obj;
+            console.log(this.editData);
             this.editModal = true;
         },
         async deleteTag() {
@@ -389,9 +394,7 @@ export default {
             "/api/category/get_all_categories"
         );
         if (res.status === 200) {
-            console.log(res.data);
             this.categories = res.data;
-            console.log(this.categories);
         } else {
             this.swr();
         }
