@@ -70,9 +70,12 @@
                     <div class="space"></div>
                     <Upload
                         type="drag"
-                        :headers="{ 'x-csrf-token': token }"
+                        :headers="{
+                            'x-csrf-token': token,
+                            'X-Requested-with': 'XMLHttpRequest'
+                        }"
                         :on-success="handleSuccess"
-                        :format="['jpg', 'jpeg', 'png']"
+                        :on-error="handleError"
                         :max-size="2048"
                         :on-format-error="handleFormatError"
                         :on-exceeded-size="handleMaxSize"

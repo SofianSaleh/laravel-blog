@@ -2084,6 +2084,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -85570,9 +85573,12 @@ var render = function() {
                 {
                   attrs: {
                     type: "drag",
-                    headers: { "x-csrf-token": _vm.token },
+                    headers: {
+                      "x-csrf-token": _vm.token,
+                      "X-Requested-with": "XMLHttpRequest"
+                    },
                     "on-success": _vm.handleSuccess,
-                    format: ["jpg", "jpeg", "png"],
+                    "on-error": _vm.handleError,
                     "max-size": 2048,
                     "on-format-error": _vm.handleFormatError,
                     "on-exceeded-size": _vm.handleMaxSize,
