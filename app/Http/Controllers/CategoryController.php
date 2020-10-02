@@ -47,8 +47,9 @@ class CategoryController extends Controller
         ]);
         if ($updated) {
             return response()->json([
-                'tagName' => $request->tagName,
-                'id' => $request->id
+                'id' => $request->id,
+                'name' => $request->name,
+                'iconImage' => $request->iconImage,
             ]);
         } else {
             return response()->json([

@@ -187,7 +187,7 @@
                 </Modal>
 
                 <!-- Delete Category  -->
-                <!-- 
+
                 <Modal v-model="deleteModal" width="360">
                     <p slot="header" style="color:#f60;text-align:center">
                         <Icon type="ios-information-circle"></Icon>
@@ -205,11 +205,11 @@
                             long
                             :loading="isDeleting"
                             :disabled="isDeleting"
-                            @click="deleteTag"
+                            @click="deleteCategory"
                             >Delete</Button
                         >
                     </div>
-                </Modal>  -->
+                </Modal>
             </div>
         </div>
     </div>
@@ -297,7 +297,9 @@ export default {
                 let index = this.categories.findIndex(
                     category => category.id === res.data.id
                 );
-                this.categories[index].tagName = res.data.tagName;
+                console.log(this.categories[index], this.categories);
+                this.categories[index].name = res.data.name;
+                this.categories[index].iconImage = res.data.iconImage;
                 this.s("Tag has Been Edited");
                 this.isEditing = false;
 
@@ -308,8 +310,10 @@ export default {
                 if (res.status === 422) {
                     this.isEditing = false;
 
-                    if (res.data.errors.tagName)
-                        return this.i(res.data.errors.tagName[0]);
+                    if (res.data.errors.name)
+                        return this.i(res.data.errors.name[0]);
+                    if (res.data.errors.iconImage)
+                        return this.i(res.data.errors.iconImage[0]);
                 } else {
                     this.isEditing = false;
 
@@ -325,21 +329,21 @@ export default {
                 iconImage
             };
             this.editData = obj;
-            console.log(this.editData);
+
             this.editModal = true;
             this.isEditingItem = true;
         },
-        async deleteTag() {
+        async deleteCategory() {
             this.isDeleting = true;
 
             const res = await this.callApi(
                 "post",
-                "/api/tag/delete_tag",
+                "/api/tag/delete_Category",
                 this.deleteData
             );
 
             if (res.status === 200) {
-                this.tags.splice(this.deleteTag.i, 1);
+                this.categories.splice(this.deleteCategory.i, 1);
                 this.s("Tag deleted Successfully");
                 this.isDeleting = false;
                 this.deleteModal = false;

@@ -2299,14 +2299,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context2.sent;
 
                 if (!(res.status === 200)) {
-                  _context2.next = 18;
+                  _context2.next = 20;
                   break;
                 }
 
                 index = _this2.categories.findIndex(function (category) {
                   return category.id === res.data.id;
                 });
-                _this2.categories[index].tagName = res.data.tagName;
+                console.log(_this2.categories[index], _this2.categories);
+                _this2.categories[index].name = res.data.name;
+                _this2.categories[index].iconImage = res.data.iconImage;
 
                 _this2.s("Tag has Been Edited");
 
@@ -2317,37 +2319,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   name: "",
                   iconImage: ""
                 };
-                _context2.next = 26;
+                _context2.next = 30;
                 break;
 
-              case 18:
+              case 20:
                 if (!(res.status === 422)) {
+                  _context2.next = 28;
+                  break;
+                }
+
+                _this2.isEditing = false;
+
+                if (!res.data.errors.name) {
                   _context2.next = 24;
                   break;
                 }
 
-                _this2.isEditing = false;
+                return _context2.abrupt("return", _this2.i(res.data.errors.name[0]));
 
-                if (!res.data.errors.tagName) {
-                  _context2.next = 22;
+              case 24:
+                if (!res.data.errors.iconImage) {
+                  _context2.next = 26;
                   break;
                 }
 
-                return _context2.abrupt("return", _this2.i(res.data.errors.tagName[0]));
+                return _context2.abrupt("return", _this2.i(res.data.errors.iconImage[0]));
 
-              case 22:
-                _context2.next = 26;
+              case 26:
+                _context2.next = 30;
                 break;
 
-              case 24:
+              case 28:
                 _this2.isEditing = false;
 
                 _this2.swr();
 
-              case 26:
+              case 30:
                 _this2.isEditing = false;
 
-              case 27:
+              case 31:
               case "end":
                 return _context2.stop();
             }
@@ -2365,7 +2375,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         iconImage: iconImage
       };
       this.editData = obj;
-      console.log(this.editData);
       this.editModal = true;
       this.isEditingItem = true;
     },
