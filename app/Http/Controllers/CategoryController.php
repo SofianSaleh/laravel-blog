@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\fileExists;
@@ -9,6 +10,20 @@ use function PHPUnit\Framework\fileExists;
 class CategoryController extends Controller
 {
     //
+    public function addCategory(Request $request)
+    {
+        $this->validate($request, [
+            'name' => "required",
+            'iconImage' => "required"
+        ]);
+
+        return  Category::create([
+            'name' => $request->name,
+            'iconImage' => $request->iconImage
+        ]);
+        return
+    }
+
     public function upload(Request $request)
     {
         $this->validate($request, [

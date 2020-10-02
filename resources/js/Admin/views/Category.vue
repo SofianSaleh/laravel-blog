@@ -199,7 +199,7 @@ export default {
                 return this.e("Category image is Required");
 
             this.isAdding = true;
-            const res = await this.callApi("post", "/api/tag/create_category", {
+            const res = await this.callApi("post", "/api/category/add", {
                 tagName: this.data.tagName
             });
 
