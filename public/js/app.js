@@ -2378,7 +2378,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.editModal = true;
       this.isEditingItem = true;
     },
-    deleteTag: function deleteTag() {
+    deleteCategory: function deleteCategory() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
@@ -2389,13 +2389,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _this3.isDeleting = true;
                 _context3.next = 3;
-                return _this3.callApi("post", "/api/tag/delete_tag", _this3.deleteData);
+                return _this3.callApi("post", "/api/tag/delete_Category", _this3.deleteData);
 
               case 3:
                 res = _context3.sent;
 
                 if (res.status === 200) {
-                  _this3.tags.splice(_this3.deleteTag.i, 1);
+                  _this3.categories.splice(_this3.deleteCategory.i, 1);
 
                   _this3.s("Tag deleted Successfully");
 
@@ -86010,6 +86010,66 @@ var render = function() {
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "Modal",
+            {
+              attrs: { width: "360" },
+              model: {
+                value: _vm.deleteModal,
+                callback: function($$v) {
+                  _vm.deleteModal = $$v
+                },
+                expression: "deleteModal"
+              }
+            },
+            [
+              _c(
+                "p",
+                {
+                  staticStyle: { color: "#f60", "text-align": "center" },
+                  attrs: { slot: "header" },
+                  slot: "header"
+                },
+                [
+                  _c("Icon", { attrs: { type: "ios-information-circle" } }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Delete confirmation")])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticStyle: { "text-align": "center" } }, [
+                _c("p", [
+                  _vm._v(
+                    "\n                        Are you sure you want to delete this tag?\n                    "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { attrs: { slot: "footer" }, slot: "footer" },
+                [
+                  _c(
+                    "Button",
+                    {
+                      attrs: {
+                        type: "error",
+                        size: "large",
+                        long: "",
+                        loading: _vm.isDeleting,
+                        disabled: _vm.isDeleting
+                      },
+                      on: { click: _vm.deleteCategory }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ],
+                1
+              )
+            ]
           )
         ],
         1
