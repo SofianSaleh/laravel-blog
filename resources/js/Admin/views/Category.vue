@@ -7,9 +7,9 @@
                     class="_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20"
                 >
                     <p class="_title0">
-                        Tags
+                        Categories
                         <Button @click="addCategory = true"
-                            ><Icon type="md-add"></Icon> Add Tag</Button
+                            ><Icon type="md-add"></Icon> Add Category</Button
                         >
                     </p>
 
@@ -18,7 +18,7 @@
                             <!-- TABLE TITLE -->
                             <tr>
                                 <th>Id</th>
-                                <th>Tag Name</th>
+                                <th>Category Name</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>
@@ -71,6 +71,11 @@
                     <Upload
                         type="drag"
                         :headers="{ 'x-csrf-token': token }"
+                        :on-success="handleSuccess"
+                        :format="['jpg', 'jpeg', 'png']"
+                        :max-size="2048"
+                        :on-format-error="handleFormatError"
+                        :on-exceeded-size="handleMaxSize"
                         action="/api/category/upload"
                     >
                         <div style="padding: 20px 0">
@@ -154,7 +159,8 @@ export default {
     data() {
         return {
             data: {
-                tagName: ""
+                iconImage: "",
+                name: ""
             },
             editData: {
                 tagName: ""
@@ -269,6 +275,24 @@ export default {
             };
             this.deleteData = obj;
             this.deleteModal = true;
+        },
+        handleSuccess(res, file) {
+            this.data.iconImage = res;
+        },
+        handleFormatError(file) {
+            this.$Notice.warning({
+                title: "The file format is incorrect",
+                desc:
+                    "File format of " +
+                    file.name +
+                    " is incorrect, please select jpg or png."
+            });
+        },
+        handleMaxSize(file) {
+            this.$Notice.warning({
+                title: "Exceeding file size limit",
+                desc: "File  " + file.name + " is too large, no more than 2M."
+            });
         }
     },
     async created() {

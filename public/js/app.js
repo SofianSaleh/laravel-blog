@@ -2079,11 +2079,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       data: {
-        tagName: ""
+        iconImage: "",
+        name: ""
       },
       editData: {
         tagName: ""
@@ -2314,6 +2320,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
       this.deleteData = obj;
       this.deleteModal = true;
+    },
+    handleSuccess: function handleSuccess(res, file) {
+      this.data.iconImage = res;
+    },
+    handleFormatError: function handleFormatError(file) {
+      this.$Notice.warning({
+        title: "The file format is incorrect",
+        desc: "File format of " + file.name + " is incorrect, please select jpg or png."
+      });
+    },
+    handleMaxSize: function handleMaxSize(file) {
+      this.$Notice.warning({
+        title: "Exceeding file size limit",
+        desc: "File  " + file.name + " is too large, no more than 2M."
+      });
     }
   },
   created: function created() {
@@ -85409,7 +85430,9 @@ var render = function() {
                 "p",
                 { staticClass: "_title0" },
                 [
-                  _vm._v("\n                    Tags\n                    "),
+                  _vm._v(
+                    "\n                    Categories\n                    "
+                  ),
                   _c(
                     "Button",
                     {
@@ -85421,7 +85444,7 @@ var render = function() {
                     },
                     [
                       _c("Icon", { attrs: { type: "md-add" } }),
-                      _vm._v(" Add Tag")
+                      _vm._v(" Add Category")
                     ],
                     1
                   )
@@ -85548,6 +85571,11 @@ var render = function() {
                   attrs: {
                     type: "drag",
                     headers: { "x-csrf-token": _vm.token },
+                    "on-success": _vm.handleSuccess,
+                    format: ["jpg", "jpeg", "png"],
+                    "max-size": 2048,
+                    "on-format-error": _vm.handleFormatError,
+                    "on-exceeded-size": _vm.handleMaxSize,
                     action: "/api/category/upload"
                   }
                 },
@@ -85741,7 +85769,7 @@ var staticRenderFns = [
     return _c("tr", [
       _c("th", [_vm._v("Id")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Tag Name")]),
+      _c("th", [_vm._v("Category Name")]),
       _vm._v(" "),
       _c("th", [_vm._v("Created At")]),
       _vm._v(" "),
