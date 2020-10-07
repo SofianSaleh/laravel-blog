@@ -104037,7 +104037,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vVuex);
     deleteModalObj: {
       showModal: false,
       deleteURL: "",
-      data: {}
+      data: {},
+      isDeleted: false
     }
   },
   getters: {
@@ -104045,7 +104046,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vVuex);
       return state.deleteModalObj;
     }
   },
-  mutations: {},
+  mutations: {
+    setDeleteModal: function setDeleteModal(state) {
+      state.deleteModalObj.isDeleted = true;
+    }
+  },
   actions: {}
 }));
 

@@ -8,7 +8,8 @@ export default new Vuex.Store({
         deleteModalObj: {
             showModal: false,
             deleteURL: "",
-            data: {}
+            data: {},
+            isDeleted: false
         }
     },
     getters: {
@@ -16,6 +17,10 @@ export default new Vuex.Store({
             return state.deleteModalObj;
         }
     },
-    mutations: {},
+    mutations: {
+        setDeleteModal(state) {
+            state.deleteModalObj.isDeleted = true;
+        }
+    },
     actions: {}
 });
