@@ -2137,9 +2137,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       addCategoryModal: false,
       editModal: false,
-      deleteModal: false,
+      // deleteModal: false,
       isAdding: false,
-      isDeleting: false,
       isEditing: false,
       categories: [],
       token: "",
@@ -104071,8 +104070,18 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vVuex);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
-  state: {},
-  getters: {},
+  state: {
+    deleteModalObj: {
+      showModal: false,
+      deleteURL: "",
+      data: {}
+    }
+  },
+  getters: {
+    getDeleteModalObj: function getDeleteModalObj(state) {
+      return state.deleteModalObj;
+    }
+  },
   mutations: {},
   actions: {}
 }));

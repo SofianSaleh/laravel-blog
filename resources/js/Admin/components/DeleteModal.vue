@@ -2,7 +2,7 @@
     <div>
         <!-- Delete Category  -->
 
-        <Modal v-model="deleteModal" width="360">
+        <Modal :value="modalData.showDeleteModal" width="360">
             <p slot="header" style="color:#f60;text-align:center">
                 <Icon type="ios-information-circle"></Icon>
                 <span>Delete confirmation</span>
@@ -29,5 +29,18 @@
 
 <script>
 import { mapGetters } from "vuex";
-export default {};
+export default {
+    data() {
+        return {
+            isDeleting: false
+        };
+    },
+    computed: {
+        ...mapGetters([
+            {
+                modalData: "getDeleteModalObj"
+            }
+        ])
+    }
+};
 </script>
