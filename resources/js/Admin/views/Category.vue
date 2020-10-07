@@ -307,26 +307,7 @@ export default {
             this.editModal = true;
             this.isEditingItem = true;
         },
-        async deleteCategory() {
-            this.isDeleting = true;
 
-            const res = await this.callApi(
-                "post",
-                "/api/tag/delete_Category",
-                this.deleteData
-            );
-
-            if (res.status === 200) {
-                this.categories.splice(this.deleteCategory.i, 1);
-                this.s("Tag deleted Successfully");
-                this.isDeleting = false;
-                this.deleteModal = false;
-            } else {
-                this.isDeleting = false;
-
-                this.swr();
-            }
-        },
         showDeleteModal({ id, tagName }, i) {
             let obj = {
                 id,

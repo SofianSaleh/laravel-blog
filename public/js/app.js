@@ -2352,43 +2352,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.editModal = true;
       this.isEditingItem = true;
     },
-    deleteCategory: function deleteCategory() {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _this3.isDeleting = true;
-                _context3.next = 3;
-                return _this3.callApi("post", "/api/tag/delete_Category", _this3.deleteData);
-
-              case 3:
-                res = _context3.sent;
-
-                if (res.status === 200) {
-                  _this3.categories.splice(_this3.deleteCategory.i, 1);
-
-                  _this3.s("Tag deleted Successfully");
-
-                  _this3.isDeleting = false;
-                  _this3.deleteModal = false;
-                } else {
-                  _this3.isDeleting = false;
-
-                  _this3.swr();
-                }
-
-              case 5:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-    },
     showDeleteModal: function showDeleteModal(_ref2, i) {
       var id = _ref2.id,
           tagName = _ref2.tagName;
@@ -2427,50 +2390,50 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     removeImg: function removeImg() {
       var _arguments = arguments,
-          _this4 = this;
+          _this3 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var type, imageName, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 type = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : true;
 
                 if (!type) {
                   // for editing
-                  _this4.showUpload = true;
-                  imageName = _this4.editData.iconImage;
-                  _this4.editData.iconImage = "";
+                  _this3.showUpload = true;
+                  imageName = _this3.editData.iconImage;
+                  _this3.editData.iconImage = "";
 
-                  _this4.$refs.editData.clearFiles();
+                  _this3.$refs.editData.clearFiles();
                 } else {
-                  imageName = _this4.data.iconImage;
-                  _this4.data.iconImage = "";
+                  imageName = _this3.data.iconImage;
+                  _this3.data.iconImage = "";
 
-                  _this4.$refs.uploads.clearFiles();
+                  _this3.$refs.uploads.clearFiles();
                 }
 
-                _context4.next = 4;
-                return _this4.callApi("post", "/api/remove_img", {
+                _context3.next = 4;
+                return _this3.callApi("post", "/api/remove_img", {
                   name: imageName
                 });
 
               case 4:
-                res = _context4.sent;
+                res = _context3.sent;
 
                 if (res.status !== 200) {
-                  _this4.data.iconImage = imageName;
+                  _this3.data.iconImage = imageName;
 
-                  _this4.swr();
+                  _this3.swr();
                 }
 
               case 6:
               case "end":
-                return _context4.stop();
+                return _context3.stop();
             }
           }
-        }, _callee4);
+        }, _callee3);
       }))();
     },
     colseEditModal: function colseEditModal() {
@@ -2479,33 +2442,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   created: function created() {
-    var _this5 = this;
+    var _this4 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              _this5.token = window.Laravel.csrfToken;
-              _context5.next = 3;
-              return _this5.callApi("get", "/api/category/get_all_categories");
+              _this4.token = window.Laravel.csrfToken;
+              _context4.next = 3;
+              return _this4.callApi("get", "/api/category/get_all_categories");
 
             case 3:
-              res = _context5.sent;
+              res = _context4.sent;
 
               if (res.status === 200) {
-                _this5.categories = res.data;
+                _this4.categories = res.data;
               } else {
-                _this5.swr();
+                _this4.swr();
               }
 
             case 5:
             case "end":
-              return _context5.stop();
+              return _context4.stop();
           }
         }
-      }, _callee5);
+      }, _callee4);
     }))();
   }
 });

@@ -35,6 +35,29 @@ export default {
             isDeleting: false
         };
     },
+    methods: {
+        async deleteCategory() {
+            this.isDeleting = true;
+            // "/api/tag/delete_Category"
+            const res = await this.callApi(
+                "post",
+                modalData.deleteURL,
+                modalData.data
+            );
+
+            if (res.status === 200) {
+                // ! convert to vuex
+                this.categories.splice(this.deleteCategory.i, 1);
+                this.s("Tag deleted Successfully");
+                this.isDeleting = false;
+                this.deleteModal = false;
+            } else {
+                this.isDeleting = false;
+
+                this.swr();
+            }
+        }
+    },
     computed: {
         ...mapGetters([
             {
