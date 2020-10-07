@@ -13,6 +13,7 @@ import App from "./views/App.vue";
 import ViewUI from "view-design";
 import "view-design/dist/styles/iview.css";
 import Common from "./common";
+import store from "./store.js";
 
 Vue.use(ViewUI);
 Vue.mixin(Common);
@@ -41,5 +42,6 @@ const app = new Vue({
     components: {
         App
     },
-    router
+    router,
+    store
 });

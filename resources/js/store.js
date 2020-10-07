@@ -1,2 +1,8 @@
 import Vue from "vue";
-import vuex from "vuex";
+import Vuex from "vuex";
+
+Vue.use(vVuex);
+
+export default new Vuex.Store({
+    state: {}
+});
