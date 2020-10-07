@@ -2120,31 +2120,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -86010,66 +85985,6 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "Modal",
-            {
-              attrs: { width: "360" },
-              model: {
-                value: _vm.deleteModal,
-                callback: function($$v) {
-                  _vm.deleteModal = $$v
-                },
-                expression: "deleteModal"
-              }
-            },
-            [
-              _c(
-                "p",
-                {
-                  staticStyle: { color: "#f60", "text-align": "center" },
-                  attrs: { slot: "header" },
-                  slot: "header"
-                },
-                [
-                  _c("Icon", { attrs: { type: "ios-information-circle" } }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Delete confirmation")])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticStyle: { "text-align": "center" } }, [
-                _c("p", [
-                  _vm._v(
-                    "\n                        Are you sure you want to delete this tag?\n                    "
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { attrs: { slot: "footer" }, slot: "footer" },
-                [
-                  _c(
-                    "Button",
-                    {
-                      attrs: {
-                        type: "error",
-                        size: "large",
-                        long: "",
-                        loading: _vm.isDeleting,
-                        disabled: _vm.isDeleting
-                      },
-                      on: { click: _vm.deleteCategory }
-                    },
-                    [_vm._v("Delete")]
-                  )
-                ],
-                1
-              )
-            ]
           )
         ],
         1
@@ -104156,7 +104071,10 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vVuex);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
-  state: {}
+  state: {},
+  getters: {},
+  mutations: {},
+  actions: {}
 }));
 
 /***/ }),
