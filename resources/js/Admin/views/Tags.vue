@@ -133,6 +133,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import deleteModal from "../components/DeleteModal";
 export default {
     components: {
@@ -252,17 +253,10 @@ export default {
             const deleteModalObj = {
                 showDeleteModal: true,
                 deleteURL: "/api/tag/delete_tag",
-                data: tag,
+                deleteData: tag,
                 isDeleted: false
             };
             this.$store.commit("setDeletingModalObj", deleteModalObj);
-            // let obj = {
-            //     id,
-            //     tagName,
-            //     i
-            // };
-            // this.deleteData = obj;
-            // this.deleteModal = true;
         }
     },
     async created() {
@@ -271,6 +265,20 @@ export default {
             this.tags = res.data;
         } else {
             this.swr();
+        }
+    },
+    computed: {
+        ...mapGetters(["getDeleteStatus"])
+    },
+    watch: {
+        getDeleteStatus(obj) {
+            console.log(obj);
+            if (obj) {
+                console.log(obj.deleteData, obj);
+                let index = this.tags.indexOf(obj.deleteData.tagName);
+                console.log(index);
+                this.tags.splice(index, 1);
+            }
         }
     }
 };

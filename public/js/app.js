@@ -1981,30 +1981,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.$store.commit("setDeleteModal"); // this.isDeleting = true;
-                // // "/api/tag/delete_Category"
-                // const res = await this.callApi(
-                //     "post",
-                //     modalData.deleteURL,
-                //     modalData.data
-                // );
-                // if (res.status === 200) {
-                //     // ! convert to vuex
-                //     this.categories.splice(this.deleteCategory.i, 1);
-                //     this.s("Tag deleted Successfully");
-                //     this.isDeleting = false;
-                //     this.deleteModal = false;
-                // } else {
-                //     this.isDeleting = false;
-                //     this.swr();
-                // }
+                _this.isDeleting = true; // "/api/tag/delete_Category"
 
+                _context.next = 3;
+                return _this.callApi("post", _this.modalData.deleteURL, _this.modalData.deleteData);
 
-              case 1:
+              case 3:
+                res = _context.sent;
+
+                if (res.status === 200) {
+                  // ! convert to vuex
+                  // this.categories.splice(this.deleteCategory.i, 1);
+                  _this.s("Tag deleted Successfully");
+
+                  _this.$store.commit("setDeleteModal", true);
+                } else {
+                  _this.$store.commit("setDeleteModal", false);
+
+                  _this.swr();
+                }
+
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -2601,8 +2603,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_DeleteModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/DeleteModal */ "./resources/js/admin/components/DeleteModal.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_DeleteModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/DeleteModal */ "./resources/js/admin/components/DeleteModal.vue");
 
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -2743,9 +2752,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    deleteModal: _components_DeleteModal__WEBPACK_IMPORTED_MODULE_1__["default"]
+    deleteModal: _components_DeleteModal__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -2975,16 +2985,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var deleteModalObj = {
         showDeleteModal: true,
         deleteURL: "/api/tag/delete_tag",
-        data: tag,
+        deleteData: tag,
         isDeleted: false
       };
-      this.$store.commit("setDeletingModalObj", deleteModalObj); // let obj = {
-      //     id,
-      //     tagName,
-      //     i
-      // };
-      // this.deleteData = obj;
-      // this.deleteModal = true;
+      this.$store.commit("setDeletingModalObj", deleteModalObj);
     }
   },
   created: function created() {
@@ -3015,6 +3019,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee4);
     }))();
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getDeleteStatus"])),
+  watch: {
+    getDeleteStatus: function getDeleteStatus(obj) {
+      console.log(obj);
+
+      if (obj) {
+        console.log(obj.deleteData, obj);
+        var index = this.tags.indexOf(obj.deleteData.tagName);
+        console.log(index);
+        this.tags.splice(index, 1);
+      }
+    }
   }
 });
 
@@ -104262,18 +104279,22 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     deleteModalObj: {
       showDeleteModal: false,
       deleteURL: "",
-      data: {},
+      deleteData: {},
       isDeleted: false
     }
   },
   getters: {
     getDeleteModalObj: function getDeleteModalObj(state) {
       return state.deleteModalObj;
+    },
+    getDeleteStatus: function getDeleteStatus(state) {
+      return state.deleteModalObj.isDeleted;
     }
   },
   mutations: {
-    setDeleteModal: function setDeleteModal(state) {
-      state.deleteModalObj.isDeleted = true;
+    setDeleteModal: function setDeleteModal(state, payload) {
+      state.deleteModalObj.showDeleteModal = false;
+      state.deleteModalObj.isDeleted = payload;
     },
     setDeletingModalObj: function setDeletingModalObj(state, data) {
       state.deleteModalObj = data;

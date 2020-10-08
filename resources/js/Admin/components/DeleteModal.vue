@@ -42,26 +42,24 @@ export default {
     },
     methods: {
         async deleteCategory() {
-            this.$store.commit("setDeleteModal");
-            // this.isDeleting = true;
-            // // "/api/tag/delete_Category"
-            // const res = await this.callApi(
-            //     "post",
-            //     modalData.deleteURL,
-            //     modalData.data
-            // );
+            this.isDeleting = true;
+            // "/api/tag/delete_Category"
+            const res = await this.callApi(
+                "post",
+                this.modalData.deleteURL,
+                this.modalData.deleteData
+            );
 
-            // if (res.status === 200) {
-            //     // ! convert to vuex
-            //     this.categories.splice(this.deleteCategory.i, 1);
-            //     this.s("Tag deleted Successfully");
-            //     this.isDeleting = false;
-            //     this.deleteModal = false;
-            // } else {
-            //     this.isDeleting = false;
+            if (res.status === 200) {
+                // ! convert to vuex
+                // this.categories.splice(this.deleteCategory.i, 1);
+                this.s("Tag deleted Successfully");
+                this.$store.commit("setDeleteModal", true);
+            } else {
+                this.$store.commit("setDeleteModal", false);
 
-            //     this.swr();
-            // }
+                this.swr();
+            }
         }
     },
     computed: {
