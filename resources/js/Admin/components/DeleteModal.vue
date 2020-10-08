@@ -18,6 +18,9 @@
                 </p>
             </div>
             <div slot="footer">
+                <Button type="default" size="large" @click="closeModal"
+                    >close</Button
+                >
                 <Button
                     type="error"
                     size="large"
@@ -61,6 +64,9 @@ export default {
                 this.isDeleting = false;
                 this.swr();
             }
+        },
+        closeModal() {
+            this.$store.commit("setDeleteModal", false);
         }
     },
     computed: {

@@ -1969,6 +1969,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2017,6 +2020,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    closeModal: function closeModal() {
+      this.$store.commit("setDeleteModal", false);
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
@@ -85753,6 +85759,15 @@ var render = function() {
             "div",
             { attrs: { slot: "footer" }, slot: "footer" },
             [
+              _c(
+                "Button",
+                {
+                  attrs: { type: "default", size: "large" },
+                  on: { click: _vm.closeModal }
+                },
+                [_vm._v("close")]
+              ),
+              _vm._v(" "),
               _c(
                 "Button",
                 {
