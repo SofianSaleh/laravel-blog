@@ -55,9 +55,10 @@ export default {
                 // this.categories.splice(this.deleteCategory.i, 1);
                 this.s("Tag deleted Successfully");
                 this.$store.commit("setDeleteModal", true);
+                this.isDeleting = false;
             } else {
                 this.$store.commit("setDeleteModal", false);
-
+                this.isDeleting = false;
                 this.swr();
             }
         }

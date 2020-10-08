@@ -2000,8 +2000,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.s("Tag deleted Successfully");
 
                   _this.$store.commit("setDeleteModal", true);
+
+                  _this.isDeleting = false;
                 } else {
                   _this.$store.commit("setDeleteModal", false);
+
+                  _this.isDeleting = false;
 
                   _this.swr();
                 }
@@ -3027,8 +3031,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var index = this.tags.findIndex(function (tag) {
           return tag.id === obj.deleteData.id;
         });
-        console.log(index);
         this.tags.splice(index, 1);
+        this.$store.commit("setDeleteModal", false);
       }
     }
   }
@@ -104289,7 +104293,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   },
   mutations: {
     setDeleteModal: function setDeleteModal(state, payload) {
-      var index = state.deleteModalObj.deleteData.id;
+      var index = state.deleteModalObj.deleteData.id || -1;
       var deleteModalObj = {
         showDeleteModal: false,
         deleteURL: "",

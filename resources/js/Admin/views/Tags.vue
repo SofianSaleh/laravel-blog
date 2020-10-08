@@ -276,8 +276,8 @@ export default {
                 let index = this.tags.findIndex(
                     tag => tag.id === obj.deleteData.id
                 );
-                console.log(index);
                 this.tags.splice(index, 1);
+                this.$store.commit("setDeleteModal", false);
             }
         }
     }
