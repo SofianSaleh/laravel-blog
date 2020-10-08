@@ -103,6 +103,7 @@
                         </div>
                     </Upload>
                     <div class="demo-upload-list" v-if="this.data.iconImage">
+                        {{ console.log(this.data.iconImage) }}
                         <img :src="`/uploads/${this.data.iconImage}`" />
                         <div class="demo-upload-list-cover">
                             <Icon type="ios-trash-outline" @click="removeImg" />
@@ -193,6 +194,7 @@
 
 <script>
 import deleteModal from "../components/DeleteModal";
+import { mapGetters } from "vuex";
 export default {
     components: {
         deleteModal
@@ -243,8 +245,11 @@ export default {
                 this.s("Category has Been Added");
                 this.isAdding = false;
                 this.addCategoryModal = false;
-                this.data.name = "";
-                this.data.iconImage = "";
+                this.data = {
+                    iconImage: "",
+                    name: ""
+                };
+                console.log(this.data);
             } else {
                 if (res.status === 422) {
                     this.isAdding = false;
@@ -391,6 +396,20 @@ export default {
             this.categories = res.data;
         } else {
             this.swr();
+        }
+    },
+    computed: {
+        ...mapGetters(["getDeleteModalObj"])
+    },
+    watch: {
+        getDeleteModalObj(obj) {
+            if (obj.isDeleted) {
+                let index = this.categories.findIndex(
+                    category => category.id === obj.deleteData.id
+                );
+                this.categories.splice(index, 1);
+                this.$store.commit("setDeleteModal", false);
+            }
         }
     }
 };
