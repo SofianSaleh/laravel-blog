@@ -2394,7 +2394,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 4:
                 _this2.isEditing = true;
                 _context2.next = 7;
-                return _this2.callApi("post", "/api/category/edit_category", _this2.editData);
+                return _this2.callApi("post", "/api/category/edit", _this2.editData);
 
               case 7:
                 res = _context2.sent;
@@ -2482,7 +2482,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     showDeleteModal: function showDeleteModal(category, i) {
       var deleteModalObj = {
         showDeleteModal: true,
-        deleteURL: "/api/category/delete_category",
+        deleteURL: "/api/category/delete",
         deleteData: category,
         isDeleted: false
       };

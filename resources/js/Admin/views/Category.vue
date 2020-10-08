@@ -268,7 +268,7 @@ export default {
             this.isEditing = true;
             const res = await this.callApi(
                 "post",
-                "/api/category/edit_category",
+                "/api/category/edit",
                 this.editData
             );
 
@@ -316,7 +316,7 @@ export default {
         showDeleteModal(category, i) {
             const deleteModalObj = {
                 showDeleteModal: true,
-                deleteURL: "/api/category/delete_category",
+                deleteURL: "/api/category/delete",
                 deleteData: category,
                 isDeleted: false
             };

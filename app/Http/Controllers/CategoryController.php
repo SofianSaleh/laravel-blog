@@ -58,6 +58,29 @@ class CategoryController extends Controller
         }
     }
 
+    public function deleteCategory(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required',
+        ]);
+
+        $updated = Category::where('id', $request->id)->update([
+            'name' => $request->name,
+            'iconImage' => $request->iconImage,
+        ]);
+        if ($updated) {
+            return response()->json([
+                'id' => $request->id,
+                'name' => $request->name,
+                'iconImage' => $request->iconImage,
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Failed to update try again"
+            ]);
+        }
+    }
+
     public function upload(Request $request)
     {
         $this->validate($request, [
