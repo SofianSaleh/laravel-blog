@@ -2190,6 +2190,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -86303,7 +86312,7 @@ var render = function() {
                     },
                     [
                       _c("Icon", { attrs: { type: "md-add" } }),
-                      _vm._v(" Add Tag")
+                      _vm._v(" Add admin")
                     ],
                     1
                   )
@@ -86398,7 +86407,7 @@ var render = function() {
             "Modal",
             {
               attrs: {
-                title: "Add tag",
+                title: "Add admin",
                 "mask-closable": false,
                 closable: false
               },
@@ -86411,16 +86420,30 @@ var render = function() {
               }
             },
             [
-              _c("Input", {
-                attrs: { placeholder: "Add tag name" },
-                model: {
-                  value: _vm.data.tagName,
-                  callback: function($$v) {
-                    _vm.$set(_vm.data, "tagName", $$v)
-                  },
-                  expression: "data.tagName"
-                }
-              }),
+              _c(
+                "div",
+                { staticClass: "space" },
+                [_c("Input", { attrs: { placeholder: "Full name" } })],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "space" },
+                [_c("Input", { attrs: { placeholder: "email" } })],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "space" },
+                [
+                  _c("Input", {
+                    attrs: { type: "password", placeholder: "password" }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -86454,8 +86477,7 @@ var render = function() {
                 ],
                 1
               )
-            ],
-            1
+            ]
           ),
           _vm._v(" "),
           _c(

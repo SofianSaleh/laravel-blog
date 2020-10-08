@@ -9,7 +9,7 @@
                     <p class="_title0">
                         Tags
                         <Button @click="addModal = true"
-                            ><Icon type="md-add"></Icon> Add Tag</Button
+                            ><Icon type="md-add"></Icon> Add admin</Button
                         >
                     </p>
 
@@ -59,11 +59,20 @@
                 <!-- Create tag -->
                 <Modal
                     v-model="addModal"
-                    title="Add tag"
+                    title="Add admin"
                     :mask-closable="false"
                     :closable="false"
                 >
-                    <Input v-model="data.tagName" placeholder="Add tag name" />
+                    <div class="space">
+                        <Input placeholder="Full name" />
+                    </div>
+
+                    <div class="space">
+                        <Input placeholder="email" />
+                    </div>
+                    <div class="space">
+                        <Input type="password" placeholder="password" />
+                    </div>
                     <div slot="footer">
                         <Button type="default" @click="addModal = false"
                             >Close</Button
