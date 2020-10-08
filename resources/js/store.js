@@ -15,15 +15,17 @@ export default new Vuex.Store({
     getters: {
         getDeleteModalObj(state) {
             return state.deleteModalObj;
-        },
-        getDeleteStatus(state) {
-            return state.deleteModalObj.isDeleted;
         }
     },
     mutations: {
         setDeleteModal(state, payload) {
-            state.deleteModalObj.showDeleteModal = false;
-            state.deleteModalObj.isDeleted = payload;
+            const deleteModalObj = {
+                showDeleteModal: false,
+                deleteURL: "",
+                deleteData: payload.deleteData,
+                isDeleted: payload.success
+            };
+            state.deleteModalObj = deleteModalObj;
         },
         setDeletingModalObj(state, data) {
             state.deleteModalObj = data;

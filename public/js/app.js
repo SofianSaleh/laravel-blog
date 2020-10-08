@@ -1999,7 +1999,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   // this.categories.splice(this.deleteCategory.i, 1);
                   _this.s("Tag deleted Successfully");
 
-                  _this.$store.commit("setDeleteModal", true);
+                  _this.$store.commit("setDeleteModal", {
+                    success: true,
+                    deleteData: _this.modalData.deleteData
+                  });
                 } else {
                   _this.$store.commit("setDeleteModal", false);
 
@@ -3020,12 +3023,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee4);
     }))();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getDeleteStatus"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getDeleteModalObj"])),
   watch: {
-    getDeleteStatus: function getDeleteStatus(obj) {
+    getDeleteModalObj: function getDeleteModalObj(obj) {
       console.log(obj);
 
-      if (obj) {
+      if (obj.isDeleted) {
         console.log(obj.deleteData, obj);
         var index = this.tags.indexOf(obj.deleteData.tagName);
         console.log(index);
@@ -104286,15 +104289,17 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   getters: {
     getDeleteModalObj: function getDeleteModalObj(state) {
       return state.deleteModalObj;
-    },
-    getDeleteStatus: function getDeleteStatus(state) {
-      return state.deleteModalObj.isDeleted;
     }
   },
   mutations: {
     setDeleteModal: function setDeleteModal(state, payload) {
-      state.deleteModalObj.showDeleteModal = false;
-      state.deleteModalObj.isDeleted = payload;
+      var deleteModalObj = {
+        showDeleteModal: false,
+        deleteURL: "",
+        deleteData: payload.deleteData,
+        isDeleted: payload.success
+      };
+      state.deleteModalObj = deleteModalObj;
     },
     setDeletingModalObj: function setDeletingModalObj(state, data) {
       state.deleteModalObj = data;

@@ -268,12 +268,12 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["getDeleteStatus"])
+        ...mapGetters(["getDeleteModalObj"])
     },
     watch: {
-        getDeleteStatus(obj) {
+        getDeleteModalObj(obj) {
             console.log(obj);
-            if (obj) {
+            if (obj.isDeleted) {
                 console.log(obj.deleteData, obj);
                 let index = this.tags.indexOf(obj.deleteData.tagName);
                 console.log(index);
