@@ -19,11 +19,12 @@ export default new Vuex.Store({
     },
     mutations: {
         setDeleteModal(state, payload) {
+            let index = state.deleteModalObj.deleteData.id;
             const deleteModalObj = {
                 showDeleteModal: false,
                 deleteURL: "",
-                deleteData: payload.deleteData,
-                isDeleted: payload.success
+                deleteData: { id: index },
+                isDeleted: payload
             };
             state.deleteModalObj = deleteModalObj;
         },

@@ -54,10 +54,7 @@ export default {
                 // ! convert to vuex
                 // this.categories.splice(this.deleteCategory.i, 1);
                 this.s("Tag deleted Successfully");
-                this.$store.commit("setDeleteModal", {
-                    success: true,
-                    deleteData: this.modalData.deleteData
-                });
+                this.$store.commit("setDeleteModal", true);
             } else {
                 this.$store.commit("setDeleteModal", false);
 

@@ -272,10 +272,10 @@ export default {
     },
     watch: {
         getDeleteModalObj(obj) {
-            console.log(obj);
             if (obj.isDeleted) {
-                console.log(obj.deleteData, obj);
-                let index = this.tags.indexOf(obj.deleteData.tagName);
+                let index = this.tags.findIndex(
+                    tag => tag.id === obj.deleteData.id
+                );
                 console.log(index);
                 this.tags.splice(index, 1);
             }

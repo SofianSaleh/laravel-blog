@@ -1999,10 +1999,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   // this.categories.splice(this.deleteCategory.i, 1);
                   _this.s("Tag deleted Successfully");
 
-                  _this.$store.commit("setDeleteModal", {
-                    success: true,
-                    deleteData: _this.modalData.deleteData
-                  });
+                  _this.$store.commit("setDeleteModal", true);
                 } else {
                   _this.$store.commit("setDeleteModal", false);
 
@@ -3026,11 +3023,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getDeleteModalObj"])),
   watch: {
     getDeleteModalObj: function getDeleteModalObj(obj) {
-      console.log(obj);
-
       if (obj.isDeleted) {
-        console.log(obj.deleteData, obj);
-        var index = this.tags.indexOf(obj.deleteData.tagName);
+        var index = this.tags.findIndex(function (tag) {
+          return tag.id === obj.deleteData.id;
+        });
         console.log(index);
         this.tags.splice(index, 1);
       }
@@ -104293,11 +104289,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   },
   mutations: {
     setDeleteModal: function setDeleteModal(state, payload) {
+      var index = state.deleteModalObj.deleteData.id;
       var deleteModalObj = {
         showDeleteModal: false,
         deleteURL: "",
-        deleteData: payload.deleteData,
-        isDeleted: payload.success
+        deleteData: {
+          id: index
+        },
+        isDeleted: payload
       };
       state.deleteModalObj = deleteModalObj;
     },
