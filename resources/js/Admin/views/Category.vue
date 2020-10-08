@@ -313,14 +313,14 @@ export default {
             this.isEditingItem = true;
         },
 
-        showDeleteModal({ id, tagName }, i) {
-            let obj = {
-                id,
-                tagName,
-                i
+        showDeleteModal(category, i) {
+            const deleteModalObj = {
+                showDeleteModal: true,
+                deleteURL: "/api/category/delete_category",
+                deleteData: category,
+                isDeleted: false
             };
-            this.deleteData = obj;
-            this.deleteModal = true;
+            this.$store.commit("setDeletingModalObj", deleteModalObj);
         },
         handleSuccess(res, file) {
             if (this.isEditingItem) {

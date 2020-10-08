@@ -249,7 +249,6 @@ export default {
             }
         },
         showDeleteModal(tag, i) {
-            console.log("hi");
             const deleteModalObj = {
                 showDeleteModal: true,
                 deleteURL: "/api/tag/delete_tag",

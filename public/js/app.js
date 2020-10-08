@@ -2479,16 +2479,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.editModal = true;
       this.isEditingItem = true;
     },
-    showDeleteModal: function showDeleteModal(_ref2, i) {
-      var id = _ref2.id,
-          tagName = _ref2.tagName;
-      var obj = {
-        id: id,
-        tagName: tagName,
-        i: i
+    showDeleteModal: function showDeleteModal(category, i) {
+      var deleteModalObj = {
+        showDeleteModal: true,
+        deleteURL: "/api/category/delete_category",
+        deleteData: category,
+        isDeleted: false
       };
-      this.deleteData = obj;
-      this.deleteModal = true;
+      this.$store.commit("setDeletingModalObj", deleteModalObj);
     },
     handleSuccess: function handleSuccess(res, file) {
       if (this.isEditingItem) {
@@ -2991,7 +2989,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     showDeleteModal: function showDeleteModal(tag, i) {
-      console.log("hi");
       var deleteModalObj = {
         showDeleteModal: true,
         deleteURL: "/api/tag/delete_tag",
