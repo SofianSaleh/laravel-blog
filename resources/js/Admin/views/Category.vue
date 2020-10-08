@@ -185,13 +185,18 @@
                         >
                     </div>
                 </Modal>
+                <deleteModal></deleteModal>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import deleteModal from "../components/DeleteModal";
 export default {
+    components: {
+        deleteModal
+    },
     data() {
         return {
             data: {

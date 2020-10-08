@@ -104,7 +104,7 @@
 
                 <!-- Delete Tag -->
 
-                <Modal v-model="deleteModal" width="360">
+                <!-- <Modal v-model="deleteModal" width="360">
                     <p slot="header" style="color:#f60;text-align:center">
                         <Icon type="ios-information-circle"></Icon>
                         <span>Delete confirmation</span>
@@ -125,14 +125,19 @@
                             >Delete</Button
                         >
                     </div>
-                </Modal>
+                </Modal> -->
+                <deleteModal></deleteModal>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import deleteModal from "../components/DeleteModal";
 export default {
+    components: {
+        deleteModal
+    },
     data() {
         return {
             data: {
@@ -242,14 +247,22 @@ export default {
                 this.swr();
             }
         },
-        showDeleteModal({ id, tagName }, i) {
-            let obj = {
-                id,
-                tagName,
-                i
+        showDeleteModal(tag, i) {
+            console.log("hi");
+            const deleteModalObj = {
+                showDeleteModal: true,
+                deleteURL: "/api/tag/delete_tag",
+                data: tag,
+                isDeleted: false
             };
-            this.deleteData = obj;
-            this.deleteModal = true;
+            this.$store.commit("setDeletingModalObj", deleteModalObj);
+            // let obj = {
+            //     id,
+            //     tagName,
+            //     i
+            // };
+            // this.deleteData = obj;
+            // this.deleteModal = true;
         }
     },
     async created() {

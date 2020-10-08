@@ -1,12 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-Vue.use(vVuex);
+Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
         deleteModalObj: {
-            showModal: false,
+            showDeleteModal: false,
             deleteURL: "",
             data: {},
             isDeleted: false
@@ -20,6 +20,9 @@ export default new Vuex.Store({
     mutations: {
         setDeleteModal(state) {
             state.deleteModalObj.isDeleted = true;
+        },
+        setDeletingModalObj(state, data) {
+            state.deleteModalObj = data;
         }
     },
     actions: {}

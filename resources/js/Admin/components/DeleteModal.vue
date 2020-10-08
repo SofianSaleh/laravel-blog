@@ -2,7 +2,12 @@
     <div>
         <!-- Delete Category  -->
 
-        <Modal :value="modalData.showDeleteModal" width="360">
+        <Modal
+            :value="modalData.showDeleteModal"
+            width="360"
+            :mask-closable="false"
+            :closable="false"
+        >
             <p slot="header" style="color:#f60;text-align:center">
                 <Icon type="ios-information-circle"></Icon>
                 <span>Delete confirmation</span>
@@ -60,11 +65,9 @@ export default {
         }
     },
     computed: {
-        ...mapGetters([
-            {
-                modalData: "getDeleteModalObj"
-            }
-        ])
+        ...mapGetters({
+            modalData: "getDeleteModalObj"
+        })
     }
 };
 </script>
