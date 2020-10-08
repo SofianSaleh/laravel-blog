@@ -62,23 +62,12 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'id' => 'required',
+            'iconImage' => 'required',
         ]);
 
-        $updated = Category::where('id', $request->id)->update([
-            'name' => $request->name,
-            'iconImage' => $request->iconImage,
-        ]);
-        if ($updated) {
-            return response()->json([
-                'id' => $request->id,
-                'name' => $request->name,
-                'iconImage' => $request->iconImage,
-            ]);
-        } else {
-            return response()->json([
-                'error' => "Failed to update try again"
-            ]);
-        }
+        $fileName = $request->iconImage;
+        $this->deleteFromServer($fileName);
+        return Category::where('id', $request->id)->delete();
     }
 
     public function upload(Request $request)

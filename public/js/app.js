@@ -1971,7 +1971,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -85771,7 +85770,6 @@ var render = function() {
                   attrs: {
                     type: "error",
                     size: "large",
-                    long: "",
                     loading: _vm.isDeleting,
                     disabled: _vm.isDeleting
                   },

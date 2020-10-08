@@ -24,7 +24,6 @@
                 <Button
                     type="error"
                     size="large"
-                    long
                     :loading="isDeleting"
                     :disabled="isDeleting"
                     @click="deleteCategory"

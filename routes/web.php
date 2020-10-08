@@ -34,7 +34,7 @@ Route::post('/api/remove_img', [CategoryController::class, 'removeImg']);
 Route::get('/api/category/get_all_categories', [CategoryController::class, 'getAll']);
 Route::post('/api/category/add', [CategoryController::class, 'addCategory']);
 Route::post('/api/category/edit', [CategoryController::class, 'editCategory']);
-// Route::post('/api/category/delete', [CategoryController::class, 'deleteCategory']);
+Route::post('/api/category/delete', [CategoryController::class, 'deleteCategory']);
 
 // Category Routes Start
 
