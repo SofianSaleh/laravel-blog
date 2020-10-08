@@ -66,13 +66,13 @@
                     <div class="space">
                         <Input placeholder="Full name" />
                     </div>
+                    <div class="space">
+                        <Input placeholder="Full name" />
+                    </div>
+                    <div class="space">
+                        <Input placeholder="Full name" />
+                    </div>
 
-                    <div class="space">
-                        <Input placeholder="email" />
-                    </div>
-                    <div class="space">
-                        <Input type="password" placeholder="password" />
-                    </div>
                     <div slot="footer">
                         <Button type="default" @click="addModal = false"
                             >Close</Button

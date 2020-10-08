@@ -86430,18 +86430,14 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "space" },
-                [_c("Input", { attrs: { placeholder: "email" } })],
+                [_c("Input", { attrs: { placeholder: "Full name" } })],
                 1
               ),
               _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "space" },
-                [
-                  _c("Input", {
-                    attrs: { type: "password", placeholder: "password" }
-                  })
-                ],
+                [_c("Input", { attrs: { placeholder: "Full name" } })],
                 1
               ),
               _vm._v(" "),
