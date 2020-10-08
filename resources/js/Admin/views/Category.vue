@@ -103,7 +103,6 @@
                         </div>
                     </Upload>
                     <div class="demo-upload-list" v-if="this.data.iconImage">
-                        {{ console.log(this.data.iconImage) }}
                         <img :src="`/uploads/${this.data.iconImage}`" />
                         <div class="demo-upload-list-cover">
                             <Icon type="ios-trash-outline" @click="removeImg" />
