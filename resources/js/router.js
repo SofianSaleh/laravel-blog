@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import Home from "./admin/views/Home.vue";
 import Tags from "./admin/views/Tags.vue";
 import Category from "./admin/views/Category.vue";
+import AdminUsers from "./admin/views/AdminUsers.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,10 @@ const router = new VueRouter({
         {
             path: "/category",
             component: Category
+        },
+        {
+            path: "/users",
+            component: AdminUsers
         }
     ]
 });
