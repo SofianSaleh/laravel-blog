@@ -2222,6 +2222,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2257,24 +2258,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var res;
+        var res, i;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                // if (this.data.fullName.trim() === "")
-                //     return this.e("Full name is Required");
-                // if (this.data.email.trim() === "")
-                //     return this.e("Email is Required");
-                // if (this.data.password.trim() === "")
-                //     return this.e("Password is Required");
-                // if (this.data.userType.trim() === "")
-                //     return this.e("User Type is Required");
+                if (!(_this.data.fullName.trim() === "")) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Full name is Required"));
+
+              case 2:
+                if (!(_this.data.email.trim() === "")) {
+                  _context.next = 4;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Email is Required"));
+
+              case 4:
+                if (!(_this.data.password.trim() === "")) {
+                  _context.next = 6;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Password is Required"));
+
+              case 6:
+                if (!(_this.data.userType.trim() === "")) {
+                  _context.next = 8;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("User Type is Required"));
+
+              case 8:
                 _this.isAdding = true;
-                _context.next = 3;
+                _context.next = 11;
                 return _this.callApi("post", "/api/user/create", _this.data);
 
-              case 3:
+              case 11:
                 res = _context.sent;
 
                 if (res.status === 201) {
@@ -2293,8 +2318,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 } else {
                   if (res.status === 422) {
                     console.log(res, res.data);
-                    _this.isAdding = false; // if (res.data.errors.tagName)
-                    //     return this.i(res.data.errors.tagName[0]);
+                    _this.isAdding = false;
+
+                    for (i in res.data.errors) {
+                      _this.e(res.data.errors[i][0]);
+                    }
                   } else {
                     _this.isAdding = false;
 
@@ -2304,7 +2332,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.isAdding = false;
 
-              case 6:
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -86298,7 +86326,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", { staticClass: "_table_name" }, [
+                        _c("td", [
                           _vm._v(
                             "\n                                " +
                               _vm._s(user.email) +
@@ -86306,7 +86334,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", { staticClass: "_table_name" }, [
+                        _c("td", [
                           _vm._v(
                             "\n                                " +
                               _vm._s(user.userType) +

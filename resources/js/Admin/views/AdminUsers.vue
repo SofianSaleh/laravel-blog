@@ -33,13 +33,14 @@
                                 <td class="_table_name">
                                     {{ user.fullName }}
                                 </td>
-                                <td class="_table_name">
+                                <td>
                                     {{ user.email }}
                                 </td>
-                                <td class="_table_name">
+                                <td>
                                     {{ user.userType }}
                                 </td>
                                 <td>{{ user.created_at }}</td>
+
                                 <td>
                                     <Button type="primary" size="small">
                                         View
@@ -203,14 +204,14 @@ export default {
     },
     methods: {
         async addAdmin() {
-            // if (this.data.fullName.trim() === "")
-            //     return this.e("Full name is Required");
-            // if (this.data.email.trim() === "")
-            //     return this.e("Email is Required");
-            // if (this.data.password.trim() === "")
-            //     return this.e("Password is Required");
-            // if (this.data.userType.trim() === "")
-            //     return this.e("User Type is Required");
+            if (this.data.fullName.trim() === "")
+                return this.e("Full name is Required");
+            if (this.data.email.trim() === "")
+                return this.e("Email is Required");
+            if (this.data.password.trim() === "")
+                return this.e("Password is Required");
+            if (this.data.userType.trim() === "")
+                return this.e("User Type is Required");
 
             this.isAdding = true;
             const res = await this.callApi(
@@ -234,8 +235,9 @@ export default {
                 if (res.status === 422) {
                     console.log(res, res.data);
                     this.isAdding = false;
-                    // if (res.data.errors.tagName)
-                    //     return this.i(res.data.errors.tagName[0]);
+                    for (const i in res.data.errors) {
+                        this.e(res.data.errors[i][0]);
+                    }
                 } else {
                     this.isAdding = false;
                     this.swr();
