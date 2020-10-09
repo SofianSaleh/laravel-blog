@@ -31,13 +31,19 @@ Route::post('/api/remove_img', [CategoryController::class, 'removeImg']);
 
 // Genral Routes finished
 
+// Category Routes Start
+
 Route::get('/api/category/get_all_categories', [CategoryController::class, 'getAll']);
 Route::post('/api/category/add', [CategoryController::class, 'addCategory']);
 Route::post('/api/category/edit', [CategoryController::class, 'editCategory']);
 Route::post('/api/category/delete', [CategoryController::class, 'deleteCategory']);
 
-// Category Routes Start
-
-
 // Category Routes finished
+
+// User Routes Start
+
+Route::post('/api/user/create', [UserController::class, 'createUser']);
+
+// User Routes Finished
+
 Route::get('{any}', [VueController::class, 'index'])->where('any', '.*');
