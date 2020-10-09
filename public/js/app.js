@@ -2220,6 +2220,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -86334,19 +86342,35 @@ var render = function() {
                   [
                     _vm._m(0),
                     _vm._v(" "),
-                    _vm._l(_vm.tags, function(tag, i) {
-                      return _c("tr", { key: tag.id }, [
-                        _c("td", [_vm._v(_vm._s(tag.id))]),
+                    _vm._l(_vm.users, function(user, i) {
+                      return _c("tr", { key: user.id }, [
+                        _c("td", [_vm._v(_vm._s(user.id))]),
                         _vm._v(" "),
                         _c("td", { staticClass: "_table_name" }, [
                           _vm._v(
                             "\n                                " +
-                              _vm._s(tag.tagName) +
+                              _vm._s(user.fullName) +
                               "\n                            "
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(tag.created_at))]),
+                        _c("td", { staticClass: "_table_name" }, [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(user.email) +
+                              "\n                            "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "_table_name" }, [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(user.userType) +
+                              "\n                            "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(user.created_at))]),
                         _vm._v(" "),
                         _c(
                           "td",
@@ -86367,7 +86391,7 @@ var render = function() {
                                 attrs: { type: "info", size: "small" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.showEditModal(tag)
+                                    return _vm.showEditModal(_vm.tag)
                                   }
                                 }
                               },
@@ -86384,11 +86408,11 @@ var render = function() {
                                 attrs: {
                                   type: "error",
                                   size: "small",
-                                  loading: tag.isDeleting
+                                  loading: _vm.tag.isDeleting
                                 },
                                 on: {
                                   click: function($event) {
-                                    return _vm.showDeleteModal(tag, i)
+                                    return _vm.showDeleteModal(_vm.tag, i)
                                   }
                                 }
                               },
@@ -86638,7 +86662,11 @@ var staticRenderFns = [
     return _c("tr", [
       _c("th", [_vm._v("Id")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Tag Name")]),
+      _c("th", [_vm._v("Full Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Email")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("User Type")]),
       _vm._v(" "),
       _c("th", [_vm._v("Created At")]),
       _vm._v(" "),

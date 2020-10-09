@@ -18,7 +18,9 @@
                             <!-- TABLE TITLE -->
                             <tr>
                                 <th>Id</th>
-                                <th>Tag Name</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>User Type</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>
@@ -26,12 +28,18 @@
 
                             <!-- ITEMS -->
 
-                            <tr v-for="(tag, i) in tags" :key="tag.id">
-                                <td>{{ tag.id }}</td>
+                            <tr v-for="(user, i) in users" :key="user.id">
+                                <td>{{ user.id }}</td>
                                 <td class="_table_name">
-                                    {{ tag.tagName }}
+                                    {{ user.fullName }}
                                 </td>
-                                <td>{{ tag.created_at }}</td>
+                                <td class="_table_name">
+                                    {{ user.email }}
+                                </td>
+                                <td class="_table_name">
+                                    {{ user.userType }}
+                                </td>
+                                <td>{{ user.created_at }}</td>
                                 <td>
                                     <Button type="primary" size="small">
                                         View

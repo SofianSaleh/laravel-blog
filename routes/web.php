@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VueController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,8 @@ Route::post('/api/category/delete', [CategoryController::class, 'deleteCategory'
 
 // User Routes Start
 
-Route::post('/api/user/create', [UserController::class, 'createUser']);
+Route::get('/api/user/get_all', [AdminController::class, 'getUsers']);
+Route::post('/api/user/create', [AdminController::class, 'createUser']);
 
 // User Routes Finished
 
