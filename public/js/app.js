@@ -2199,6 +2199,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2208,7 +2214,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       data: {
-        tagName: ""
+        fullName: "",
+        email: "",
+        password: "",
+        userType: ""
       },
       editData: {
         tagName: ""
@@ -86449,6 +86458,37 @@ var render = function() {
                   _c("Input", {
                     attrs: { type: "password", placeholder: "Password" }
                   })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "space" },
+                [
+                  _c(
+                    "Select",
+                    {
+                      staticStyle: { width: "200px" },
+                      model: {
+                        value: _vm.model1,
+                        callback: function($$v) {
+                          _vm.model1 = $$v
+                        },
+                        expression: "model1"
+                      }
+                    },
+                    [
+                      _c("Option", { attrs: { value: "Admin" } }, [
+                        _vm._v("Admin")
+                      ]),
+                      _vm._v(" "),
+                      _c("Option", { attrs: { value: "Editor" } }, [
+                        _vm._v("Editor")
+                      ])
+                    ],
+                    1
+                  )
                 ],
                 1
               ),

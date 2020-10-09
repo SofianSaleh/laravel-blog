@@ -72,6 +72,12 @@
                     <div class="space">
                         <Input type="password" placeholder="Password" />
                     </div>
+                    <div class="space">
+                        <Select v-model="model1" style="width: 200px">
+                            <Option value="Admin">Admin</Option>
+                            <Option value="Editor">Editor</Option>
+                        </Select>
+                    </div>
 
                     <div slot="footer">
                         <Button type="default" @click="addModal = false"
@@ -151,7 +157,10 @@ export default {
     data() {
         return {
             data: {
-                tagName: ""
+                fullName: "",
+                email: "",
+                password: "",
+                userType: ""
             },
             editData: {
                 tagName: ""
