@@ -63,17 +63,32 @@
                     :mask-closable="false"
                     :closable="false"
                 >
-                    <div class="space">
-                        <Input type="text" placeholder="Full name" />
+                    <div class="space" style="padding-bottom: 5px">
+                        <Input
+                            v-model="data.fullName"
+                            type="text"
+                            placeholder="Full name"
+                        />
                     </div>
-                    <div class="space">
-                        <Input type="email" placeholder="Email" />
+                    <div class="space" style="padding-bottom: 5px">
+                        <Input
+                            v-model="data.email"
+                            type="email"
+                            placeholder="Email"
+                        />
                     </div>
-                    <div class="space">
-                        <Input type="password" placeholder="Password" />
+                    <div class="space" style="padding-bottom: 5px">
+                        <Input
+                            v-model="data.password"
+                            type="password"
+                            placeholder="Password"
+                        />
                     </div>
-                    <div class="space">
-                        <Select v-model="model1" style="width: 200px">
+                    <div class="space" style="padding-bottom: 5px">
+                        <Select
+                            v-model="data.userType"
+                            placeholder="Select User Type"
+                        >
                             <Option value="Admin">Admin</Option>
                             <Option value="Editor">Editor</Option>
                         </Select>
@@ -85,10 +100,10 @@
                         >
                         <Button
                             type="primary"
-                            @click="addTag"
+                            @click="addAdmin"
                             :disabled="isAdding"
                             :loading="isAdding"
-                            >{{ isAdding ? "Adding.." : "Add tag" }}</Button
+                            >{{ isAdding ? "Adding.." : "Add Admin" }}</Button
                         >
                     </div>
                 </Modal>
@@ -174,30 +189,44 @@ export default {
             isAdding: false,
             isDeleting: false,
             isEditing: false,
-            tags: []
+            users: []
         };
     },
     methods: {
-        async addTag() {
-            if (this.data.tagName.trim() === "")
-                return this.e("Tag name is Required");
+        async addAdmin() {
+            // if (this.data.fullName.trim() === "")
+            //     return this.e("Full name is Required");
+            // if (this.data.email.trim() === "")
+            //     return this.e("Email is Required");
+            // if (this.data.password.trim() === "")
+            //     return this.e("Password is Required");
+            // if (this.data.userType.trim() === "")
+            //     return this.e("User Type is Required");
 
             this.isAdding = true;
-            const res = await this.callApi("post", "/api/tag/create_tag", {
-                tagName: this.data.tagName
-            });
+            const res = await this.callApi(
+                "post",
+                "/api/user/create",
+                this.data
+            );
 
             if (res.status === 201) {
-                this.tags.unshift(res.data);
-                this.s("Tag has Been Added");
+                this.users.unshift(res.data);
+                this.s("User has Been Added");
                 this.isAdding = false;
                 this.addModal = false;
-                this.data.tagName = "";
+                this.data = {
+                    fullName: "",
+                    email: "",
+                    password: "",
+                    userType: ""
+                };
             } else {
                 if (res.status === 422) {
+                    console.log(res, res.data);
                     this.isAdding = false;
-                    if (res.data.errors.tagName)
-                        return this.i(res.data.errors.tagName[0]);
+                    // if (res.data.errors.tagName)
+                    //     return this.i(res.data.errors.tagName[0]);
                 } else {
                     this.isAdding = false;
                     this.swr();

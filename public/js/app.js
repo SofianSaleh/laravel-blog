@@ -2205,6 +2205,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2231,11 +2246,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       isAdding: false,
       isDeleting: false,
       isEditing: false,
-      tags: []
+      users: []
     };
   },
   methods: {
-    addTag: function addTag() {
+    addAdmin: function addAdmin() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -2244,66 +2259,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!(_this.data.tagName.trim() === "")) {
-                  _context.next = 2;
-                  break;
-                }
-
-                return _context.abrupt("return", _this.e("Tag name is Required"));
-
-              case 2:
+                // if (this.data.fullName.trim() === "")
+                //     return this.e("Full name is Required");
+                // if (this.data.email.trim() === "")
+                //     return this.e("Email is Required");
+                // if (this.data.password.trim() === "")
+                //     return this.e("Password is Required");
+                // if (this.data.userType.trim() === "")
+                //     return this.e("User Type is Required");
                 _this.isAdding = true;
-                _context.next = 5;
-                return _this.callApi("post", "/api/tag/create_tag", {
-                  tagName: _this.data.tagName
-                });
+                _context.next = 3;
+                return _this.callApi("post", "/api/user/create", _this.data);
 
-              case 5:
+              case 3:
                 res = _context.sent;
 
-                if (!(res.status === 201)) {
-                  _context.next = 14;
-                  break;
+                if (res.status === 201) {
+                  _this.users.unshift(res.data);
+
+                  _this.s("User has Been Added");
+
+                  _this.isAdding = false;
+                  _this.addModal = false;
+                  _this.data = {
+                    fullName: "",
+                    email: "",
+                    password: "",
+                    userType: ""
+                  };
+                } else {
+                  if (res.status === 422) {
+                    console.log(res, res.data);
+                    _this.isAdding = false; // if (res.data.errors.tagName)
+                    //     return this.i(res.data.errors.tagName[0]);
+                  } else {
+                    _this.isAdding = false;
+
+                    _this.swr();
+                  }
                 }
 
-                _this.tags.unshift(res.data);
-
-                _this.s("Tag has Been Added");
-
-                _this.isAdding = false;
-                _this.addModal = false;
-                _this.data.tagName = "";
-                _context.next = 22;
-                break;
-
-              case 14:
-                if (!(res.status === 422)) {
-                  _context.next = 20;
-                  break;
-                }
-
                 _this.isAdding = false;
 
-                if (!res.data.errors.tagName) {
-                  _context.next = 18;
-                  break;
-                }
-
-                return _context.abrupt("return", _this.i(res.data.errors.tagName[0]));
-
-              case 18:
-                _context.next = 22;
-                break;
-
-              case 20:
-                _this.isAdding = false;
-
-                _this.swr();
-
-              case 22:
-                _this.isAdding = false;
-
-              case 23:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -86431,10 +86429,20 @@ var render = function() {
             [
               _c(
                 "div",
-                { staticClass: "space" },
+                {
+                  staticClass: "space",
+                  staticStyle: { "padding-bottom": "5px" }
+                },
                 [
                   _c("Input", {
-                    attrs: { type: "text", placeholder: "Full name" }
+                    attrs: { type: "text", placeholder: "Full name" },
+                    model: {
+                      value: _vm.data.fullName,
+                      callback: function($$v) {
+                        _vm.$set(_vm.data, "fullName", $$v)
+                      },
+                      expression: "data.fullName"
+                    }
                   })
                 ],
                 1
@@ -86442,10 +86450,20 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "space" },
+                {
+                  staticClass: "space",
+                  staticStyle: { "padding-bottom": "5px" }
+                },
                 [
                   _c("Input", {
-                    attrs: { type: "email", placeholder: "Email" }
+                    attrs: { type: "email", placeholder: "Email" },
+                    model: {
+                      value: _vm.data.email,
+                      callback: function($$v) {
+                        _vm.$set(_vm.data, "email", $$v)
+                      },
+                      expression: "data.email"
+                    }
                   })
                 ],
                 1
@@ -86453,10 +86471,20 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "space" },
+                {
+                  staticClass: "space",
+                  staticStyle: { "padding-bottom": "5px" }
+                },
                 [
                   _c("Input", {
-                    attrs: { type: "password", placeholder: "Password" }
+                    attrs: { type: "password", placeholder: "Password" },
+                    model: {
+                      value: _vm.data.password,
+                      callback: function($$v) {
+                        _vm.$set(_vm.data, "password", $$v)
+                      },
+                      expression: "data.password"
+                    }
                   })
                 ],
                 1
@@ -86464,18 +86492,21 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "space" },
+                {
+                  staticClass: "space",
+                  staticStyle: { "padding-bottom": "5px" }
+                },
                 [
                   _c(
                     "Select",
                     {
-                      staticStyle: { width: "200px" },
+                      attrs: { placeholder: "Select User Type" },
                       model: {
-                        value: _vm.model1,
+                        value: _vm.data.userType,
                         callback: function($$v) {
-                          _vm.model1 = $$v
+                          _vm.$set(_vm.data, "userType", $$v)
                         },
-                        expression: "model1"
+                        expression: "data.userType"
                       }
                     },
                     [
@@ -86518,9 +86549,9 @@ var render = function() {
                         disabled: _vm.isAdding,
                         loading: _vm.isAdding
                       },
-                      on: { click: _vm.addTag }
+                      on: { click: _vm.addAdmin }
                     },
-                    [_vm._v(_vm._s(_vm.isAdding ? "Adding.." : "Add tag"))]
+                    [_vm._v(_vm._s(_vm.isAdding ? "Adding.." : "Add Admin"))]
                   )
                 ],
                 1
