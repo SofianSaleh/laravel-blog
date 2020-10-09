@@ -86423,21 +86423,33 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "space" },
-                [_c("Input", { attrs: { placeholder: "Full name" } })],
+                [
+                  _c("Input", {
+                    attrs: { type: "text", placeholder: "Full name" }
+                  })
+                ],
                 1
               ),
               _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "space" },
-                [_c("Input", { attrs: { placeholder: "Full name" } })],
+                [
+                  _c("Input", {
+                    attrs: { type: "email", placeholder: "Email" }
+                  })
+                ],
                 1
               ),
               _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "space" },
-                [_c("Input", { attrs: { placeholder: "Full name" } })],
+                [
+                  _c("Input", {
+                    attrs: { type: "password", placeholder: "Password" }
+                  })
+                ],
                 1
               ),
               _vm._v(" "),

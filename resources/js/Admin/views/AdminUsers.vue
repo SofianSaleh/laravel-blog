@@ -64,13 +64,13 @@
                     :closable="false"
                 >
                     <div class="space">
-                        <Input placeholder="Full name" />
+                        <Input type="text" placeholder="Full name" />
                     </div>
                     <div class="space">
-                        <Input placeholder="Full name" />
+                        <Input type="email" placeholder="Email" />
                     </div>
                     <div class="space">
-                        <Input placeholder="Full name" />
+                        <Input type="password" placeholder="Password" />
                     </div>
 
                     <div slot="footer">
