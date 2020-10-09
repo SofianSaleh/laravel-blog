@@ -2046,12 +2046,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_DeleteModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/DeleteModal */ "./resources/js/admin/components/DeleteModal.vue");
 
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -2236,6 +2230,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      // :loading="/**tag.isDeleting*/"
       data: {
         fullName: "",
         email: "",
@@ -2317,78 +2312,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    editTag: function editTag() {
-      var _this2 = this;
+    editTag: function editTag() {// if (this.editData.tagName.trim() === "")
+      //     return this.e("Tag name is Required");
+      // this.isEditing = true;
+      // const res = await this.callApi(
+      //     "post",
+      //     "/api/tag/edit_tag",
+      //     this.editData
+      // );
+      // if (res.status === 200) {
+      //     let index = this.tags.findIndex(tag => tag.id === res.data.id);
+      //     this.tags[index].tagName = res.data.tagName;
+      //     this.s("Tag has Been Edited");
+      //     this.isEditing = false;
+      //     this.editModal = false;
+      //     this.editData = { tagName: "" };
+      // } else {
+      //     if (res.status === 422) {
+      //         this.isEditing = false;
+      //         if (res.data.errors.tagName)
+      //             return this.i(res.data.errors.tagName[0]);
+      //     } else {
+      //         this.isEditing = false;
+      //         this.swr();
+      //     }
+      // }
+      // this.isEditing = false;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var res, index;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                if (!(_this2.editData.tagName.trim() === "")) {
-                  _context2.next = 2;
-                  break;
-                }
-
-                return _context2.abrupt("return", _this2.e("Tag name is Required"));
-
-              case 2:
-                _this2.isEditing = true;
-                _context2.next = 5;
-                return _this2.callApi("post", "/api/tag/edit_tag", _this2.editData);
-
-              case 5:
-                res = _context2.sent;
-
-                if (!(res.status === 200)) {
-                  _context2.next = 15;
-                  break;
-                }
-
-                index = _this2.tags.findIndex(function (tag) {
-                  return tag.id === res.data.id;
-                });
-                _this2.tags[index].tagName = res.data.tagName;
-
-                _this2.s("Tag has Been Edited");
-
-                _this2.isEditing = false;
-                _this2.editModal = false;
-                _this2.editData = {
-                  tagName: ""
-                };
-                _context2.next = 23;
-                break;
-
-              case 15:
-                if (!(res.status === 422)) {
-                  _context2.next = 21;
-                  break;
-                }
-
-                _this2.isEditing = false;
-
-                if (!res.data.errors.tagName) {
-                  _context2.next = 19;
-                  break;
-                }
-
-                return _context2.abrupt("return", _this2.i(res.data.errors.tagName[0]));
-
-              case 19:
-                _context2.next = 23;
-                break;
-
-              case 21:
-                _this2.isEditing = false;
-
-                _this2.swr();
-
-              case 23:
-                _this2.isEditing = false;
-
-              case 24:
               case "end":
                 return _context2.stop();
             }
@@ -2396,46 +2351,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    showEditModal: function showEditModal(_ref) {
-      var tagName = _ref.tagName,
-          id = _ref.id;
-      var obj = {
-        id: id,
-        tagName: tagName
-      };
-      this.editData = obj;
-      this.editModal = true;
+    showEditModal: function showEditModal() {// { tagName, id }
+      // let obj = {
+      //     id,
+      //     tagName
+      // };
+      // this.editData = obj;
+      // this.editModal = true;
     },
-    deleteTag: function deleteTag() {
-      var _this3 = this;
+    deleteTag: function deleteTag() {// this.isDeleting = true;
+      // const res = await this.callApi(
+      //     "post",
+      //     "/api/tag/delete_tag",
+      //     this.deleteData
+      // );
+      // if (res.status === 200) {
+      //     this.tags.splice(this.deleteTag.i, 1);
+      //     this.s("Tag deleted Successfully");
+      //     this.isDeleting = false;
+      //     this.deleteModal = false;
+      // } else {
+      //     this.isDeleting = false;
+      //     this.swr();
+      // }
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this3.isDeleting = true;
-                _context3.next = 3;
-                return _this3.callApi("post", "/api/tag/delete_tag", _this3.deleteData);
-
-              case 3:
-                res = _context3.sent;
-
-                if (res.status === 200) {
-                  _this3.tags.splice(_this3.deleteTag.i, 1);
-
-                  _this3.s("Tag deleted Successfully");
-
-                  _this3.isDeleting = false;
-                  _this3.deleteModal = false;
-                } else {
-                  _this3.isDeleting = false;
-
-                  _this3.swr();
-                }
-
-              case 5:
               case "end":
                 return _context3.stop();
             }
@@ -2454,7 +2398,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   created: function created() {
-    var _this4 = this;
+    var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var res;
@@ -2463,15 +2407,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
-              return _this4.callApi("get", "/api/tag/get_all_tags");
+              return _this2.callApi("get", "/api/user/get_all");
 
             case 2:
               res = _context4.sent;
 
               if (res.status === 200) {
-                _this4.tags = res.data;
+                _this2.users = res.data;
               } else {
-                _this4.swr();
+                _this2.swr();
               }
 
             case 4:
@@ -2482,17 +2426,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee4);
     }))();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getDeleteModalObj"])),
-  watch: {
-    getDeleteModalObj: function getDeleteModalObj(obj) {
-      if (obj.isDeleted) {
-        var index = this.tags.findIndex(function (tag) {
-          return tag.id === obj.deleteData.id;
-        });
-        this.tags.splice(index, 1);
-        this.$store.commit("setDeleteModal", false);
-      }
-    }
+  computed: {// ...mapGetters(["getDeleteModalObj"])
+  },
+  watch: {// getDeleteModalObj(obj) {
+    //     if (obj.isDeleted) {
+    //         let index = this.tags.findIndex(
+    //             tag => tag.id === obj.deleteData.id
+    //         );
+    //         this.tags.splice(index, 1);
+    //         this.$store.commit("setDeleteModal", false);
+    //     }
+    // }
   }
 });
 
@@ -86315,7 +86259,7 @@ var render = function() {
                 "p",
                 { staticClass: "_title0" },
                 [
-                  _vm._v("\n                    Tags\n                    "),
+                  _vm._v("\n                    Users\n                    "),
                   _c(
                     "Button",
                     {
@@ -86391,7 +86335,7 @@ var render = function() {
                                 attrs: { type: "info", size: "small" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.showEditModal(_vm.tag)
+                                    return _vm.showEditModal(user)
                                   }
                                 }
                               },
@@ -86405,14 +86349,10 @@ var render = function() {
                             _c(
                               "Button",
                               {
-                                attrs: {
-                                  type: "error",
-                                  size: "small",
-                                  loading: _vm.tag.isDeleting
-                                },
+                                attrs: { type: "error", size: "small" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.showDeleteModal(_vm.tag, i)
+                                    return _vm.showDeleteModal(user, i)
                                   }
                                 }
                               },

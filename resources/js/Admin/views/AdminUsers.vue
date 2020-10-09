@@ -7,7 +7,7 @@
                     class="_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20"
                 >
                     <p class="_title0">
-                        Tags
+                        Users
                         <Button @click="addModal = true"
                             ><Icon type="md-add"></Icon> Add admin</Button
                         >
@@ -47,15 +47,15 @@
                                     <Button
                                         type="info"
                                         size="small"
-                                        @click="showEditModal(tag)"
+                                        @click="showEditModal(user)"
                                     >
                                         Edit
                                     </Button>
+                                    <!-- deleteing here -->
                                     <Button
                                         type="error"
                                         size="small"
-                                        @click="showDeleteModal(tag, i)"
-                                        :loading="tag.isDeleting"
+                                        @click="showDeleteModal(user, i)"
                                     >
                                         Delete
                                     </Button>
@@ -179,6 +179,7 @@ export default {
     },
     data() {
         return {
+            // :loading="/**tag.isDeleting*/"
             data: {
                 fullName: "",
                 email: "",
@@ -243,65 +244,58 @@ export default {
             this.isAdding = false;
         },
         async editTag() {
-            if (this.editData.tagName.trim() === "")
-                return this.e("Tag name is Required");
-
-            this.isEditing = true;
-            const res = await this.callApi(
-                "post",
-                "/api/tag/edit_tag",
-                this.editData
-            );
-
-            if (res.status === 200) {
-                let index = this.tags.findIndex(tag => tag.id === res.data.id);
-                this.tags[index].tagName = res.data.tagName;
-                this.s("Tag has Been Edited");
-                this.isEditing = false;
-
-                this.editModal = false;
-                this.editData = { tagName: "" };
-            } else {
-                if (res.status === 422) {
-                    this.isEditing = false;
-
-                    if (res.data.errors.tagName)
-                        return this.i(res.data.errors.tagName[0]);
-                } else {
-                    this.isEditing = false;
-
-                    this.swr();
-                }
-            }
-            this.isEditing = false;
+            // if (this.editData.tagName.trim() === "")
+            //     return this.e("Tag name is Required");
+            // this.isEditing = true;
+            // const res = await this.callApi(
+            //     "post",
+            //     "/api/tag/edit_tag",
+            //     this.editData
+            // );
+            // if (res.status === 200) {
+            //     let index = this.tags.findIndex(tag => tag.id === res.data.id);
+            //     this.tags[index].tagName = res.data.tagName;
+            //     this.s("Tag has Been Edited");
+            //     this.isEditing = false;
+            //     this.editModal = false;
+            //     this.editData = { tagName: "" };
+            // } else {
+            //     if (res.status === 422) {
+            //         this.isEditing = false;
+            //         if (res.data.errors.tagName)
+            //             return this.i(res.data.errors.tagName[0]);
+            //     } else {
+            //         this.isEditing = false;
+            //         this.swr();
+            //     }
+            // }
+            // this.isEditing = false;
         },
-        showEditModal({ tagName, id }) {
-            let obj = {
-                id,
-                tagName
-            };
-            this.editData = obj;
-            this.editModal = true;
+        showEditModal() {
+            // { tagName, id }
+            // let obj = {
+            //     id,
+            //     tagName
+            // };
+            // this.editData = obj;
+            // this.editModal = true;
         },
         async deleteTag() {
-            this.isDeleting = true;
-
-            const res = await this.callApi(
-                "post",
-                "/api/tag/delete_tag",
-                this.deleteData
-            );
-
-            if (res.status === 200) {
-                this.tags.splice(this.deleteTag.i, 1);
-                this.s("Tag deleted Successfully");
-                this.isDeleting = false;
-                this.deleteModal = false;
-            } else {
-                this.isDeleting = false;
-
-                this.swr();
-            }
+            // this.isDeleting = true;
+            // const res = await this.callApi(
+            //     "post",
+            //     "/api/tag/delete_tag",
+            //     this.deleteData
+            // );
+            // if (res.status === 200) {
+            //     this.tags.splice(this.deleteTag.i, 1);
+            //     this.s("Tag deleted Successfully");
+            //     this.isDeleting = false;
+            //     this.deleteModal = false;
+            // } else {
+            //     this.isDeleting = false;
+            //     this.swr();
+            // }
         },
         showDeleteModal(tag, i) {
             const deleteModalObj = {
@@ -314,26 +308,26 @@ export default {
         }
     },
     async created() {
-        const res = await this.callApi("get", "/api/tag/get_all_tags");
+        const res = await this.callApi("get", "/api/user/get_all");
         if (res.status === 200) {
-            this.tags = res.data;
+            this.users = res.data;
         } else {
             this.swr();
         }
     },
     computed: {
-        ...mapGetters(["getDeleteModalObj"])
+        // ...mapGetters(["getDeleteModalObj"])
     },
     watch: {
-        getDeleteModalObj(obj) {
-            if (obj.isDeleted) {
-                let index = this.tags.findIndex(
-                    tag => tag.id === obj.deleteData.id
-                );
-                this.tags.splice(index, 1);
-                this.$store.commit("setDeleteModal", false);
-            }
-        }
+        // getDeleteModalObj(obj) {
+        //     if (obj.isDeleted) {
+        //         let index = this.tags.findIndex(
+        //             tag => tag.id === obj.deleteData.id
+        //         );
+        //         this.tags.splice(index, 1);
+        //         this.$store.commit("setDeleteModal", false);
+        //     }
+        // }
     }
 };
 </script>
