@@ -52,6 +52,7 @@ class AdminController extends Controller
 		};
 
 		$user = User::where('id', $request->id)->update($data);
+		return ['data' => $data, 'user' => $user];
 	}
 
 	public function getUsers()

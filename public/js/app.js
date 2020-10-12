@@ -2402,19 +2402,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.abrupt("return", _this2.e("User Type is Required"));
 
               case 6:
-                if (!(_this2.editData.userType.trim() === "")) {
-                  _context2.next = 8;
-                  break;
+                if (_this2.editData.password.trim() === "") {
+                  delete _this2.editData["password"];
                 }
 
-                return _context2.abrupt("return", _this2.e("User Type is Required"));
-
-              case 8:
                 _this2.isEditing = true;
-                _context2.next = 11;
+                _context2.next = 10;
                 return _this2.callApi("post", "/api/user/edit", _this2.editData);
 
-              case 11:
+              case 10:
                 res = _context2.sent;
 
                 if (res.status === 200) {
@@ -2449,7 +2445,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this2.isEditing = false;
 
-              case 14:
+              case 13:
               case "end":
                 return _context2.stop();
             }

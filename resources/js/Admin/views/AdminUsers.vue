@@ -283,8 +283,9 @@ export default {
             if (this.editData.userType.trim() === "")
                 return this.e("User Type is Required");
 
-            if (this.editData.userType.trim() === "")
-                return this.e("User Type is Required");
+            if (this.editData.password.trim() === "") {
+                delete this.editData["password"];
+            }
 
             this.isEditing = true;
             const res = await this.callApi(
