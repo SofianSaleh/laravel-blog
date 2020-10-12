@@ -41,11 +41,12 @@ Route::post('/api/category/delete', [CategoryController::class, 'deleteCategory'
 
 // Category Routes finished
 
-// User Routes Start
+// Admin Routes Start
 
 Route::get('/api/user/get_all', [AdminController::class, 'getUsers']);
 Route::post('/api/user/create', [AdminController::class, 'createUser']);
 Route::post('/api/user/edit', [AdminController::class, 'editUser']);
+Route::post('/api/user/admin_login', [AdminController::class, 'adminLogin']);
 
 // User Routes Finished
 

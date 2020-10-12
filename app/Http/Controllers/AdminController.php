@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -54,6 +55,25 @@ class AdminController extends Controller
 
 		$user = User::where('id', $request->id)->update($data);
 		return $data;
+	}
+
+	public function adminLogin(Request $request)
+	{
+		// bail checks the first requirement if it fails it doesn't comntinue
+		// bail|required|email|unique:users,id,$request->id if the user has the same id don't trigger the check
+		$this->validate($request, [
+			'email' => "bail|required|email|",
+			'password' => 'bail|required|min:6',
+		]);
+		if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+			return response()->json([
+				'message' => 'you are log in'
+			]);
+		} else {
+			return response()->json([
+				'message' => 'you are not log in'
+			]);
+		}
 	}
 
 	public function getUsers()
