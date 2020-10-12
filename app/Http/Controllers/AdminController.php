@@ -9,7 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-	//
+
+	public function index(Request $request)
+	{
+		// Check if the user is admin
+		if (!Auth::check()) {
+			return redirect('/login');
+		};
+		return $request->path();
+		// return view('welcome');
+	}
+
 	public function createUser(Request $request)
 	{
 		// bail checks the first requirement if it fails it doesn't comntinue

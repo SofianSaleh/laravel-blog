@@ -48,6 +48,7 @@ Route::post('/api/user/create', [AdminController::class, 'createUser']);
 Route::post('/api/user/edit', [AdminController::class, 'editUser']);
 Route::post('/api/user/admin_login', [AdminController::class, 'adminLogin']);
 
-Route::get('/', [VueController::class, 'index']);
-Route::get('{any}', [VueController::class, 'index'])->where('any', '.*');
+Route::get('/', [AdminController::class, 'index']);
+Route::get('{any}', [AdminController::class, 'index']);
+// ->where('any', '.*');
 // User Routes Finished
