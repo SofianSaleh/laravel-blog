@@ -17,11 +17,20 @@ class AdminController extends Controller
 		if (!Auth::check() && $request->path() != 'login') {
 			return redirect('/login');
 		}
+		$user = Auth::user();
+		if ($user->userType == 'user') {
+			return redirect('/login');
+		}
 		if (!Auth::check() && $request->path() == 'login') {
 
 			return view('welcome');
 		}
 		return view('welcome');
+	}
+	public function logout(Request $request)
+	{
+		Auth::logout;
+		return redirect('login');
 	}
 
 
