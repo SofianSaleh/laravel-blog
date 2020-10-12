@@ -21,6 +21,9 @@ class AdminController extends Controller
 		if ($user->userType == 'user') {
 			return redirect('/login');
 		}
+		if ($request->path() == 'login') {
+			return redirect('/');
+		}
 		if (!Auth::check() && $request->path() == 'login') {
 
 			return view('welcome');
@@ -29,7 +32,7 @@ class AdminController extends Controller
 	}
 	public function logout(Request $request)
 	{
-		Auth::logout;
+		Auth::logout();
 		return redirect('login');
 	}
 
