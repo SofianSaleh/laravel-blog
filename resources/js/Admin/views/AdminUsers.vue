@@ -275,12 +275,15 @@ export default {
             this.isAdding = false;
         },
         async editUser() {
-            if (this.data.fullName.trim() === "")
+            if (this.editData.fullName.trim() === "")
                 return this.e("Full name is Required");
-            if (this.data.email.trim() === "")
+            if (this.editData.email.trim() === "")
                 return this.e("Email is Required");
 
-            if (this.data.userType.trim() === "")
+            if (this.editData.userType.trim() === "")
+                return this.e("User Type is Required");
+
+            if (this.editData.userType.trim() === "")
                 return this.e("User Type is Required");
 
             this.isEditing = true;
@@ -318,7 +321,14 @@ export default {
         },
         showEditModal(user) {
             console.log(user);
-            this.editData = user;
+            this.editData = {
+                email: user.email,
+                fullName: user.fullName,
+                id: user.id,
+                password: "",
+                userType: user.userType
+            };
+            console.log(this.editData);
             this.editModal = true;
         },
         async deleteTag() {

@@ -2378,7 +2378,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                if (!(_this2.data.fullName.trim() === "")) {
+                if (!(_this2.editData.fullName.trim() === "")) {
                   _context2.next = 2;
                   break;
                 }
@@ -2386,7 +2386,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.abrupt("return", _this2.e("Full name is Required"));
 
               case 2:
-                if (!(_this2.data.email.trim() === "")) {
+                if (!(_this2.editData.email.trim() === "")) {
                   _context2.next = 4;
                   break;
                 }
@@ -2394,7 +2394,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.abrupt("return", _this2.e("Email is Required"));
 
               case 4:
-                if (!(_this2.data.userType.trim() === "")) {
+                if (!(_this2.editData.userType.trim() === "")) {
                   _context2.next = 6;
                   break;
                 }
@@ -2402,11 +2402,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.abrupt("return", _this2.e("User Type is Required"));
 
               case 6:
+                if (!(_this2.editData.userType.trim() === "")) {
+                  _context2.next = 8;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.e("User Type is Required"));
+
+              case 8:
                 _this2.isEditing = true;
-                _context2.next = 9;
+                _context2.next = 11;
                 return _this2.callApi("post", "/api/user/edit", _this2.editData);
 
-              case 9:
+              case 11:
                 res = _context2.sent;
 
                 if (res.status === 200) {
@@ -2441,7 +2449,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this2.isEditing = false;
 
-              case 12:
+              case 14:
               case "end":
                 return _context2.stop();
             }
@@ -2451,7 +2459,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     showEditModal: function showEditModal(user) {
       console.log(user);
-      this.editData = user;
+      this.editData = {
+        email: user.email,
+        fullName: user.fullName,
+        id: user.id,
+        password: "",
+        userType: user.userType
+      };
+      console.log(this.editData);
       this.editModal = true;
     },
     deleteTag: function deleteTag() {// this.isDeleting = true;

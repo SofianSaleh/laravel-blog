@@ -41,16 +41,17 @@ class AdminController extends Controller
 			'password' => 'min:6',
 			'userType' => 'required',
 		]);
-
-		$password = bcrypt($request->password);
-		$user = User::where('id', $request->id)->update([
+		$data = [
 			'fullName' => $request->fullName,
 			'email' => $request->email,
-			'password' => $password,
 			'userType' => $request->userType,
-		]);
+		];
+		if ($request->password) {
+			$password = bcrypt($request->password);
+			$data['password'] = $password;
+		};
 
-		return $user;
+		$user = User::where('id', $request->id)->update($data);
 	}
 
 	public function getUsers()
