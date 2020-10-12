@@ -3209,7 +3209,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var res;
+        var res, i;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -3250,6 +3250,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 } else {
                   if (res.status === 401) {
                     _this.i(res.data.msg);
+                  } else if (res.status === 422) {
+                    for (i in res.data.errors) {
+                      _this.e(res.data.errors[i][0]);
+                    }
                   } else {
                     _this.swr();
                   }

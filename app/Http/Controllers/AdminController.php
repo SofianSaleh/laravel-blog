@@ -66,13 +66,22 @@ class AdminController extends Controller
 			'password' => 'bail|required|min:6',
 		]);
 		if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+			$user = Auth::user();
+
+			if ($user->userType == 'User') {
+				Auth::logout();
+				return response()->json([
+					'msg' => 'you are not log in'
+				], 401);
+			};
 			return response()->json([
-				'msg' => 'you are log in'
+				'msg' => 'you are log in',
+				'user' => $user
 			]);
 		} else {
 			return response()->json([
 				'msg' => 'you are not log in'
-			]);
+			], 401);
 		}
 	}
 

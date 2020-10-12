@@ -59,7 +59,9 @@ export default {
 
             if (this.data.password.trim().length < 6)
                 return this.e("Incorrect Login Details");
+
             this.isLoginingIn = true;
+
             const res = await this.callApi(
                 "post",
                 "/api/user/admin_login",
@@ -70,6 +72,10 @@ export default {
             } else {
                 if (res.status === 401) {
                     this.i(res.data.msg);
+                } else if (res.status === 422) {
+                    for (const i in res.data.errors) {
+                        this.e(res.data.errors[i][0]);
+                    }
                 } else {
                     this.swr();
                 }
