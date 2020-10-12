@@ -37,11 +37,12 @@ class AdminController extends Controller
 		$this->validate($request, [
 			'id' => 'required',
 			'fullName' => 'required',
-			'email' => "bail|required|email|unique:users,id,$request->id",
+			'email' => "bail|required|email|unique:users,email,$request->id",
 			'password' => 'min:6',
 			'userType' => 'required',
 		]);
 		$data = [
+			'id' => $request->id,
 			'fullName' => $request->fullName,
 			'email' => $request->email,
 			'userType' => $request->userType,
@@ -52,7 +53,7 @@ class AdminController extends Controller
 		};
 
 		$user = User::where('id', $request->id)->update($data);
-		return ['data' => $data, 'user' => $user];
+		return $data;
 	}
 
 	public function getUsers()

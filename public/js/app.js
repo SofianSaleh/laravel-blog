@@ -2454,7 +2454,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     showEditModal: function showEditModal(user) {
-      console.log(user);
       this.editData = {
         email: user.email,
         fullName: user.fullName,
@@ -2462,7 +2461,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         password: "",
         userType: user.userType
       };
-      console.log(this.editData);
       this.editModal = true;
     },
     deleteTag: function deleteTag() {// this.isDeleting = true;

@@ -321,7 +321,6 @@ export default {
             this.isEditing = false;
         },
         showEditModal(user) {
-            console.log(user);
             this.editData = {
                 email: user.email,
                 fullName: user.fullName,
@@ -329,7 +328,6 @@ export default {
                 password: "",
                 userType: user.userType
             };
-            console.log(this.editData);
             this.editModal = true;
         },
         async deleteTag() {
