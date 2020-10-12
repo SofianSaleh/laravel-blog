@@ -14,7 +14,7 @@ class AdminController extends Controller
 		// bail checks the first requirement if it fails it doesn't comntinue
 		$this->validate($request, [
 			'fullName' => 'required',
-			'email' => 'bail|required|email',
+			'email' => 'bail|required|email|unique:users',
 			'password' => 'bail|required|min:6',
 			'userType' => 'required',
 		]);
@@ -29,6 +29,30 @@ class AdminController extends Controller
 
 		return $user;
 	}
+
+	public function editUser(Request $request)
+	{
+		// bail checks the first requirement if it fails it doesn't comntinue
+		// bail|required|email|unique:users,id,$request->id if the user has the same id don't trigger the check
+		$this->validate($request, [
+			'id' => 'required',
+			'fullName' => 'required',
+			'email' => "bail|required|email|unique:users,id,$request->id",
+			'password' => 'min:6',
+			'userType' => 'required',
+		]);
+
+		$password = bcrypt($request->password);
+		$user = User::where('id', $request->id)->update([
+			'fullName' => $request->fullName,
+			'email' => $request->email,
+			'password' => $password,
+			'userType' => $request->userType,
+		]);
+
+		return $user;
+	}
+
 	public function getUsers()
 	{
 		return User::orderBy('id', 'desc')->get();

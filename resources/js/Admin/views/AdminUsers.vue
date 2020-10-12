@@ -116,27 +116,54 @@
                         >
                     </div>
                 </Modal>
-                <!-- Edit tags -->
+                <!-- Edit users -->
                 <Modal
                     v-model="editModal"
-                    title="Edit tag"
+                    title="Edit user"
                     :mask-closable="false"
                     :closable="false"
                 >
-                    <Input
-                        v-model="editData.tagName"
-                        placeholder="Edit tag name"
-                    />
+                    <div class="space" style="padding-bottom: 5px">
+                        <Input
+                            v-model="editData.fullName"
+                            type="text"
+                            placeholder="Full name"
+                        />
+                    </div>
+                    <div class="space" style="padding-bottom: 5px">
+                        <Input
+                            v-model="editData.email"
+                            type="email"
+                            placeholder="Email"
+                        />
+                    </div>
+                    <div class="space" style="padding-bottom: 5px">
+                        <Input
+                            v-model="editData.password"
+                            type="password"
+                            placeholder="Password"
+                        />
+                    </div>
+                    <div class="space" style="padding-bottom: 5px">
+                        <Select
+                            v-model="editData.userType"
+                            placeholder="Select User Type"
+                        >
+                            <Option value="Admin">Admin</Option>
+                            <Option value="Editor">Editor</Option>
+                        </Select>
+                    </div>
+
                     <div slot="footer">
                         <Button type="default" @click="editModal = false"
                             >Close</Button
                         >
                         <Button
                             type="primary"
-                            @click="editTag"
+                            @click="editUser"
                             :disabled="isEditing"
                             :loading="isEditing"
-                            >Edit tag</Button
+                            >Edit user</Button
                         >
                     </div>
                 </Modal>
@@ -188,7 +215,10 @@ export default {
                 userType: ""
             },
             editData: {
-                tagName: ""
+                fullName: "",
+                email: "",
+                password: "",
+                userType: ""
             },
             deleteData: {
                 tagName: ""
@@ -233,7 +263,6 @@ export default {
                 };
             } else {
                 if (res.status === 422) {
-                    console.log(res, res.data);
                     this.isAdding = false;
                     for (const i in res.data.errors) {
                         this.e(res.data.errors[i][0]);
@@ -245,42 +274,52 @@ export default {
             }
             this.isAdding = false;
         },
-        async editTag() {
-            // if (this.editData.tagName.trim() === "")
-            //     return this.e("Tag name is Required");
-            // this.isEditing = true;
-            // const res = await this.callApi(
-            //     "post",
-            //     "/api/tag/edit_tag",
-            //     this.editData
-            // );
-            // if (res.status === 200) {
-            //     let index = this.tags.findIndex(tag => tag.id === res.data.id);
-            //     this.tags[index].tagName = res.data.tagName;
-            //     this.s("Tag has Been Edited");
-            //     this.isEditing = false;
-            //     this.editModal = false;
-            //     this.editData = { tagName: "" };
-            // } else {
-            //     if (res.status === 422) {
-            //         this.isEditing = false;
-            //         if (res.data.errors.tagName)
-            //             return this.i(res.data.errors.tagName[0]);
-            //     } else {
-            //         this.isEditing = false;
-            //         this.swr();
-            //     }
-            // }
-            // this.isEditing = false;
+        async editUser() {
+            if (this.data.fullName.trim() === "")
+                return this.e("Full name is Required");
+            if (this.data.email.trim() === "")
+                return this.e("Email is Required");
+
+            if (this.data.userType.trim() === "")
+                return this.e("User Type is Required");
+
+            this.isEditing = true;
+            const res = await this.callApi(
+                "post",
+                "/api/user/edit",
+                this.editData
+            );
+            if (res.status === 200) {
+                let index = this.users.findIndex(
+                    user => user.id === res.data.id
+                );
+                this.users[index] = res.data;
+                this.s("User has Been Edited");
+                this.isEditing = false;
+                this.editModal = false;
+                this.editData = {
+                    fullName: "",
+                    email: "",
+                    password: "",
+                    userType: ""
+                };
+            } else {
+                if (res.status === 422) {
+                    this.isEditing = false;
+                    for (const i in res.data.errors) {
+                        this.e(res.data.errors[i][0]);
+                    }
+                } else {
+                    this.isEditing = false;
+                    this.swr();
+                }
+            }
+            this.isEditing = false;
         },
-        showEditModal() {
-            // { tagName, id }
-            // let obj = {
-            //     id,
-            //     tagName
-            // };
-            // this.editData = obj;
-            // this.editModal = true;
+        showEditModal(user) {
+            console.log(user);
+            this.editData = user;
+            this.editModal = true;
         },
         async deleteTag() {
             // this.isDeleting = true;

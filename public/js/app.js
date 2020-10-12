@@ -2223,6 +2223,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2239,7 +2266,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         userType: ""
       },
       editData: {
-        tagName: ""
+        fullName: "",
+        email: "",
+        password: "",
+        userType: ""
       },
       deleteData: {
         tagName: ""
@@ -2317,7 +2347,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   };
                 } else {
                   if (res.status === 422) {
-                    console.log(res, res.data);
                     _this.isAdding = false;
 
                     for (i in res.data.errors) {
@@ -2340,38 +2369,79 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    editTag: function editTag() {// if (this.editData.tagName.trim() === "")
-      //     return this.e("Tag name is Required");
-      // this.isEditing = true;
-      // const res = await this.callApi(
-      //     "post",
-      //     "/api/tag/edit_tag",
-      //     this.editData
-      // );
-      // if (res.status === 200) {
-      //     let index = this.tags.findIndex(tag => tag.id === res.data.id);
-      //     this.tags[index].tagName = res.data.tagName;
-      //     this.s("Tag has Been Edited");
-      //     this.isEditing = false;
-      //     this.editModal = false;
-      //     this.editData = { tagName: "" };
-      // } else {
-      //     if (res.status === 422) {
-      //         this.isEditing = false;
-      //         if (res.data.errors.tagName)
-      //             return this.i(res.data.errors.tagName[0]);
-      //     } else {
-      //         this.isEditing = false;
-      //         this.swr();
-      //     }
-      // }
-      // this.isEditing = false;
+    editUser: function editUser() {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var res, index, i;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                if (!(_this2.data.fullName.trim() === "")) {
+                  _context2.next = 2;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.e("Full name is Required"));
+
+              case 2:
+                if (!(_this2.data.email.trim() === "")) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.e("Email is Required"));
+
+              case 4:
+                if (!(_this2.data.userType.trim() === "")) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.e("User Type is Required"));
+
+              case 6:
+                _this2.isEditing = true;
+                _context2.next = 9;
+                return _this2.callApi("post", "/api/user/edit", _this2.editData);
+
+              case 9:
+                res = _context2.sent;
+
+                if (res.status === 200) {
+                  index = _this2.users.findIndex(function (user) {
+                    return user.id === res.data.id;
+                  });
+                  _this2.users[index] = res.data;
+
+                  _this2.s("User has Been Edited");
+
+                  _this2.isEditing = false;
+                  _this2.editModal = false;
+                  _this2.editData = {
+                    fullName: "",
+                    email: "",
+                    password: "",
+                    userType: ""
+                  };
+                } else {
+                  if (res.status === 422) {
+                    _this2.isEditing = false;
+
+                    for (i in res.data.errors) {
+                      _this2.e(res.data.errors[i][0]);
+                    }
+                  } else {
+                    _this2.isEditing = false;
+
+                    _this2.swr();
+                  }
+                }
+
+                _this2.isEditing = false;
+
+              case 12:
               case "end":
                 return _context2.stop();
             }
@@ -2379,13 +2449,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    showEditModal: function showEditModal() {// { tagName, id }
-      // let obj = {
-      //     id,
-      //     tagName
-      // };
-      // this.editData = obj;
-      // this.editModal = true;
+    showEditModal: function showEditModal(user) {
+      console.log(user);
+      this.editData = user;
+      this.editModal = true;
     },
     deleteTag: function deleteTag() {// this.isDeleting = true;
       // const res = await this.callApi(
@@ -2426,7 +2493,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var res;
@@ -2435,15 +2502,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
-              return _this2.callApi("get", "/api/user/get_all");
+              return _this3.callApi("get", "/api/user/get_all");
 
             case 2:
               res = _context4.sent;
 
               if (res.status === 200) {
-                _this2.users = res.data;
+                _this3.users = res.data;
               } else {
-                _this2.swr();
+                _this3.swr();
               }
 
             case 4:
@@ -86555,7 +86622,7 @@ var render = function() {
             "Modal",
             {
               attrs: {
-                title: "Edit tag",
+                title: "Edit user",
                 "mask-closable": false,
                 closable: false
               },
@@ -86568,16 +86635,102 @@ var render = function() {
               }
             },
             [
-              _c("Input", {
-                attrs: { placeholder: "Edit tag name" },
-                model: {
-                  value: _vm.editData.tagName,
-                  callback: function($$v) {
-                    _vm.$set(_vm.editData, "tagName", $$v)
-                  },
-                  expression: "editData.tagName"
-                }
-              }),
+              _c(
+                "div",
+                {
+                  staticClass: "space",
+                  staticStyle: { "padding-bottom": "5px" }
+                },
+                [
+                  _c("Input", {
+                    attrs: { type: "text", placeholder: "Full name" },
+                    model: {
+                      value: _vm.editData.fullName,
+                      callback: function($$v) {
+                        _vm.$set(_vm.editData, "fullName", $$v)
+                      },
+                      expression: "editData.fullName"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "space",
+                  staticStyle: { "padding-bottom": "5px" }
+                },
+                [
+                  _c("Input", {
+                    attrs: { type: "email", placeholder: "Email" },
+                    model: {
+                      value: _vm.editData.email,
+                      callback: function($$v) {
+                        _vm.$set(_vm.editData, "email", $$v)
+                      },
+                      expression: "editData.email"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "space",
+                  staticStyle: { "padding-bottom": "5px" }
+                },
+                [
+                  _c("Input", {
+                    attrs: { type: "password", placeholder: "Password" },
+                    model: {
+                      value: _vm.editData.password,
+                      callback: function($$v) {
+                        _vm.$set(_vm.editData, "password", $$v)
+                      },
+                      expression: "editData.password"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "space",
+                  staticStyle: { "padding-bottom": "5px" }
+                },
+                [
+                  _c(
+                    "Select",
+                    {
+                      attrs: { placeholder: "Select User Type" },
+                      model: {
+                        value: _vm.editData.userType,
+                        callback: function($$v) {
+                          _vm.$set(_vm.editData, "userType", $$v)
+                        },
+                        expression: "editData.userType"
+                      }
+                    },
+                    [
+                      _c("Option", { attrs: { value: "Admin" } }, [
+                        _vm._v("Admin")
+                      ]),
+                      _vm._v(" "),
+                      _c("Option", { attrs: { value: "Editor" } }, [
+                        _vm._v("Editor")
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -86604,15 +86757,14 @@ var render = function() {
                         disabled: _vm.isEditing,
                         loading: _vm.isEditing
                       },
-                      on: { click: _vm.editTag }
+                      on: { click: _vm.editUser }
                     },
-                    [_vm._v("Edit tag")]
+                    [_vm._v("Edit user")]
                   )
                 ],
                 1
               )
-            ],
-            1
+            ]
           ),
           _vm._v(" "),
           _c("deleteModal")
