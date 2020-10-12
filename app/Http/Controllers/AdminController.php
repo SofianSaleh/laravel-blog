@@ -67,11 +67,11 @@ class AdminController extends Controller
 		]);
 		if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 			return response()->json([
-				'message' => 'you are log in'
+				'msg' => 'you are log in'
 			]);
 		} else {
 			return response()->json([
-				'message' => 'you are not log in'
+				'msg' => 'you are not log in'
 			]);
 		}
 	}

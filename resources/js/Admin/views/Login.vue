@@ -24,7 +24,13 @@
                         />
                     </div>
                     <div class="login_footer">
-                        <Button type="primary" @click="login">Login</Button>
+                        <Button
+                            type="primary"
+                            :disabled="isLoginingIn"
+                            :loading="isLoginingIn"
+                            @click="login"
+                            >Login</Button
+                        >
                     </div>
                 </div>
             </div>
@@ -53,7 +59,7 @@ export default {
 
             if (this.data.password.trim().length < 6)
                 return this.e("Incorrect Login Details");
-
+            this.isLoginingIn = true;
             const res = await this.callApi(
                 "post",
                 "/api/user/admin_login",
@@ -68,6 +74,7 @@ export default {
                     this.swr();
                 }
             }
+            this.isLoginingIn = false;
         }
     }
 };

@@ -3188,6 +3188,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3232,10 +3238,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", _this.e("Incorrect Login Details"));
 
               case 6:
-                _context.next = 8;
+                _this.isLoginingIn = true;
+                _context.next = 9;
                 return _this.callApi("post", "/api/user/admin_login", _this.data);
 
-              case 8:
+              case 9:
                 res = _context.sent;
 
                 if (res.status === 200) {
@@ -3248,7 +3255,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-              case 10:
+                _this.isLoginingIn = false;
+
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -88194,7 +88203,14 @@ var render = function() {
               [
                 _c(
                   "Button",
-                  { attrs: { type: "primary" }, on: { click: _vm.login } },
+                  {
+                    attrs: {
+                      type: "primary",
+                      disabled: _vm.isLoginingIn,
+                      loading: _vm.isLoginingIn
+                    },
+                    on: { click: _vm.login }
+                  },
                   [_vm._v("Login")]
                 )
               ],
