@@ -5,6 +5,7 @@ use App\Http\Controllers\VueController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AdminController;
+use App\Http\Middleware\AdminCheck;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,7 @@ Route::prefix('api', function () {
     Route::post('/user/edit', [AdminController::class, 'editUser']);
     Route::post('/user/admin_login', [AdminController::class, 'adminLogin']);
     // User Routes Finished
-});
+})->middleware(AdminCheck::class);
 
 Route::get('/logout', [AdminController::class, 'logout']);
 Route::get('/', [AdminController::class, 'index']);
