@@ -23,7 +23,6 @@ class AdminCheck
             ], 402);
         }
         $user = Auth::user();
-        return $user;
         if ($user->userType == 'User') {
             return response()->json([
                 'msg' => 'UnAuthorized'
