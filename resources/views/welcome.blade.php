@@ -8,7 +8,7 @@
     <title>Laravel</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="/css/all.css">
 
     <script>
@@ -25,9 +25,9 @@
         @if(Auth::check())
         <app :user="{{Auth::user()}}"></app>
         @else
-        <app :user="{{false}}"></app>
+        <app :user="false"></app>
         @endIf
-        <app></app>
+
     </div>
 </body>
 

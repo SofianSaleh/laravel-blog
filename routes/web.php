@@ -16,40 +16,44 @@ use App\Http\Controllers\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Tag Routes Start
 
-Route::get('/api/tag/get_all_tags', [TagController::class, 'getAll']);
-Route::post('/api/tag/create_tag', [TagController::class, 'createTag']);
-Route::post('/api/tag/edit_tag', [TagController::class, 'editTag']);
-Route::post('/api/tag/delete_tag', [TagController::class, 'deleteTag']);
+Route::prefix('api', function () {
 
-// Tag Routes finished
+    // Tag Routes Start
 
-// Genral Routes Start
+    Route::get('/tag/get_all_tags', [TagController::class, 'getAll']);
+    Route::post('/tag/create_tag', [TagController::class, 'createTag']);
+    Route::post('/tag/edit_tag', [TagController::class, 'editTag']);
+    Route::post('/tag/delete_tag', [TagController::class, 'deleteTag']);
 
-Route::post('/api/upload', [CategoryController::class, 'upload']);
-Route::post('/api/remove_img', [CategoryController::class, 'removeImg']);
+    // Tag Routes finished
 
-// Genral Routes finished
+    // Genral Routes Start
 
-// Category Routes Start
+    Route::post('/upload', [CategoryController::class, 'upload']);
+    Route::post('/remove_img', [CategoryController::class, 'removeImg']);
 
-Route::get('/api/category/get_all_categories', [CategoryController::class, 'getAll']);
-Route::post('/api/category/add', [CategoryController::class, 'addCategory']);
-Route::post('/api/category/edit', [CategoryController::class, 'editCategory']);
-Route::post('/api/category/delete', [CategoryController::class, 'deleteCategory']);
+    // Genral Routes finished
 
-// Category Routes finished
+    // Category Routes Start
 
-// Admin Routes Start
+    Route::get('/category/get_all_categories', [CategoryController::class, 'getAll']);
+    Route::post('/category/add', [CategoryController::class, 'addCategory']);
+    Route::post('/category/edit', [CategoryController::class, 'editCategory']);
+    Route::post('/category/delete', [CategoryController::class, 'deleteCategory']);
 
-Route::get('/api/user/get_all', [AdminController::class, 'getUsers']);
-Route::post('/api/user/create', [AdminController::class, 'createUser']);
-Route::post('/api/user/edit', [AdminController::class, 'editUser']);
-Route::post('/api/user/admin_login', [AdminController::class, 'adminLogin']);
+    // Category Routes finished
+
+    // Admin Routes Start
+
+    Route::get('/user/get_all', [AdminController::class, 'getUsers']);
+    Route::post('/user/create', [AdminController::class, 'createUser']);
+    Route::post('/user/edit', [AdminController::class, 'editUser']);
+    Route::post('/user/admin_login', [AdminController::class, 'adminLogin']);
+    // User Routes Finished
+});
 
 Route::get('/logout', [AdminController::class, 'logout']);
 Route::get('/', [AdminController::class, 'index']);
 Route::any('{any}', [AdminController::class, 'index']);
 // ->where('any', '.*');
-// User Routes Finished
