@@ -17,16 +17,16 @@ class AdminController extends Controller
 		if (!Auth::check() && $request->path() != 'login') {
 			return redirect('/login');
 		}
+		if (!Auth::check() && $request->path() == 'login') {
+
+			return view('welcome');
+		}
 		$user = Auth::user();
-		if ($user->userType == 'user') {
+		if ($user->userType == 'User') {
 			return redirect('/login');
 		}
 		if ($request->path() == 'login') {
 			return redirect('/');
-		}
-		if (!Auth::check() && $request->path() == 'login') {
-
-			return view('welcome');
 		}
 		return view('welcome');
 	}
