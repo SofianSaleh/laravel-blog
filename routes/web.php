@@ -18,7 +18,7 @@ use App\Http\Middleware\AdminCheck;
 |
 */
 
-Route::prefix('api', function () {
+Route::prefix('api')->middleware(AdminCheck::class)->group(function () {
 
     // Tag Routes Start
 
@@ -52,7 +52,7 @@ Route::prefix('api', function () {
     Route::post('/user/edit', [AdminController::class, 'editUser']);
     Route::post('/user/admin_login', [AdminController::class, 'adminLogin']);
     // User Routes Finished
-})->middleware(AdminCheck::class);
+});
 
 Route::get('/logout', [AdminController::class, 'logout']);
 Route::get('/', [AdminController::class, 'index']);
