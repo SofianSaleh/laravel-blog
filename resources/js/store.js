@@ -10,11 +10,15 @@ export default new Vuex.Store({
             deleteURL: "",
             deleteData: {},
             isDeleted: false
-        }
+        },
+        user: {}
     },
     getters: {
         getDeleteModalObj(state) {
             return state.deleteModalObj;
+        },
+        getLoggedInUser(state) {
+            return state.user;
         }
     },
     mutations: {
@@ -30,6 +34,10 @@ export default new Vuex.Store({
         },
         setDeletingModalObj(state, data) {
             state.deleteModalObj = data;
+        },
+        updateUser(state, data) {
+            console.log(state, data, "Store");
+            state.user = data;
         }
     },
     actions: {}

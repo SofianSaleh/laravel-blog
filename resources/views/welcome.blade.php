@@ -23,9 +23,9 @@
 <body>
     <div id="app">
         @if(Auth::check())
-        <app :user="Auth::user()"></app>
+        <app :user="{{Auth::user()}}"></app>
         @else
-        <app :user="false"></app>
+        <app :user="{{false}}"></app>
         @endIf
         <app></app>
     </div>

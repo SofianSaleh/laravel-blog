@@ -3796,10 +3796,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["user"],
   data: function data() {
     return {
       isLoggedIn: false
     };
+  },
+  created: function created() {
+    console.log(this.user, "one");
+    this.$store.commit("updateUser", this.user);
   }
 });
 
@@ -105874,11 +105879,15 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       deleteURL: "",
       deleteData: {},
       isDeleted: false
-    }
+    },
+    user: {}
   },
   getters: {
     getDeleteModalObj: function getDeleteModalObj(state) {
       return state.deleteModalObj;
+    },
+    getLoggedInUser: function getLoggedInUser(state) {
+      return state.user;
     }
   },
   mutations: {
@@ -105896,6 +105905,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     setDeletingModalObj: function setDeletingModalObj(state, data) {
       state.deleteModalObj = data;
+    },
+    updateUser: function updateUser(state, data) {
+      console.log(state, data, "Store");
+      state.user = data;
     }
   },
   actions: {}

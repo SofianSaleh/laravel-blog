@@ -69,10 +69,15 @@
 
 <script>
 export default {
+    props: ["user"],
     data() {
         return {
             isLoggedIn: false
         };
+    },
+    created() {
+        console.log(this.user, "one");
+        this.$store.commit("updateUser", this.user);
     }
 };
 </script>
