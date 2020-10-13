@@ -385,18 +385,18 @@ export default {
             this.editModal = false;
         }
     },
-    // async created() {
-    //     this.token = window.Laravel.csrfToken;
-    //     const res = await this.callApi(
-    //         "get",
-    //         "/api/category/get_all_categories"
-    //     );
-    //     if (res.status === 200) {
-    //         this.categories = res.data;
-    //     } else {
-    //         this.swr();
-    //     }
-    // },
+    async created() {
+        this.token = window.Laravel.csrfToken;
+        const res = await this.callApi(
+            "get",
+            "/api/category/get_all_categories"
+        );
+        if (res.status === 200) {
+            this.categories = res.data;
+        } else {
+            this.swr();
+        }
+    },
     computed: {
         ...mapGetters(["getDeleteModalObj"])
     },
