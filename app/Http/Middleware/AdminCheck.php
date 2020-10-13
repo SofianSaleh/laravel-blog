@@ -17,9 +17,11 @@ class AdminCheck
      */
     public function handle(Request $request, Closure $next)
     {
+
         if (!Auth::check()) {
             return response()->json([
-                'msg' => "UnAuthorized"
+                'msg' => "UnAuthorized",
+                'a' => Auth::check()
             ], 402);
         }
         $user = Auth::user();
