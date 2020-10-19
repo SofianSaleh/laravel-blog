@@ -3435,6 +3435,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3458,7 +3461,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       isAdding: false,
       isDeleting: false,
       isEditing: false,
-      tags: []
+      roles: []
     };
   },
   methods: {
@@ -3471,64 +3474,66 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!(_this.data.rolename.trim() === "")) {
-                  _context.next = 2;
+                console.log(_this.data);
+
+                if (!(_this.data.roleName.trim() === "")) {
+                  _context.next = 3;
                   break;
                 }
 
                 return _context.abrupt("return", _this.e("Role name is Required"));
 
-              case 2:
+              case 3:
                 _this.isAdding = true;
-                _context.next = 5;
-                return _this.callApi("post", "/api/tag/create_tag", _this.data);
+                _context.next = 6;
+                return _this.callApi("post", "/api/role/create_role", _this.data);
 
-              case 5:
+              case 6:
                 res = _context.sent;
 
                 if (!(res.status === 201)) {
-                  _context.next = 14;
+                  _context.next = 15;
                   break;
                 }
 
-                _this.tags.unshift(res.data);
+                _this.roles.unshift(res.data);
 
                 _this.s("Role has Been Added");
 
                 _this.isAdding = false;
                 _this.addModal = false;
                 _this.data.rolename = "";
-                _context.next = 22;
+                _context.next = 23;
                 break;
 
-              case 14:
+              case 15:
                 if (!(res.status === 422)) {
-                  _context.next = 20;
+                  _context.next = 21;
                   break;
                 }
 
                 _this.isAdding = false;
 
                 if (!res.data.errors.roleName) {
-                  _context.next = 18;
+                  _context.next = 19;
                   break;
                 }
 
                 return _context.abrupt("return", _this.i(res.data.errors.roleName[0]));
 
-              case 18:
-                _context.next = 22;
+              case 19:
+                _context.next = 23;
                 break;
 
-              case 20:
+              case 21:
                 _this.isAdding = false;
 
                 _this.swr();
 
-              case 22:
+              case 23:
                 _this.isAdding = false;
 
-              case 23:
+              case 24:
               case "end":
                 return _context.stop();
             }
@@ -3536,78 +3541,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    editTag: function editTag() {
-      var _this2 = this;
+    editTag: function editTag() {// if (this.editData.tagName.trim() === "")
+      // return this.e("Tag name is Required");
+      // this.isEditing = true;
+      // const res = await this.callApi(
+      //     "post",
+      //     "/api/tag/edit_tag",
+      //     this.editData
+      // );
+      // if (res.status === 200) {
+      //     let index = this.tags.findIndex(tag => tag.id === res.data.id);
+      //     this.tags[index].tagName = res.data.tagName;
+      //     this.s("Tag has Been Edited");
+      //     this.isEditing = false;
+      //     this.editModal = false;
+      //     this.editData = { tagName: "" };
+      // } else {
+      //     if (res.status === 422) {
+      //         this.isEditing = false;
+      //         if (res.data.errors.tagName)
+      //             return this.i(res.data.errors.tagName[0]);
+      //     } else {
+      //         this.isEditing = false;
+      //         this.swr();
+      //     }
+      // }
+      // this.isEditing = false;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var res, index;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                if (!(_this2.editData.tagName.trim() === "")) {
-                  _context2.next = 2;
-                  break;
-                }
-
-                return _context2.abrupt("return", _this2.e("Tag name is Required"));
-
-              case 2:
-                _this2.isEditing = true;
-                _context2.next = 5;
-                return _this2.callApi("post", "/api/tag/edit_tag", _this2.editData);
-
-              case 5:
-                res = _context2.sent;
-
-                if (!(res.status === 200)) {
-                  _context2.next = 15;
-                  break;
-                }
-
-                index = _this2.tags.findIndex(function (tag) {
-                  return tag.id === res.data.id;
-                });
-                _this2.tags[index].tagName = res.data.tagName;
-
-                _this2.s("Tag has Been Edited");
-
-                _this2.isEditing = false;
-                _this2.editModal = false;
-                _this2.editData = {
-                  tagName: ""
-                };
-                _context2.next = 23;
-                break;
-
-              case 15:
-                if (!(res.status === 422)) {
-                  _context2.next = 21;
-                  break;
-                }
-
-                _this2.isEditing = false;
-
-                if (!res.data.errors.tagName) {
-                  _context2.next = 19;
-                  break;
-                }
-
-                return _context2.abrupt("return", _this2.i(res.data.errors.tagName[0]));
-
-              case 19:
-                _context2.next = 23;
-                break;
-
-              case 21:
-                _this2.isEditing = false;
-
-                _this2.swr();
-
-              case 23:
-                _this2.isEditing = false;
-
-              case 24:
               case "end":
                 return _context2.stop();
             }
@@ -3615,46 +3580,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    showEditModal: function showEditModal(_ref) {
+    showEditModal: function showEditModal(_ref) {//     let obj = {
+      //         id,
+      //         tagName
+      //     };
+      //     this.editData = obj;
+      //     this.editModal = true;
+
       var tagName = _ref.tagName,
           id = _ref.id;
-      var obj = {
-        id: id,
-        tagName: tagName
-      };
-      this.editData = obj;
-      this.editModal = true;
     },
-    deleteTag: function deleteTag() {
-      var _this3 = this;
+    deleteTag: function deleteTag() {// this.isDeleting = true;
+      // const res = await this.callApi(
+      //     "post",
+      //     "/api/tag/delete_tag",
+      //     this.deleteData
+      // );
+      // if (res.status === 200) {
+      //     this.tags.splice(this.deleteTag.i, 1);
+      //     this.s("Tag deleted Successfully");
+      //     this.isDeleting = false;
+      //     this.deleteModal = false;
+      // } else {
+      //     this.isDeleting = false;
+      //     this.swr();
+      // }
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this3.isDeleting = true;
-                _context3.next = 3;
-                return _this3.callApi("post", "/api/tag/delete_tag", _this3.deleteData);
-
-              case 3:
-                res = _context3.sent;
-
-                if (res.status === 200) {
-                  _this3.tags.splice(_this3.deleteTag.i, 1);
-
-                  _this3.s("Tag deleted Successfully");
-
-                  _this3.isDeleting = false;
-                  _this3.deleteModal = false;
-                } else {
-                  _this3.isDeleting = false;
-
-                  _this3.swr();
-                }
-
-              case 5:
               case "end":
                 return _context3.stop();
             }
@@ -3662,18 +3618,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
-    showDeleteModal: function showDeleteModal(tag, i) {
-      var deleteModalObj = {
-        showDeleteModal: true,
-        deleteURL: "/api/tag/delete_tag",
-        deleteData: tag,
-        isDeleted: false
-      };
-      this.$store.commit("setDeletingModalObj", deleteModalObj);
+    showDeleteModal: function showDeleteModal(tag, i) {//     const deleteModalObj = {
+      //         showDeleteModal: true,
+      //         deleteURL: "/api/tag/delete_tag",
+      //         deleteData: tag,
+      //         isDeleted: false
+      //     };
+      //     this.$store.commit("setDeletingModalObj", deleteModalObj);
     }
   },
   created: function created() {
-    var _this4 = this;
+    var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var res;
@@ -3682,15 +3637,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
-              return _this4.callApi("get", "/api/tag/get_all_tags");
+              return _this2.callApi("get", "/api/role/get_roles");
 
             case 2:
               res = _context4.sent;
 
               if (res.status === 200) {
-                _this4.tags = res.data;
+                _this2.roles = res.data;
               } else {
-                _this4.swr();
+                _this2.swr();
               }
 
             case 4:
@@ -88762,19 +88717,19 @@ var render = function() {
                   [
                     _vm._m(0),
                     _vm._v(" "),
-                    _vm._l(_vm.tags, function(tag, i) {
-                      return _c("tr", { key: tag.id }, [
-                        _c("td", [_vm._v(_vm._s(tag.id))]),
+                    _vm._l(_vm.roles, function(role, i) {
+                      return _c("tr", { key: role.id }, [
+                        _c("td", [_vm._v(_vm._s(role.id))]),
                         _vm._v(" "),
                         _c("td", { staticClass: "_table_name" }, [
                           _vm._v(
                             "\n                                " +
-                              _vm._s(tag.tagName) +
+                              _vm._s(role.roleName) +
                               "\n                            "
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(tag.created_at))]),
+                        _c("td", [_vm._v(_vm._s(role.created_at))]),
                         _vm._v(" "),
                         _c(
                           "td",
@@ -88795,7 +88750,7 @@ var render = function() {
                                 attrs: { type: "info", size: "small" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.showEditModal(tag)
+                                    return _vm.showEditModal(role)
                                   }
                                 }
                               },
@@ -88812,11 +88767,11 @@ var render = function() {
                                 attrs: {
                                   type: "error",
                                   size: "small",
-                                  loading: tag.isDeleting
+                                  loading: role.isDeleting
                                 },
                                 on: {
                                   click: function($event) {
-                                    return _vm.showDeleteModal(tag, i)
+                                    return _vm.showDeleteModal(role, i)
                                   }
                                 }
                               },
@@ -88858,11 +88813,11 @@ var render = function() {
               _c("Input", {
                 attrs: { placeholder: "Add role name" },
                 model: {
-                  value: _vm.data.tagName,
+                  value: _vm.data.roleName,
                   callback: function($$v) {
-                    _vm.$set(_vm.data, "tagName", $$v)
+                    _vm.$set(_vm.data, "roleName", $$v)
                   },
-                  expression: "data.tagName"
+                  expression: "data.roleName"
                 }
               }),
               _vm._v(" "),

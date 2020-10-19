@@ -26,12 +26,12 @@
 
                             <!-- ITEMS -->
 
-                            <tr v-for="(tag, i) in tags" :key="tag.id">
-                                <td>{{ tag.id }}</td>
+                            <tr v-for="(role, i) in roles" :key="role.id">
+                                <td>{{ role.id }}</td>
                                 <td class="_table_name">
-                                    {{ tag.tagName }}
+                                    {{ role.roleName }}
                                 </td>
-                                <td>{{ tag.created_at }}</td>
+                                <td>{{ role.created_at }}</td>
                                 <td>
                                     <Button type="primary" size="small">
                                         View
@@ -39,15 +39,15 @@
                                     <Button
                                         type="info"
                                         size="small"
-                                        @click="showEditModal(tag)"
+                                        @click="showEditModal(role)"
                                     >
                                         Edit
                                     </Button>
                                     <Button
                                         type="error"
                                         size="small"
-                                        @click="showDeleteModal(tag, i)"
-                                        :loading="tag.isDeleting"
+                                        @click="showDeleteModal(role, i)"
+                                        :loading="role.isDeleting"
                                     >
                                         Delete
                                     </Button>
@@ -63,7 +63,10 @@
                     :mask-closable="false"
                     :closable="false"
                 >
-                    <Input v-model="data.tagName" placeholder="Add role name" />
+                    <Input
+                        v-model="data.roleName"
+                        placeholder="Add role name"
+                    />
                     <div slot="footer">
                         <Button type="default" @click="addModal = false"
                             >Close</Button
@@ -156,23 +159,24 @@ export default {
             isAdding: false,
             isDeleting: false,
             isEditing: false,
-            tags: []
+            roles: []
         };
     },
     methods: {
         async add() {
-            if (this.data.rolename.trim() === "")
+            console.log(this.data);
+            if (this.data.roleName.trim() === "")
                 return this.e("Role name is Required");
 
             this.isAdding = true;
             const res = await this.callApi(
                 "post",
-                "/api/tag/create_tag",
+                "/api/role/create_role",
                 this.data
             );
 
             if (res.status === 201) {
-                this.tags.unshift(res.data);
+                this.roles.unshift(res.data);
                 this.s("Role has Been Added");
                 this.isAdding = false;
                 this.addModal = false;
@@ -190,80 +194,72 @@ export default {
             this.isAdding = false;
         },
         async editTag() {
-            if (this.editData.tagName.trim() === "")
-                return this.e("Tag name is Required");
-
-            this.isEditing = true;
-            const res = await this.callApi(
-                "post",
-                "/api/tag/edit_tag",
-                this.editData
-            );
-
-            if (res.status === 200) {
-                let index = this.tags.findIndex(tag => tag.id === res.data.id);
-                this.tags[index].tagName = res.data.tagName;
-                this.s("Tag has Been Edited");
-                this.isEditing = false;
-
-                this.editModal = false;
-                this.editData = { tagName: "" };
-            } else {
-                if (res.status === 422) {
-                    this.isEditing = false;
-
-                    if (res.data.errors.tagName)
-                        return this.i(res.data.errors.tagName[0]);
-                } else {
-                    this.isEditing = false;
-
-                    this.swr();
-                }
-            }
-            this.isEditing = false;
+            // if (this.editData.tagName.trim() === "")
+            // return this.e("Tag name is Required");
+            // this.isEditing = true;
+            // const res = await this.callApi(
+            //     "post",
+            //     "/api/tag/edit_tag",
+            //     this.editData
+            // );
+            // if (res.status === 200) {
+            //     let index = this.tags.findIndex(tag => tag.id === res.data.id);
+            //     this.tags[index].tagName = res.data.tagName;
+            //     this.s("Tag has Been Edited");
+            //     this.isEditing = false;
+            //     this.editModal = false;
+            //     this.editData = { tagName: "" };
+            // } else {
+            //     if (res.status === 422) {
+            //         this.isEditing = false;
+            //         if (res.data.errors.tagName)
+            //             return this.i(res.data.errors.tagName[0]);
+            //     } else {
+            //         this.isEditing = false;
+            //         this.swr();
+            //     }
+            // }
+            // this.isEditing = false;
         },
         showEditModal({ tagName, id }) {
-            let obj = {
-                id,
-                tagName
-            };
-            this.editData = obj;
-            this.editModal = true;
+            //     let obj = {
+            //         id,
+            //         tagName
+            //     };
+            //     this.editData = obj;
+            //     this.editModal = true;
         },
         async deleteTag() {
-            this.isDeleting = true;
-
-            const res = await this.callApi(
-                "post",
-                "/api/tag/delete_tag",
-                this.deleteData
-            );
-
-            if (res.status === 200) {
-                this.tags.splice(this.deleteTag.i, 1);
-                this.s("Tag deleted Successfully");
-                this.isDeleting = false;
-                this.deleteModal = false;
-            } else {
-                this.isDeleting = false;
-
-                this.swr();
-            }
+            // this.isDeleting = true;
+            // const res = await this.callApi(
+            //     "post",
+            //     "/api/tag/delete_tag",
+            //     this.deleteData
+            // );
+            // if (res.status === 200) {
+            //     this.tags.splice(this.deleteTag.i, 1);
+            //     this.s("Tag deleted Successfully");
+            //     this.isDeleting = false;
+            //     this.deleteModal = false;
+            // } else {
+            //     this.isDeleting = false;
+            //     this.swr();
+            // }
         },
         showDeleteModal(tag, i) {
-            const deleteModalObj = {
-                showDeleteModal: true,
-                deleteURL: "/api/tag/delete_tag",
-                deleteData: tag,
-                isDeleted: false
-            };
-            this.$store.commit("setDeletingModalObj", deleteModalObj);
+            //     const deleteModalObj = {
+            //         showDeleteModal: true,
+            //         deleteURL: "/api/tag/delete_tag",
+            //         deleteData: tag,
+            //         isDeleted: false
+            //     };
+            //     this.$store.commit("setDeletingModalObj", deleteModalObj);
         }
     },
     async created() {
-        const res = await this.callApi("get", "/api/tag/get_all_tags");
+        const res = await this.callApi("get", "/api/role/get_roles");
         if (res.status === 200) {
-            this.tags = res.data;
+            this.roles = res.data;
         } else {
             this.swr();
         }

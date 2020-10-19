@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Roles;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -115,5 +116,22 @@ class AdminController extends Controller
 	public function getUsers()
 	{
 		return User::orderBy('id', 'desc')->get();
+	}
+
+	public function createRole(Request $request)
+	{
+		$this->validate($request, [
+			'roleName' => "required",
+		]);
+
+		$role = Roles::create([
+			'roleName' => $request->roleName
+		]);
+		return $role;
+	}
+
+	public function getRoles()
+	{
+		return Roles::orderBy('id', 'desc')->get();
 	}
 }

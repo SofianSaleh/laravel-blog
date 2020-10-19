@@ -50,6 +50,15 @@ Route::prefix('api')->middleware(AdminCheck::class)->group(function () {
     Route::get('/user/get_all', [AdminController::class, 'getUsers']);
     Route::post('/user/create', [AdminController::class, 'createUser']);
     Route::post('/user/edit', [AdminController::class, 'editUser']);
+
+    // User Routes Finished
+
+    // Admin Routes Start
+
+    Route::post('/role/create_role', [AdminController::class, 'createRole']);
+    Route::get('/role/get_roles', [AdminController::class, 'getRoles']);
+    // Route::post('/user/edit', [AdminController::class, 'editUser']);
+
     // User Routes Finished
 });
 
