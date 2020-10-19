@@ -6,6 +6,7 @@ import Tags from "./admin/views/Tags.vue";
 import Category from "./admin/views/Category.vue";
 import AdminUsers from "./admin/views/AdminUsers.vue";
 import Login from "./admin/views/Login.vue";
+import Role from "./admin/views/Role.vue";
 
 Vue.use(VueRouter);
 
@@ -31,6 +32,10 @@ const router = new VueRouter({
         {
             path: "/login",
             component: Login
+        },
+        {
+            path: "/role",
+            component: Role
         }
     ]
 });

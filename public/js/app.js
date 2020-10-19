@@ -3802,6 +3802,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["user"],
   data: function data() {
@@ -88641,6 +88647,24 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
+                    _c(
+                      "li",
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: "/role" } },
+                          [
+                            _c("Icon", { attrs: { type: "ios-speedometer" } }),
+                            _vm._v(
+                              " Role\n                                Management"
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
                     _c("li", [
                       _c(
                         "a",
@@ -105554,6 +105578,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/admin/views/Role.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/admin/views/Role.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/admin/views/Role.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/admin/views/Tags.vue":
 /*!*******************************************!*\
   !*** ./resources/js/admin/views/Tags.vue ***!
@@ -105845,6 +105901,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_views_Category_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./admin/views/Category.vue */ "./resources/js/admin/views/Category.vue");
 /* harmony import */ var _admin_views_AdminUsers_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./admin/views/AdminUsers.vue */ "./resources/js/admin/views/AdminUsers.vue");
 /* harmony import */ var _admin_views_Login_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./admin/views/Login.vue */ "./resources/js/admin/views/Login.vue");
+/* harmony import */ var _admin_views_Role_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./admin/views/Role.vue */ "./resources/js/admin/views/Role.vue");
+
 
 
 
@@ -105870,6 +105928,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: "/login",
     component: _admin_views_Login_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: "/role",
+    component: _admin_views_Role_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
