@@ -228,26 +228,26 @@ export default {
             this.editData = obj;
             this.editModal = true;
         },
-        // async deleteTag() {
-        //     this.isDeleting = true;
+        async deleteTag() {
+            this.isDeleting = true;
 
-        //     const res = await this.callApi(
-        //         "post",
-        //         "/api/tag/delete_tag",
-        //         this.deleteData
-        //     );
+            const res = await this.callApi(
+                "post",
+                "/api/tag/delete_tag",
+                this.deleteData
+            );
 
-        //     if (res.status === 200) {
-        //         this.tags.splice(this.deleteTag.i, 1);
-        //         this.s("Tag deleted Successfully");
-        //         this.isDeleting = false;
-        //         this.deleteModal = false;
-        //     } else {
-        //         this.isDeleting = false;
+            if (res.status === 200) {
+                this.tags.splice(this.deleteTag.i, 1);
+                this.s("Tag deleted Successfully");
+                this.isDeleting = false;
+                this.deleteModal = false;
+            } else {
+                this.isDeleting = false;
 
-        //         this.swr();
-        //     }
-        // },
+                this.swr();
+            }
+        },
         showDeleteModal(tag, i) {
             const deleteModalObj = {
                 showDeleteModal: true,

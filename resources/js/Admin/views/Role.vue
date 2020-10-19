@@ -207,25 +207,6 @@ export default {
             this.editData = obj;
             this.editModal = true;
         },
-        // async deleteRole() {
-        //     this.isDeleting = true;
-        //     const res = await this.callApi(
-        //         "post",
-        //         "/api/role/delete_role",
-        //         this.deleteData
-        //     );
-        //     console.log("jjjjjjj");
-        //     if (res.status === 200) {
-        //         console.log(this.deleteTag);
-        //         this.roles.splice(this.deleteTag.i, 1);
-        //         this.s("Role deleted Successfully");
-        //         this.isDeleting = false;
-        //         this.deleteModal = false;
-        //     } else {
-        //         this.isDeleting = false;
-        //         this.swr();
-        //     }
-        },
         showDeleteModal(role, i) {
             const deleteModalObj = {
                 showDeleteModal: true,
