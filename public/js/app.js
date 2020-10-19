@@ -3541,7 +3541,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    editTag: function editTag() {
+    edit: function edit() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -3564,9 +3564,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
                 res = _context2.sent;
+                console.log(_this2.editData);
+                console.log(res.data);
 
                 if (!(res.status === 200)) {
-                  _context2.next = 15;
+                  _context2.next = 17;
                   break;
                 }
 
@@ -3582,37 +3584,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this2.editData = {
                   roleName: ""
                 };
-                _context2.next = 23;
+                _context2.next = 25;
                 break;
 
-              case 15:
+              case 17:
                 if (!(res.status === 422)) {
-                  _context2.next = 21;
+                  _context2.next = 23;
                   break;
                 }
 
                 _this2.isEditing = false;
 
                 if (!res.data.errors.roleName) {
-                  _context2.next = 19;
+                  _context2.next = 21;
                   break;
                 }
 
                 return _context2.abrupt("return", _this2.i(res.data.errors.roleName[0]));
 
-              case 19:
-                _context2.next = 23;
-                break;
-
               case 21:
-                _this2.isEditing = false;
-
-                _this2.swr();
+                _context2.next = 25;
+                break;
 
               case 23:
                 _this2.isEditing = false;
 
-              case 24:
+                _this2.swr();
+
+              case 25:
+                _this2.isEditing = false;
+
+              case 26:
               case "end":
                 return _context2.stop();
             }
@@ -88911,7 +88913,7 @@ var render = function() {
             "Modal",
             {
               attrs: {
-                title: "Edit tag",
+                title: "Edit role",
                 "mask-closable": false,
                 closable: false
               },
@@ -88925,13 +88927,13 @@ var render = function() {
             },
             [
               _c("Input", {
-                attrs: { placeholder: "Edit tag name" },
+                attrs: { placeholder: "Edit role name" },
                 model: {
-                  value: _vm.editData.tagName,
+                  value: _vm.editData.roleName,
                   callback: function($$v) {
-                    _vm.$set(_vm.editData, "tagName", $$v)
+                    _vm.$set(_vm.editData, "roleName", $$v)
                   },
-                  expression: "editData.tagName"
+                  expression: "editData.roleName"
                 }
               }),
               _vm._v(" "),
@@ -88960,9 +88962,9 @@ var render = function() {
                         disabled: _vm.isEditing,
                         loading: _vm.isEditing
                       },
-                      on: { click: _vm.editTag }
+                      on: { click: _vm.edit }
                     },
-                    [_vm._v("Edit tag")]
+                    [_vm._v("Edit role")]
                   )
                 ],
                 1

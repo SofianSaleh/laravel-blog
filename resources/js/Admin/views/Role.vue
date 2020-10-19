@@ -83,13 +83,13 @@
                 <!-- Edit tags -->
                 <Modal
                     v-model="editModal"
-                    title="Edit tag"
+                    title="Edit role"
                     :mask-closable="false"
                     :closable="false"
                 >
                     <Input
-                        v-model="editData.tagName"
-                        placeholder="Edit tag name"
+                        v-model="editData.roleName"
+                        placeholder="Edit role name"
                     />
                     <div slot="footer">
                         <Button type="default" @click="editModal = false"
@@ -97,24 +97,24 @@
                         >
                         <Button
                             type="primary"
-                            @click="editTag"
+                            @click="edit"
                             :disabled="isEditing"
                             :loading="isEditing"
-                            >Edit tag</Button
+                            >Edit role</Button
                         >
                     </div>
                 </Modal>
 
                 <!-- Delete Tag -->
 
-                <!-- <Modal v-model="deleteModal" width="360">
+                <Modal v-model="deleteModal" width="360">
                     <p slot="header" style="color:#f60;text-align:center">
                         <Icon type="ios-information-circle"></Icon>
                         <span>Delete confirmation</span>
                     </p>
                     <div style="text-align:center">
                         <p>
-                            Are you sure you want to delete this tag?
+                            Are you sure you want to delete this Role?
                         </p>
                     </div>
                     <div slot="footer">
@@ -124,11 +124,11 @@
                             long
                             :loading="isDeleting"
                             :disabled="isDeleting"
-                            @click="deleteTag"
+                            @click="deleteRole"
                             >Delete</Button
                         >
                     </div>
-                </Modal> -->
+                </Modal>
                 <deleteModal></deleteModal>
             </div>
         </div>
@@ -164,7 +164,6 @@ export default {
     },
     methods: {
         async add() {
-            console.log(this.data);
             if (this.data.roleName.trim() === "")
                 return this.e("Role name is Required");
 
@@ -193,7 +192,7 @@ export default {
             }
             this.isAdding = false;
         },
-        async editTag() {
+        async edit() {
             if (this.editData.roleName.trim() === "")
                 return this.e("Role name is Required");
             this.isEditing = true;
@@ -202,6 +201,7 @@ export default {
                 "/api/role/edit_role",
                 this.editData
             );
+
             if (res.status === 200) {
                 let index = this.roles.findIndex(
                     role => role.id === res.data.id
@@ -231,11 +231,11 @@ export default {
             this.editData = obj;
             this.editModal = true;
         },
-        async deleteTag() {
+        async deleteRoke() {
             this.isDeleting = true;
             const res = await this.callApi(
                 "post",
-                "/api/tag/delete_role",
+                "/api/role/delete_role",
                 this.deleteData
             );
             if (res.status === 200) {
