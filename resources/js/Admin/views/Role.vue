@@ -105,30 +105,6 @@
                     </div>
                 </Modal>
 
-                <!-- Delete Tag -->
-
-                <Modal v-model="deleteModal" width="360">
-                    <p slot="header" style="color:#f60;text-align:center">
-                        <Icon type="ios-information-circle"></Icon>
-                        <span>Delete confirmation</span>
-                    </p>
-                    <div style="text-align:center">
-                        <p>
-                            Are you sure you want to delete this Role?
-                        </p>
-                    </div>
-                    <div slot="footer">
-                        <Button
-                            type="error"
-                            size="large"
-                            long
-                            :loading="isDeleting"
-                            :disabled="isDeleting"
-                            @click="deleteRole"
-                            >Delete</Button
-                        >
-                    </div>
-                </Modal>
                 <deleteModal></deleteModal>
             </div>
         </div>
@@ -231,27 +207,29 @@ export default {
             this.editData = obj;
             this.editModal = true;
         },
-        async deleteRoke() {
-            this.isDeleting = true;
-            const res = await this.callApi(
-                "post",
-                "/api/role/delete_role",
-                this.deleteData
-            );
-            if (res.status === 200) {
-                this.roles.splice(this.deleteTag.i, 1);
-                this.s("Role deleted Successfully");
-                this.isDeleting = false;
-                this.deleteModal = false;
-            } else {
-                this.isDeleting = false;
-                this.swr();
-            }
+        // async deleteRole() {
+        //     this.isDeleting = true;
+        //     const res = await this.callApi(
+        //         "post",
+        //         "/api/role/delete_role",
+        //         this.deleteData
+        //     );
+        //     console.log("jjjjjjj");
+        //     if (res.status === 200) {
+        //         console.log(this.deleteTag);
+        //         this.roles.splice(this.deleteTag.i, 1);
+        //         this.s("Role deleted Successfully");
+        //         this.isDeleting = false;
+        //         this.deleteModal = false;
+        //     } else {
+        //         this.isDeleting = false;
+        //         this.swr();
+        //     }
         },
         showDeleteModal(role, i) {
             const deleteModalObj = {
                 showDeleteModal: true,
-                deleteURL: "/api/tag/delete_role",
+                deleteURL: "/api/role/delete_role",
                 deleteData: role,
                 isDeleted: false
             };
