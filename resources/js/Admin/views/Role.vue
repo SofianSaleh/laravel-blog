@@ -194,66 +194,68 @@ export default {
             this.isAdding = false;
         },
         async editTag() {
-            // if (this.editData.tagName.trim() === "")
-            // return this.e("Tag name is Required");
-            // this.isEditing = true;
-            // const res = await this.callApi(
-            //     "post",
-            //     "/api/tag/edit_tag",
-            //     this.editData
-            // );
-            // if (res.status === 200) {
-            //     let index = this.tags.findIndex(tag => tag.id === res.data.id);
-            //     this.tags[index].tagName = res.data.tagName;
-            //     this.s("Tag has Been Edited");
-            //     this.isEditing = false;
-            //     this.editModal = false;
-            //     this.editData = { tagName: "" };
-            // } else {
-            //     if (res.status === 422) {
-            //         this.isEditing = false;
-            //         if (res.data.errors.tagName)
-            //             return this.i(res.data.errors.tagName[0]);
-            //     } else {
-            //         this.isEditing = false;
-            //         this.swr();
-            //     }
-            // }
-            // this.isEditing = false;
+            if (this.editData.roleName.trim() === "")
+                return this.e("Role name is Required");
+            this.isEditing = true;
+            const res = await this.callApi(
+                "post",
+                "/api/role/edit_role",
+                this.editData
+            );
+            if (res.status === 200) {
+                let index = this.roles.findIndex(
+                    role => role.id === res.data.id
+                );
+                this.roles[index].roleName = res.data.roleName;
+                this.s("Role has Been Edited");
+                this.isEditing = false;
+                this.editModal = false;
+                this.editData = { roleName: "" };
+            } else {
+                if (res.status === 422) {
+                    this.isEditing = false;
+                    if (res.data.errors.roleName)
+                        return this.i(res.data.errors.roleName[0]);
+                } else {
+                    this.isEditing = false;
+                    this.swr();
+                }
+            }
+            this.isEditing = false;
         },
-        showEditModal({ tagName, id }) {
-            //     let obj = {
-            //         id,
-            //         tagName
-            //     };
-            //     this.editData = obj;
-            //     this.editModal = true;
+        showEditModal({ roleName, id }) {
+            let obj = {
+                id,
+                roleName
+            };
+            this.editData = obj;
+            this.editModal = true;
         },
         async deleteTag() {
-            // this.isDeleting = true;
-            // const res = await this.callApi(
-            //     "post",
-            //     "/api/tag/delete_tag",
-            //     this.deleteData
-            // );
-            // if (res.status === 200) {
-            //     this.tags.splice(this.deleteTag.i, 1);
-            //     this.s("Tag deleted Successfully");
-            //     this.isDeleting = false;
-            //     this.deleteModal = false;
-            // } else {
-            //     this.isDeleting = false;
-            //     this.swr();
-            // }
+            this.isDeleting = true;
+            const res = await this.callApi(
+                "post",
+                "/api/tag/delete_role",
+                this.deleteData
+            );
+            if (res.status === 200) {
+                this.roles.splice(this.deleteTag.i, 1);
+                this.s("Role deleted Successfully");
+                this.isDeleting = false;
+                this.deleteModal = false;
+            } else {
+                this.isDeleting = false;
+                this.swr();
+            }
         },
-        showDeleteModal(tag, i) {
-            //     const deleteModalObj = {
-            //         showDeleteModal: true,
-            //         deleteURL: "/api/tag/delete_tag",
-            //         deleteData: tag,
-            //         isDeleted: false
-            //     };
-            //     this.$store.commit("setDeletingModalObj", deleteModalObj);
+        showDeleteModal(role, i) {
+            const deleteModalObj = {
+                showDeleteModal: true,
+                deleteURL: "/api/tag/delete_role",
+                deleteData: role,
+                isDeleted: false
+            };
+            this.$store.commit("setDeletingModalObj", deleteModalObj);
         }
     },
     async created() {

@@ -57,6 +57,8 @@ Route::prefix('api')->middleware(AdminCheck::class)->group(function () {
 
     Route::post('/role/create_role', [AdminController::class, 'createRole']);
     Route::get('/role/get_roles', [AdminController::class, 'getRoles']);
+    Route::get('/role/edit_role', [AdminController::class, 'editRoles']);
+    Route::get('/role/delete_role', [AdminController::class, 'deleteRoles']);
     // Route::post('/user/edit', [AdminController::class, 'editUser']);
 
     // User Routes Finished
