@@ -231,10 +231,10 @@ export default {
     watch: {
         getDeleteModalObj(obj) {
             if (obj.isDeleted) {
-                let index = this.tags.findIndex(
-                    tag => tag.id === obj.deleteData.id
+                let index = this.roles.findIndex(
+                    role => role.id === obj.deleteData.id
                 );
-                this.tags.splice(index, 1);
+                this.roles.splice(index, 1);
                 this.$store.commit("setDeleteModal", false);
             }
         }

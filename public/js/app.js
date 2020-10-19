@@ -3647,10 +3647,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     getDeleteModalObj: function getDeleteModalObj(obj) {
       if (obj.isDeleted) {
-        var index = this.tags.findIndex(function (tag) {
-          return tag.id === obj.deleteData.id;
+        var index = this.roles.findIndex(function (role) {
+          return role.id === obj.deleteData.id;
         });
-        this.tags.splice(index, 1);
+        this.roles.splice(index, 1);
         this.$store.commit("setDeleteModal", false);
       }
     }
