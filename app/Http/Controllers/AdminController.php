@@ -134,4 +134,34 @@ class AdminController extends Controller
 	{
 		return Roles::orderBy('id', 'desc')->get();
 	}
+
+	public function editRole(Request $request)
+	{
+		$this->validate($request, [
+			'id' => 'required',
+			'roleName' => 'required'
+		]);
+		$updated = Roles::where('id', $request->id)->update([
+			'roleName' => $request->roleName
+		]);
+		if ($updated) {
+			return response()->json([
+				'roleName' => $request->roleName,
+				'id' => $request->id
+			]);
+		} else {
+			return response()->json([
+				'error' => "Failed to update try again"
+			]);
+		}
+	}
+
+	public function deleteRole(Request $request)
+	{
+		$this->validate($request, [
+			'id' => 'required',
+		]);
+
+		return Roles::where('id', $request->id)->delete();
+	}
 }
