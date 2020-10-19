@@ -7,9 +7,9 @@
                     class="_1adminOverveiw_table_recent _box_shadow _border_radious _mar_b30 _p20"
                 >
                     <p class="_title0">
-                        Tags
+                        Role Management
                         <Button @click="addModal = true"
-                            ><Icon type="md-add"></Icon> Add Tag</Button
+                            ><Icon type="md-add"></Icon> Add New Role</Button
                         >
                     </p>
 
@@ -18,7 +18,7 @@
                             <!-- TABLE TITLE -->
                             <tr>
                                 <th>Id</th>
-                                <th>Tag Name</th>
+                                <th>Role Type</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>
@@ -59,21 +59,21 @@
                 <!-- Create tag -->
                 <Modal
                     v-model="addModal"
-                    title="Add tag"
+                    title="Add Role"
                     :mask-closable="false"
                     :closable="false"
                 >
-                    <Input v-model="data.tagName" placeholder="Add tag name" />
+                    <Input v-model="data.tagName" placeholder="Add role name" />
                     <div slot="footer">
                         <Button type="default" @click="addModal = false"
                             >Close</Button
                         >
                         <Button
                             type="primary"
-                            @click="addTag"
+                            @click="add"
                             :disabled="isAdding"
                             :loading="isAdding"
-                            >{{ isAdding ? "Adding.." : "Add tag" }}</Button
+                            >{{ isAdding ? "Adding.." : "Add role" }}</Button
                         >
                     </div>
                 </Modal>
@@ -142,13 +142,13 @@ export default {
     data() {
         return {
             data: {
-                tagName: ""
+                roleName: ""
             },
             editData: {
-                tagName: ""
+                roleName: ""
             },
             deleteData: {
-                tagName: ""
+                roleName: ""
             },
             addModal: false,
             editModal: false,
@@ -160,26 +160,28 @@ export default {
         };
     },
     methods: {
-        async addTag() {
-            if (this.data.tagName.trim() === "")
-                return this.e("Tag name is Required");
+        async add() {
+            if (this.data.rolename.trim() === "")
+                return this.e("Role name is Required");
 
             this.isAdding = true;
-            const res = await this.callApi("post", "/api/tag/create_tag", {
-                tagName: this.data.tagName
-            });
+            const res = await this.callApi(
+                "post",
+                "/api/tag/create_tag",
+                this.data
+            );
 
             if (res.status === 201) {
                 this.tags.unshift(res.data);
-                this.s("Tag has Been Added");
+                this.s("Role has Been Added");
                 this.isAdding = false;
                 this.addModal = false;
-                this.data.tagName = "";
+                this.data.rolename = "";
             } else {
                 if (res.status === 422) {
                     this.isAdding = false;
-                    if (res.data.errors.tagName)
-                        return this.i(res.data.errors.tagName[0]);
+                    if (res.data.errors.roleName)
+                        return this.i(res.data.errors.roleName[0]);
                 } else {
                     this.isAdding = false;
                     this.swr();
