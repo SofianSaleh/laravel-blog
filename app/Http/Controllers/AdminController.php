@@ -96,6 +96,10 @@ class AdminController extends Controller
 		]);
 		if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 			$user = Auth::user();
+			return response()->json([
+				'msg' => 'you are not log in',
+				'user' => $user
+			], 401);
 			Log::info($user->role());
 			if ($user->userType == 'User') {
 				Auth::logout();
