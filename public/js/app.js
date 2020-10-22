@@ -3246,9 +3246,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context.sent;
 
                 if (res.status === 200) {
-                  _this.s(res.data.msg);
+                  _this.s(res.data.msg); // window.location = "/";
 
-                  window.location = "/";
                 } else {
                   if (res.status === 401) {
                     _this.i(res.data.msg);
