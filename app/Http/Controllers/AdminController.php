@@ -7,6 +7,7 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -95,7 +96,7 @@ class AdminController extends Controller
 		]);
 		if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 			$user = Auth::user();
-
+			Log::info($user->role());
 			if ($user->userType == 'User') {
 				Auth::logout();
 				return response()->json([
